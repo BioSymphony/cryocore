@@ -34,7 +34,7 @@ jobs:
           python3 scripts/cryocore/public_release_report.py --repo-root . --out release-artifacts/public-release-report.json --json
           git archive --format=tar.gz --output release-artifacts/biosymphony-cryocore-public-${GITHUB_REF_NAME}.tar.gz HEAD
           (cd release-artifacts && shasum -a 256 * > SHA256SUMS)
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: cryocore-public-release-evidence
           path: release-artifacts/
