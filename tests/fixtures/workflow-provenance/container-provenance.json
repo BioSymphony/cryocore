@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "run_id": "fixture-good-run",
+  "container_runtime": "runpod-container",
+  "image": "ghcr.io/example/cryocore@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "image_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sif_sha256": null,
+  "sbom_path": "sbom.json",
+  "versions_path": "versions.json",
+  "build_ref": "fixture-ref",
+  "license_manifest": "license-gates.json"
+}

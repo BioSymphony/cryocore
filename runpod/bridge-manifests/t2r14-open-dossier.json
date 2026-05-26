@@ -1,0 +1,224 @@
+{
+  "access": {
+    "full_ssh_scp_required": false,
+    "http_proxy_required": true,
+    "public_services_require_auth": true,
+    "ssh_public_key_ref": "",
+    "ssh_required": false,
+    "tcp_ports_required": true
+  },
+  "artifact_egress": {
+    "archive_path": "runpod-execution/artifacts/runpod-execution.tar.gz",
+    "mode": "workspace_archive",
+    "requires_network_volume": false,
+    "requires_object_store_upload": false,
+    "requires_scp": false
+  },
+  "budget": {
+    "max_estimated_cost_usd": 1,
+    "max_runtime_minutes": 45
+  },
+  "closeout": {
+    "delete_pod_if_network_volume_attached": true,
+    "prefer_billing_api_cost": true,
+    "record_artifact_hashes": true,
+    "record_cost_estimate": true,
+    "record_runtime_minutes": true,
+    "retain_pod": false,
+    "stop_or_delete_pod": true,
+    "tracker_outcome_required": true
+  },
+  "compute_profile": "cpu-public-open-tools-under-1h",
+  "expected_artifacts": [
+    {
+      "artifact_id": "status",
+      "path": "runpod-execution/status.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "summary",
+      "path": "runpod-execution/artifacts/demo-summary.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "report_html",
+      "path": "runpod-execution/artifacts/report.html",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "report_md",
+      "path": "runpod-execution/artifacts/report.md",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "dossier_manifest",
+      "path": "runpod-execution/artifacts/dossier_manifest.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "coordinate_summary",
+      "path": "runpod-execution/artifacts/coordinate-summary.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "contact_matrix",
+      "path": "runpod-execution/artifacts/interchain-contact-matrix.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "ligand_neighborhoods",
+      "path": "runpod-execution/artifacts/ligand-neighborhoods.json",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "claim_ledger",
+      "path": "runpod-execution/artifacts/claim_ledger.md",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "methods",
+      "path": "runpod-execution/artifacts/methods.md",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "provenance",
+      "path": "runpod-execution/artifacts/provenance.md",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "figure_contacts",
+      "path": "runpod-execution/artifacts/figures/interchain-contact-heatmap.svg",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "figure_inventory",
+      "path": "runpod-execution/artifacts/figures/chain-residue-inventory.svg",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "figure_ligands",
+      "path": "runpod-execution/artifacts/figures/ligand-neighborhoods.svg",
+      "required": true,
+      "sha256_required": true
+    },
+    {
+      "artifact_id": "artifact_archive",
+      "path": "runpod-execution/artifacts/runpod-execution.tar.gz",
+      "required": true,
+      "sha256_required": true
+    }
+  ],
+  "launch_authorization": {
+    "approved_at": "",
+    "approved_by": "operator-required",
+    "scope": "Prep-only public data demo. Paid launch requires operator substitution and closeout.",
+    "source": "public-template",
+    "tracker_issue_url": ""
+  },
+  "manifest_kind": "symphony_runpod_launch",
+  "monitoring": {
+    "max_silent_minutes": 5,
+    "poll_interval_seconds": 15,
+    "record_pod_fields": [
+      "id",
+      "desiredStatus",
+      "lastStartedAt",
+      "lastStatusChange",
+      "costPerHr",
+      "adjustedCostPerHr",
+      "machine.dataCenterId",
+      "portMappings"
+    ],
+    "requires_log_artifact": true,
+    "requires_status_file": true,
+    "requires_workload_heartbeat": true
+  },
+  "provider": {
+    "adapter": "runpod_pod_v1",
+    "name": "runpod"
+  },
+  "remote_launch_allowed": false,
+  "repo": {
+    "commit_or_snapshot": "inline:t2r14-open-dossier-v1",
+    "source": "inline_commands",
+    "url_or_path": "inline",
+    "workdir": "/workspace/repo"
+  },
+  "run_id": "cryocore-demo-t2r14-open-dossier",
+  "runpod": {
+    "cloudType": "SECURE",
+    "containerDiskInGb": 10,
+    "dataCenterIds": [],
+    "env": {
+      "CRYOCORE_RUN_ID": "cryocore-demo-t2r14-open-dossier"
+    },
+    "gpuCount": 0,
+    "gpuTypeIds": [],
+    "imageName": "python:3.12-slim",
+    "name": "cryocore-demo-t2r14-open-dossier",
+    "networkVolumeId": "",
+    "ports": [
+      "8000/http",
+      "8000/tcp"
+    ],
+    "templateId": "",
+    "volumeInGb": 0,
+    "volumeMountPath": "/workspace"
+  },
+  "safety": {
+    "license_policy": "open tooling only; no CryoSPARC/Phenix/ChimeraX or other gated tools",
+    "no_literal_secrets": true,
+    "private_data_policy": "public PDB/EMDB only; no private data"
+  },
+  "schema_version": 1,
+  "startup": {
+    "commands": [
+      "set -euo pipefail",
+      "cd /workspace/repo",
+      "mkdir -p runpod-execution/artifacts\ncat > /tmp/t2r14_open_dossier.py <<'PY'\n#!/usr/bin/env python3\n\"\"\"Build a small public cryo-EM map/model dossier for PDB 9W0Q.\n\nThis demo uses only Python standard-library code plus public RCSB downloads.\nIt is designed for a short RunPod CPU Pod run with no licensed tools and no raw\nmovie downloads.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport csv\nimport hashlib\nimport html\nimport json\nimport math\nimport shlex\nimport sys\nimport tarfile\nimport time\nimport urllib.request\nfrom collections import Counter, defaultdict\nfrom dataclasses import dataclass\nfrom datetime import datetime, timezone\nfrom pathlib import Path\nfrom typing import Any\n\n\nPDB_ID = \"9W0Q\"\nEMDB_ID = \"EMD-65512\"\nRUN_ID = \"cryocore-demo-t2r14-open-dossier\"\nCONTACT_DISTANCE_ANGSTROM = 8.0\nLIGAND_DISTANCE_ANGSTROM = 6.0\nARCHIVE_ALLOWLIST = [\n    \"coordinate-summary.json\",\n    \"interchain-contact-matrix.json\",\n    \"interchain-contact-examples.csv\",\n    \"ligand-neighborhoods.json\",\n    \"dossier_manifest.json\",\n    \"claim_ledger.md\",\n    \"methods.md\",\n    \"provenance.md\",\n    \"report.md\",\n    \"report.html\",\n    \"stage-progress.jsonl\",\n    \"figures/interchain-contact-heatmap.svg\",\n    \"figures/chain-residue-inventory.svg\",\n    \"figures/ligand-neighborhoods.svg\",\n]\n\n\ndef now() -> str:\n    return datetime.now(timezone.utc).isoformat()\n\n\ndef write_json(path: Path, payload: dict[str, Any]) -> None:\n    path.parent.mkdir(parents=True, exist_ok=True)\n    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + \"\\n\")\n\n\ndef sha256(path: Path) -> str:\n    digest = hashlib.sha256()\n    with path.open(\"rb\") as handle:\n        for chunk in iter(lambda: handle.read(1024 * 1024), b\"\"):\n            digest.update(chunk)\n    return digest.hexdigest()\n\n\ndef fetch_text(url: str) -> str:\n    request = urllib.request.Request(url, headers={\"User-Agent\": \"BioSymphony-CryoCore/0.1\"})\n    with urllib.request.urlopen(request, timeout=60) as response:\n        return response.read().decode(\"utf-8\")\n\n\ndef stage_event(progress_path: Path, stage_id: str, status: str, message: str = \"\") -> None:\n    progress_path.parent.mkdir(parents=True, exist_ok=True)\n    event = {\n        \"schema_version\": 1,\n        \"timestamp\": now(),\n        \"stage_id\": stage_id,\n        \"status\": status,\n        \"message\": message,\n    }\n    with progress_path.open(\"a\", encoding=\"utf-8\") as handle:\n        handle.write(json.dumps(event, sort_keys=True) + \"\\n\")\n\n\n@dataclass\nclass Atom:\n    chain: str\n    seq: str\n    comp: str\n    atom: str\n    element: str\n    x: float\n    y: float\n    z: float\n    group: str\n\n    @property\n    def residue_key(self) -> tuple[str, str, str]:\n        return (self.chain, self.seq, self.comp)\n\n\ndef split_mmcif_row(line: str) -> list[str]:\n    return shlex.split(line, posix=True)\n\n\ndef parse_atom_site(cif_text: str) -> list[Atom]:\n    lines = cif_text.splitlines()\n    atoms: list[Atom] = []\n    index = 0\n    while index < len(lines):\n        if lines[index].strip() != \"loop_\":\n            index += 1\n            continue\n        index += 1\n        tags: list[str] = []\n        while index < len(lines) and lines[index].startswith(\"_\"):\n            tags.append(lines[index].strip())\n            index += 1\n        if not tags or not all(tag.startswith(\"_atom_site.\") for tag in tags[:1]):\n            continue\n        if \"_atom_site.Cartn_x\" not in tags:\n            continue\n        positions = {tag: pos for pos, tag in enumerate(tags)}\n        required = [\n            \"_atom_site.group_PDB\",\n            \"_atom_site.label_atom_id\",\n            \"_atom_site.label_comp_id\",\n            \"_atom_site.Cartn_x\",\n            \"_atom_site.Cartn_y\",\n            \"_atom_site.Cartn_z\",\n        ]\n        if any(tag not in positions for tag in required):\n            continue\n        chain_tag = \"_atom_site.auth_asym_id\" if \"_atom_site.auth_asym_id\" in positions else \"_atom_site.label_asym_id\"\n        seq_tag = \"_atom_site.auth_seq_id\" if \"_atom_site.auth_seq_id\" in positions else \"_atom_site.label_seq_id\"\n        element_tag = \"_atom_site.type_symbol\" if \"_atom_site.type_symbol\" in positions else \"_atom_site.label_atom_id\"\n        while index < len(lines):\n            line = lines[index].strip()\n            if not line or line == \"#\":\n                break\n            if line == \"loop_\" or line.startswith(\"_\"):\n                index -= 1\n                break\n            row = split_mmcif_row(line)\n            if len(row) >= len(tags):\n                try:\n                    atoms.append(\n                        Atom(\n                            chain=row[positions[chain_tag]],\n                            seq=row[positions[seq_tag]],\n                            comp=row[positions[\"_atom_site.label_comp_id\"]],\n                            atom=row[positions[\"_atom_site.label_atom_id\"]],\n                            element=row[positions[element_tag]],\n                            x=float(row[positions[\"_atom_site.Cartn_x\"]]),\n                            y=float(row[positions[\"_atom_site.Cartn_y\"]]),\n                            z=float(row[positions[\"_atom_site.Cartn_z\"]]),\n                            group=row[positions[\"_atom_site.group_PDB\"]],\n                        )\n                    )\n                except (ValueError, IndexError):\n                    pass\n            index += 1\n        index += 1\n    return atoms\n\n\ndef dist(a: tuple[float, float, float], b: tuple[float, float, float]) -> float:\n    return math.sqrt((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 + (a[2] - b[2]) ** 2)\n\n\ndef residue_centroids(atoms: list[Atom]) -> dict[tuple[str, str, str], tuple[float, float, float]]:\n    grouped: dict[tuple[str, str, str], list[Atom]] = defaultdict(list)\n    for atom in atoms:\n        if atom.comp == \"HOH\":\n            continue\n        grouped[atom.residue_key].append(atom)\n    centroids: dict[tuple[str, str, str], tuple[float, float, float]] = {}\n    for key, residue_atoms in grouped.items():\n        preferred = [atom for atom in residue_atoms if atom.atom in {\"CA\", \"C4'\", \"P\"}]\n        selected = preferred or residue_atoms\n        centroids[key] = (\n            sum(atom.x for atom in selected) / len(selected),\n            sum(atom.y for atom in selected) / len(selected),\n            sum(atom.z for atom in selected) / len(selected),\n        )\n    return centroids\n\n\ndef contact_tables(atoms: list[Atom]) -> tuple[dict[str, dict[str, int]], list[dict[str, Any]]]:\n    centroids = residue_centroids([atom for atom in atoms if atom.group == \"ATOM\"])\n    residues = list(centroids.items())\n    matrix: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))\n    examples: list[dict[str, Any]] = []\n    for left_index, (left_key, left_xyz) in enumerate(residues):\n        for right_key, right_xyz in residues[left_index + 1 :]:\n            left_chain, left_seq, left_comp = left_key\n            right_chain, right_seq, right_comp = right_key\n            if left_chain == right_chain:\n                continue\n            if dist(left_xyz, right_xyz) <= CONTACT_DISTANCE_ANGSTROM:\n                matrix[left_chain][right_chain] += 1\n                matrix[right_chain][left_chain] += 1\n                if len(examples) < 200:\n                    examples.append(\n                        {\n                            \"left\": {\"chain\": left_chain, \"seq\": left_seq, \"comp\": left_comp},\n                            \"right\": {\"chain\": right_chain, \"seq\": right_seq, \"comp\": right_comp},\n                        }\n                    )\n    return matrix, examples\n\n\ndef ligand_neighborhood(atoms: list[Atom]) -> list[dict[str, Any]]:\n    centroids = residue_centroids([atom for atom in atoms if atom.group == \"ATOM\"])\n    ligand_atoms = [atom for atom in atoms if atom.group == \"HETATM\" and atom.comp not in {\"HOH\", \"DOD\"}]\n    ligand_groups: dict[tuple[str, str, str], list[Atom]] = defaultdict(list)\n    for atom in ligand_atoms:\n        ligand_groups[atom.residue_key].append(atom)\n    rows: list[dict[str, Any]] = []\n    for ligand_key, group_atoms in ligand_groups.items():\n        ligand_xyz = (\n            sum(atom.x for atom in group_atoms) / len(group_atoms),\n            sum(atom.y for atom in group_atoms) / len(group_atoms),\n            sum(atom.z for atom in group_atoms) / len(group_atoms),\n        )\n        contacts = []\n        for residue_key, residue_xyz in centroids.items():\n            distance = dist(ligand_xyz, residue_xyz)\n            if distance <= LIGAND_DISTANCE_ANGSTROM:\n                contacts.append({\"chain\": residue_key[0], \"seq\": residue_key[1], \"comp\": residue_key[2], \"distance\": round(distance, 2)})\n        rows.append(\n            {\n                \"ligand\": {\"chain\": ligand_key[0], \"seq\": ligand_key[1], \"comp\": ligand_key[2], \"atom_count\": len(group_atoms)},\n                \"nearby_residue_count\": len(contacts),\n                \"nearby_residues\": sorted(contacts, key=lambda item: item[\"distance\"])[:30],\n            }\n        )\n    return sorted(rows, key=lambda row: (-row[\"nearby_residue_count\"], row[\"ligand\"][\"comp\"]))\n\n\ndef svg_header(width: int, height: int) -> str:\n    return f'<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{width}\" height=\"{height}\" viewBox=\"0 0 {width} {height}\">'\n\n\ndef write_contact_heatmap(path: Path, matrix: dict[str, dict[str, int]], chains: list[str]) -> None:\n    cell = 44\n    margin = 90\n    width = margin + cell * len(chains) + 30\n    height = margin + cell * len(chains) + 45\n    max_value = max([matrix.get(a, {}).get(b, 0) for a in chains for b in chains] or [1]) or 1\n    parts = [svg_header(width, height), '<rect width=\"100%\" height=\"100%\" fill=\"#ffffff\"/>']\n    parts.append('<text x=\"20\" y=\"26\" font-family=\"Arial\" font-size=\"18\" font-weight=\"700\">Inter-chain residue contacts</text>')\n    for i, chain in enumerate(chains):\n        x = margin + i * cell + cell / 2\n        y = margin - 12\n        parts.append(f'<text x=\"{x:.1f}\" y=\"{y}\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\">{html.escape(chain)}</text>')\n        parts.append(f'<text x=\"{margin - 14}\" y=\"{margin + i * cell + 27}\" text-anchor=\"end\" font-family=\"Arial\" font-size=\"12\">{html.escape(chain)}</text>')\n    for row, a in enumerate(chains):\n        for col, b in enumerate(chains):\n            value = matrix.get(a, {}).get(b, 0)\n            intensity = int(245 - 180 * (value / max_value))\n            color = f\"rgb({intensity},{intensity + 6},245)\"\n            x = margin + col * cell\n            y = margin + row * cell\n            parts.append(f'<rect x=\"{x}\" y=\"{y}\" width=\"{cell - 2}\" height=\"{cell - 2}\" fill=\"{color}\" stroke=\"#222\" stroke-width=\"0.4\"/>')\n            if value:\n                parts.append(f'<text x=\"{x + cell / 2:.1f}\" y=\"{y + 27}\" text-anchor=\"middle\" font-family=\"Arial\" font-size=\"12\">{value}</text>')\n    parts.append(\"</svg>\")\n    path.write_text(\"\\n\".join(parts) + \"\\n\")\n\n\ndef write_chain_bar_svg(path: Path, chain_residue_counts: dict[str, int]) -> None:\n    chains = sorted(chain_residue_counts)\n    width = 760\n    height = 110 + 34 * len(chains)\n    max_count = max(chain_residue_counts.values() or [1])\n    parts = [svg_header(width, height), '<rect width=\"100%\" height=\"100%\" fill=\"#ffffff\"/>']\n    parts.append('<text x=\"24\" y=\"30\" font-family=\"Arial\" font-size=\"18\" font-weight=\"700\">Model residue inventory by chain</text>')\n    for index, chain in enumerate(chains):\n        y = 62 + index * 34\n        value = chain_residue_counts[chain]\n        bar = 560 * value / max_count\n        parts.append(f'<text x=\"24\" y=\"{y + 17}\" font-family=\"Arial\" font-size=\"13\">Chain {html.escape(chain)}</text>')\n        parts.append(f'<rect x=\"110\" y=\"{y}\" width=\"{bar:.1f}\" height=\"22\" fill=\"#2f7d7e\"/>')\n        parts.append(f'<text x=\"{120 + bar:.1f}\" y=\"{y + 16}\" font-family=\"Arial\" font-size=\"12\">{value} residues</text>')\n    parts.append(\"</svg>\")\n    path.write_text(\"\\n\".join(parts) + \"\\n\")\n\n\ndef write_ligand_svg(path: Path, neighborhoods: list[dict[str, Any]]) -> None:\n    width = 860\n    height = max(220, 82 + 52 * min(len(neighborhoods), 10))\n    parts = [svg_header(width, height), '<rect width=\"100%\" height=\"100%\" fill=\"#ffffff\"/>']\n    parts.append('<text x=\"24\" y=\"30\" font-family=\"Arial\" font-size=\"18\" font-weight=\"700\">Ligand / non-polymer neighborhoods</text>')\n    if not neighborhoods:\n        parts.append('<text x=\"24\" y=\"70\" font-family=\"Arial\" font-size=\"14\">No non-water HETATM ligands found in mmCIF atom_site table.</text>')\n    for index, row in enumerate(neighborhoods[:10]):\n        y = 62 + index * 52\n        ligand = row[\"ligand\"]\n        label = f\"{ligand['comp']} chain {ligand['chain']} seq {ligand['seq']}\"\n        count = row[\"nearby_residue_count\"]\n        nearby = \", \".join(f\"{item['comp']}{item['seq']}:{item['chain']}\" for item in row[\"nearby_residues\"][:6])\n        parts.append(f'<circle cx=\"40\" cy=\"{y + 11}\" r=\"11\" fill=\"#9c3d54\"/>')\n        parts.append(f'<text x=\"62\" y=\"{y + 6}\" font-family=\"Arial\" font-size=\"13\" font-weight=\"700\">{html.escape(label)}</text>')\n        parts.append(f'<text x=\"62\" y=\"{y + 25}\" font-family=\"Arial\" font-size=\"12\">{count} residues within {LIGAND_DISTANCE_ANGSTROM:.1f} A: {html.escape(nearby)}</text>')\n    parts.append(\"</svg>\")\n    path.write_text(\"\\n\".join(parts) + \"\\n\")\n\n\ndef entry_metadata(entry: dict[str, Any]) -> dict[str, Any]:\n    citation = next((item for item in entry.get(\"citation\", []) if item.get(\"id\") == \"primary\"), {})\n    recon = (entry.get(\"em_3d_reconstruction\") or [{}])[0]\n    database_ids = entry.get(\"database_2\", [])\n    return {\n        \"pdb_id\": PDB_ID,\n        \"emdb_id\": next((item.get(\"database_code\") for item in database_ids if item.get(\"database_id\") == \"EMDB\"), EMDB_ID),\n        \"title\": entry.get(\"struct\", {}).get(\"title\") or citation.get(\"title\"),\n        \"citation_title\": citation.get(\"title\"),\n        \"citation_journal\": citation.get(\"rcsb_journal_abbrev\") or citation.get(\"journal_abbrev\"),\n        \"citation_year\": citation.get(\"year\"),\n        \"doi\": citation.get(\"pdbx_database_id_DOI\"),\n        \"experimental_method\": \", \".join(entry.get(\"exptl\", [{}])[0].get(\"method\", \"\").split(\";\")),\n        \"resolution_angstrom\": recon.get(\"resolution\"),\n        \"resolution_method\": recon.get(\"resolution_method\"),\n        \"particle_count\": recon.get(\"num_particles\"),\n    }\n\n\ndef write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:\n    path.parent.mkdir(parents=True, exist_ok=True)\n    with path.open(\"w\", newline=\"\", encoding=\"utf-8\") as handle:\n        writer = csv.DictWriter(handle, fieldnames=fieldnames)\n        writer.writeheader()\n        for row in rows:\n            writer.writerow(row)\n\n\ndef write_public_archive(artifacts: Path) -> None:\n    with tarfile.open(artifacts / \"runpod-execution.tar.gz\", \"w:gz\") as archive:\n        for rel in ARCHIVE_ALLOWLIST:\n            path = artifacts / rel\n            if path.is_file():\n                archive.add(path, arcname=rel)\n\n\ndef build_dossier(out: Path) -> dict[str, Any]:\n    out.mkdir(parents=True, exist_ok=True)\n    artifacts = out / \"artifacts\"\n    validation = out / \"validation\"\n    figures = artifacts / \"figures\"\n    data_dir = artifacts / \"data\"\n    logs = out / \"logs\"\n    for directory in [artifacts, validation, figures, data_dir, logs]:\n        directory.mkdir(parents=True, exist_ok=True)\n    progress_path = out / \"monitor_events.ndjson\"\n    stage_progress_path = artifacts / \"stage-progress.jsonl\"\n\n    stage_event(stage_progress_path, \"input_audit\", \"started\", \"Fetching public RCSB metadata\")\n    entry_url = f\"https://data.rcsb.org/rest/v1/core/entry/{PDB_ID}\"\n    cif_url = f\"https://files.rcsb.org/download/{PDB_ID}.cif\"\n    entry = json.loads(fetch_text(entry_url))\n    metadata = entry_metadata(entry)\n    input_audit = {\n        \"ok\": True,\n        \"known_inputs\": [\n            {\"kind\": \"pdb_entry\", \"id\": PDB_ID, \"url\": entry_url},\n            {\"kind\": \"emdb_entry\", \"id\": metadata[\"emdb_id\"]},\n            {\"kind\": \"coordinates\", \"id\": f\"{PDB_ID}.cif\", \"url\": cif_url},\n        ],\n        \"missing_operator_items\": [],\n        \"downloads\": \"public mmCIF and metadata only; no raw movies; no licensed tools\",\n    }\n    write_json(validation / \"input-audit.json\", input_audit)\n    stage_event(stage_progress_path, \"input_audit\", \"completed\", \"Input audit complete\")\n\n    stage_event(stage_progress_path, \"coordinate_analysis\", \"started\", \"Downloading and parsing mmCIF atom_site\")\n    cif_text = fetch_text(cif_url)\n    (data_dir / f\"{PDB_ID}.cif\").write_text(cif_text)\n    atoms = parse_atom_site(cif_text)\n    if not atoms:\n        raise RuntimeError(\"No atoms parsed from mmCIF\")\n    atom_count_by_chain = Counter(atom.chain for atom in atoms if atom.group == \"ATOM\")\n    residues_by_chain = defaultdict(set)\n    for atom in atoms:\n        if atom.group == \"ATOM\":\n            residues_by_chain[atom.chain].add(atom.residue_key)\n    residue_counts = {chain: len(keys) for chain, keys in residues_by_chain.items()}\n    matrix, contact_examples = contact_tables(atoms)\n    neighborhoods = ligand_neighborhood(atoms)\n    chains = sorted(residue_counts)\n\n    write_json(\n        artifacts / \"coordinate-summary.json\",\n        {\n            \"pdb_id\": PDB_ID,\n            \"metadata\": metadata,\n            \"atom_count\": len(atoms),\n            \"chain_count\": len(chains),\n            \"atom_count_by_chain\": dict(atom_count_by_chain),\n            \"residue_count_by_chain\": residue_counts,\n            \"ligand_like_group_count\": len(neighborhoods),\n            \"contact_distance_angstrom\": CONTACT_DISTANCE_ANGSTROM,\n            \"ligand_distance_angstrom\": LIGAND_DISTANCE_ANGSTROM,\n        },\n    )\n    write_json(artifacts / \"interchain-contact-matrix.json\", {chain: dict(matrix.get(chain, {})) for chain in chains})\n    write_json(artifacts / \"ligand-neighborhoods.json\", {\"rows\": neighborhoods})\n    write_csv(\n        artifacts / \"interchain-contact-examples.csv\",\n        [\n            {\n                \"left_chain\": row[\"left\"][\"chain\"],\n                \"left_residue\": row[\"left\"][\"comp\"] + row[\"left\"][\"seq\"],\n                \"right_chain\": row[\"right\"][\"chain\"],\n                \"right_residue\": row[\"right\"][\"comp\"] + row[\"right\"][\"seq\"],\n            }\n            for row in contact_examples\n        ],\n        [\"left_chain\", \"left_residue\", \"right_chain\", \"right_residue\"],\n    )\n    write_contact_heatmap(figures / \"interchain-contact-heatmap.svg\", matrix, chains)\n    write_chain_bar_svg(figures / \"chain-residue-inventory.svg\", residue_counts)\n    write_ligand_svg(figures / \"ligand-neighborhoods.svg\", neighborhoods)\n    stage_event(stage_progress_path, \"coordinate_analysis\", \"completed\", \"Coordinate analysis and figures complete\")\n\n    stage_event(stage_progress_path, \"claim_audit\", \"started\", \"Writing validation and claim ledger\")\n    map_model_fit = {\n        \"schema_version\": 1,\n        \"ok\": True,\n        \"evidence_level\": \"metadata_plus_coordinate_geometry\",\n        \"pdb_id\": PDB_ID,\n        \"emdb_id\": metadata[\"emdb_id\"],\n        \"pixel_size_angstrom\": \"not_downloaded_for_small_demo\",\n        \"reported_resolution_angstrom\": metadata[\"resolution_angstrom\"],\n        \"resolution_method\": metadata[\"resolution_method\"],\n        \"particle_count\": metadata[\"particle_count\"],\n        \"map_model_correlation\": \"not_computed_without map download\",\n        \"local_resolution\": \"not_computed_without map download\",\n        \"mask_provenance\": \"reported metadata only; mask file not downloaded\",\n        \"handedness_check\": \"not_computed_without map download\",\n        \"geometry_validation\": \"coordinate inventory and contact geometry only\",\n        \"fsc_provenance\": \"RCSB reported reconstruction metadata only\",\n        \"source_hashes\": {f\"{PDB_ID}.cif\": sha256(data_dir / f\"{PDB_ID}.cif\")},\n        \"deposition_report_ids\": [PDB_ID, str(metadata[\"emdb_id\"])],\n        \"caveats\": [\n            \"Map was not downloaded for this small public-coordinate demo.\",\n            \"Geometry summaries are candidate observations, not mechanism proof.\",\n        ],\n    }\n    write_json(validation / \"map_model_fit.json\", map_model_fit)\n    write_json(\n        validation / \"stage-contract-check.json\",\n        {\n            \"ok\": True,\n            \"check_type\": \"demo_stage_contract_check\",\n            \"require_terminal\": True,\n            \"terminal_by_stage\": {\n                \"input_audit\": \"completed\",\n                \"coordinate_analysis\": \"completed\",\n                \"claim_audit\": \"completed\",\n            },\n            \"errors\": [],\n            \"warnings\": [\"Small demo does not download the EM map; map-model validation claims are downgraded.\"],\n        },\n    )\n    claim_ledger = \"\"\"# Claim Ledger\n\n| Claim | Level | Evidence | Caveat |\n| --- | --- | --- | --- |\n| PDB 9W0Q is a 2026 cryo-EM T2R14/G-protein complex associated with EMDB metadata. | processed | `validation/input-audit.json`, `coordinate-summary.json` | Depends on public RCSB metadata. |\n| The dossier computed real chain inventories and inter-chain contact summaries from downloaded coordinates. | processed | `interchain-contact-matrix.json`, `figures/*.svg` | Contact thresholds are geometric heuristics, not mechanistic proof. |\n| Ligand/non-polymer neighborhoods identify residues near deposited HETATM groups. | candidate | `ligand-neighborhoods.json` | Requires expert review before mechanism claims. |\n| Final biological mechanism or ligand pharmacology is established. | insufficient_evidence | none | This small demo does not perform density inspection, mutagenesis, or functional validation. |\n\"\"\"\n    (artifacts / \"claim_ledger.md\").write_text(claim_ledger)\n    methods = f\"\"\"# Methods\n\nPublic RCSB metadata and the `{PDB_ID}.cif` coordinate file were downloaded during the run. A standard-library parser extracted `_atom_site` coordinates. Residue centroids were used for inter-chain contact counts at {CONTACT_DISTANCE_ANGSTROM:.1f} A. Non-water HETATM groups were summarized against nearby polymer residues at {LIGAND_DISTANCE_ANGSTROM:.1f} A.\n\nNo raw cryo-EM movies, particle stacks, deposited maps, licensed packages, or private data were used.\n\"\"\"\n    (artifacts / \"methods.md\").write_text(methods)\n    provenance = f\"\"\"# Provenance\n\n- run_id: `{RUN_ID}`\n- created_at: `{now()}`\n- PDB: `{PDB_ID}`\n- EMDB: `{metadata['emdb_id']}`\n- entry_url: `{entry_url}`\n- cif_url: `{cif_url}`\n- tool policy: Python standard library only; no license-gated software\n- raw data policy: no raw movies or particle stacks downloaded\n\"\"\"\n    (artifacts / \"provenance.md\").write_text(provenance)\n    report = f\"\"\"# BioSymphony CryoCore Demo: T2R14 Open Dossier\n\n## Target\n\n- PDB: `{PDB_ID}`\n- EMDB: `{metadata['emdb_id']}`\n- Title: {metadata['title']}\n- Reported resolution: {metadata['resolution_angstrom']} A ({metadata['resolution_method']})\n- Particles: {metadata['particle_count']}\n\n## Outputs\n\n- `figures/interchain-contact-heatmap.svg`\n- `figures/chain-residue-inventory.svg`\n- `figures/ligand-neighborhoods.svg`\n- `coordinate-summary.json`\n- `ligand-neighborhoods.json`\n- `claim_ledger.md`\n- `methods.md`\n- `provenance.md`\n\n## Claim Boundary\n\nThis is a real public-coordinate dossier, not a full map validation run. It supports artifact execution, coordinate-derived summaries, and candidate interface/ligand-neighborhood observations. It does not establish final mechanism or publishable density interpretation.\n\"\"\"\n    (artifacts / \"report.md\").write_text(report)\n    html_report = f\"\"\"<!doctype html>\n<html><head><meta charset=\"utf-8\"><title>BioSymphony T2R14 Demo</title>\n<style>body{{font-family:Arial,sans-serif;max-width:980px;margin:32px auto;line-height:1.45}} img{{max-width:100%;border:1px solid #ddd}} code{{background:#f4f4f4;padding:2px 4px}}</style></head>\n<body>\n<h1>BioSymphony CryoCore Demo: T2R14 Open Dossier</h1>\n<p><strong>PDB:</strong> {PDB_ID} &nbsp; <strong>EMDB:</strong> {html.escape(str(metadata['emdb_id']))} &nbsp; <strong>Reported resolution:</strong> {metadata['resolution_angstrom']} A</p>\n<p>{html.escape(str(metadata['title']))}</p>\n<h2>Figures</h2>\n<h3>Inter-chain Contacts</h3><img src=\"figures/interchain-contact-heatmap.svg\">\n<h3>Chain Inventory</h3><img src=\"figures/chain-residue-inventory.svg\">\n<h3>Ligand Neighborhoods</h3><img src=\"figures/ligand-neighborhoods.svg\">\n<h2>Claim Boundary</h2>\n<p>Real public-coordinate analysis. No raw movies, no map download, no licensed tools. Mechanism claims are intentionally downgraded.</p>\n</body></html>\n\"\"\"\n    (artifacts / \"report.html\").write_text(html_report)\n    dossier_manifest = {\n        \"schema_version\": 1,\n        \"run_id\": RUN_ID,\n        \"pdb_id\": PDB_ID,\n        \"emdb_id\": metadata[\"emdb_id\"],\n        \"artifact_root\": str(artifacts),\n        \"figures\": [\n            \"figures/interchain-contact-heatmap.svg\",\n            \"figures/chain-residue-inventory.svg\",\n            \"figures/ligand-neighborhoods.svg\",\n        ],\n        \"claim_level\": \"processed\",\n        \"license_gated_tools_used\": [],\n        \"raw_data_downloaded\": False,\n    }\n    write_json(artifacts / \"dossier_manifest.json\", dossier_manifest)\n    write_json(\n        out / \"status.json\",\n        {\n            \"ok\": True,\n            \"run_id\": RUN_ID,\n            \"status\": \"completed\",\n            \"completed_at\": now(),\n            \"artifact_root\": \"runpod-execution/artifacts\",\n        },\n    )\n    stage_event(stage_progress_path, \"claim_audit\", \"completed\", \"Dossier and claim ledger complete\")\n\n    hashes = {}\n    for path in sorted(artifacts.rglob(\"*\")):\n        if path.is_file():\n            hashes[str(path.relative_to(artifacts))] = sha256(path)\n    write_json(out / \"artifact_hashes.json\", {\"sha256\": hashes})\n    write_public_archive(artifacts)\n    stage_event(progress_path, \"closeout\", \"completed\", \"Artifact packet ready\")\n    return {\n        \"ok\": True,\n        \"run_id\": RUN_ID,\n        \"out\": str(out.resolve()),\n        \"artifact_count\": len(hashes),\n        \"metadata\": metadata,\n    }\n\n\ndef main() -> int:\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--out\", type=Path, default=Path(\"runpod-execution\"))\n    parser.add_argument(\"--json\", action=\"store_true\")\n    args = parser.parse_args()\n\n    start = time.time()\n    try:\n        summary = build_dossier(args.out)\n        summary[\"elapsed_seconds\"] = round(time.time() - start, 3)\n    except Exception as exc:\n        summary = {\n            \"ok\": False,\n            \"error\": f\"{type(exc).__name__}: {exc}\",\n            \"elapsed_seconds\": round(time.time() - start, 3),\n        }\n        write_json(args.out / \"status.json\", {\"ok\": False, \"status\": \"failed\", \"error\": summary[\"error\"], \"completed_at\": now()})\n    if args.json:\n        print(json.dumps(summary, indent=2, sort_keys=True))\n    else:\n        print(f\"ok: {summary['ok']}\")\n        print(f\"out: {summary.get('out')}\")\n        if not summary[\"ok\"]:\n            print(summary[\"error\"], file=sys.stderr)\n    return 0 if summary[\"ok\"] else 1\n\n\nif __name__ == \"__main__\":\n    raise SystemExit(main())\n\nPY\npython3 /tmp/t2r14_open_dossier.py --out runpod-execution --json | tee runpod-execution/artifacts/demo-summary.json\n"
+    ],
+    "heartbeat_file": "runpod-execution/monitor_events.ndjson",
+    "inspection": {
+      "hold_after_success_seconds": 600,
+      "http_artifact_server_port": 8000
+    },
+    "log_file": "runpod-execution/logs/startup.log",
+    "mode": "dockerStartCmd",
+    "status_file": "runpod-execution/status.json"
+  },
+  "validation_commands": [
+    "python3 -m json.tool runpod-execution/status.json >/dev/null",
+    "python3 - <<'PY'\nimport json\nfrom pathlib import Path\nbase = Path('runpod-execution/artifacts')\nstatus = json.loads(Path('runpod-execution/status.json').read_text())\nmanifest = json.loads((base / 'dossier_manifest.json').read_text())\nsummary = json.loads((base / 'coordinate-summary.json').read_text())\nassert status['ok'] is True\nassert manifest['pdb_id'] == '9W0Q'\nassert manifest['raw_data_downloaded'] is False\nassert manifest['license_gated_tools_used'] == []\nassert summary['metadata']['resolution_angstrom'] == 3.2\nfor rel in ['report.html', 'figures/interchain-contact-heatmap.svg', 'figures/chain-residue-inventory.svg', 'figures/ligand-neighborhoods.svg', 'claim_ledger.md', 'provenance.md']:\n    assert (base / rel).is_file(), rel\nPY"
+  ],
+  "worker_coordination": {
+    "linear_issue_lock_required": true,
+    "read_only_monitors_allowed": true,
+    "resource_name_prefix": "cryocore-demo-t2r14",
+    "single_mutating_worker": true
+  },
+  "workload": {
+    "checkpoint_policy": {
+      "mode": "stage-progress-jsonl"
+    },
+    "description": "Public PDB/EMDB open-tool dossier for 2026 T2R14 cryo-EM structure",
+    "scale": "small",
+    "shards": [
+      {
+        "shard_id": "single-dossier"
+      }
+    ]
+  }
+}

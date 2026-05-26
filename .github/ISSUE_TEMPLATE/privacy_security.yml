@@ -1,0 +1,22 @@
+name: Privacy Or Security Concern
+description: Public-safe triage for non-sensitive safety concerns.
+title: "[Safety]: "
+labels: ["security", "privacy", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not post secrets, private data, exploit details, provider IDs, raw logs, or unpublished biological material here. Use the private vulnerability reporting link for sensitive reports.
+  - type: textarea
+    id: concern
+    attributes:
+      label: Public-Safe Concern
+      description: Describe the concern without sensitive details.
+    validations:
+      required: true
+  - type: textarea
+    id: affected_area
+    attributes:
+      label: Affected Area
+      description: Files, docs, or workflows involved, if safe to share.
+

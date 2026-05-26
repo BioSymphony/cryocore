@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "module_type": "lane_module",
+  "lane_id": "motioncor3",
+  "mode": "toolcheck",
+  "required": false,
+  "license_gate": "none",
+  "smoke_command": "MotionCor3 --help",
+  "expected_artifact": "motioncor3_toolcheck.json",
+  "fail_policy": "record_missing_optional_tool_in_prep"
+}

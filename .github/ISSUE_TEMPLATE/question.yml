@@ -1,0 +1,19 @@
+name: Question
+description: Ask about public-safe CryoCore usage, validators, or skill workflows.
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What are you trying to understand or decide?
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Public boundary
+      options:
+        - label: I did not include secrets, credentials, private data paths, raw movies, maps, half-maps, model weights, or license files.
+          required: true

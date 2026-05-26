@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "module_type": "schema_contract",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modules/schemas/container-provenance.v1.schema.json",
+  "title": "CryoCore container provenance v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "container_runtime",
+    "image",
+    "image_digest",
+    "sbom_path",
+    "versions_path"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "container_runtime": { "type": "string", "minLength": 1 },
+    "image": { "type": "string", "minLength": 1 },
+    "image_digest": { "type": "string", "minLength": 1 },
+    "sif_sha256": { "type": ["string", "null"] },
+    "sbom_path": { "type": "string", "minLength": 1 },
+    "versions_path": { "type": "string", "minLength": 1 },
+    "build_ref": { "type": ["string", "null"] },
+    "license_manifest": { "type": ["string", "null"] }
+  },
+  "additionalProperties": true
+}

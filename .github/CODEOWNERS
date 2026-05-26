@@ -1,0 +1,9 @@
+# Default review owner placeholder for the public repo.
+* @BioSymphony/maintainers
+
+# Security-sensitive release gates and provider-facing contracts.
+/scripts/cryocore/ @BioSymphony/maintainers
+/runpod/ @BioSymphony/maintainers
+/modules/schemas/ @BioSymphony/maintainers
+/modules/provider-profiles/ @BioSymphony/maintainers
+/.github/workflows/ @BioSymphony/maintainers

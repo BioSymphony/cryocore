@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "provider": "runpod",
+  "run_id": "fixture-good-run",
+  "provider_run_id": "pod-fixture-good",
+  "status": "completed",
+  "desired_status": "running",
+  "actual_status": "exited",
+  "runtime_uptime_seconds": 120,
+  "claim_level": "processed",
+  "evidence_mode": "provider_native",
+  "errors": []
+}

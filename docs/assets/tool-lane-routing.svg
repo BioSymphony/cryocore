@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-label="CryoCore tool lane routing">
+  <rect width="1100" height="500" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Tool Lane Routing</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">Every tool routes through one of three lanes based on its license posture.</text>
+
+  <g transform="translate(430 124)">
+    <rect width="240" height="62" rx="10" fill="#f7f7f4" stroke="#3a3a32" stroke-width="1.4"/>
+    <text x="20" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#2a2a22">Tool entering</text>
+    <text x="20" y="50" font-family="Arial" font-size="12" fill="#3a3a32">from the software registry</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.4" fill="none">
+    <line x1="550" y1="186" x2="550" y2="208"/>
+    <line x1="200" y1="208" x2="900" y2="208"/>
+    <line x1="200" y1="208" x2="200" y2="242"/>
+    <line x1="550" y1="208" x2="550" y2="242"/>
+    <line x1="900" y1="208" x2="900" y2="242"/>
+    <path d="M193 234 L200 249 L207 234"/>
+    <path d="M543 234 L550 249 L557 234"/>
+    <path d="M893 234 L900 249 L907 234"/>
+  </g>
+
+  <g transform="translate(60 258)">
+    <rect width="280" height="206" rx="10" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.4"/>
+    <text x="20" y="32" font-family="Arial" font-size="16" font-weight="700" fill="#163b35">Open lane</text>
+    <text x="20" y="56" font-family="Arial" font-size="12" fill="#46515c">permissive license, no install gate</text>
+
+    <text x="20" y="90" font-family="Arial" font-size="13" font-weight="700" fill="#1c3a32">Allowed</text>
+    <text x="20" y="112" font-family="Arial" font-size="12" fill="#20303d">- public scaffolding</text>
+    <text x="20" y="130" font-family="Arial" font-size="12" fill="#20303d">- image install in public lanes</text>
+    <text x="20" y="148" font-family="Arial" font-size="12" fill="#20303d">- version and source URL recorded</text>
+
+    <text x="20" y="178" font-family="Arial" font-size="12" fill="#46515c">examples: RELION, CTFFind,</text>
+    <text x="20" y="194" font-family="Arial" font-size="12" fill="#46515c">MotionCor3, Topaz</text>
+  </g>
+
+  <g transform="translate(410 258)">
+    <rect width="280" height="206" rx="10" fill="#fff5dc" stroke="#806128" stroke-width="1.4"/>
+    <text x="20" y="32" font-family="Arial" font-size="16" font-weight="700" fill="#5a4215">Watch lane</text>
+    <text x="20" y="56" font-family="Arial" font-size="12" fill="#46515c">license needs periodic audit</text>
+
+    <text x="20" y="90" font-family="Arial" font-size="13" font-weight="700" fill="#5a4215">Required</text>
+    <text x="20" y="112" font-family="Arial" font-size="12" fill="#3a2e15">- audit date recorded</text>
+    <text x="20" y="130" font-family="Arial" font-size="12" fill="#3a2e15">- version pinned in registry</text>
+    <text x="20" y="148" font-family="Arial" font-size="12" fill="#3a2e15">- usage scope confirmed</text>
+
+    <text x="20" y="178" font-family="Arial" font-size="12" fill="#46515c">examples: CryoSPARC academic,</text>
+    <text x="20" y="194" font-family="Arial" font-size="12" fill="#46515c">CCP-EM components, NVIDIA images</text>
+  </g>
+
+  <g transform="translate(760 258)">
+    <rect width="280" height="206" rx="10" fill="#f3ecfa" stroke="#68458e" stroke-width="1.4"/>
+    <text x="20" y="32" font-family="Arial" font-size="16" font-weight="700" fill="#4b2f68">Runtime-gated lane</text>
+    <text x="20" y="56" font-family="Arial" font-size="12" fill="#46515c">install requires explicit operator gate</text>
+
+    <text x="20" y="90" font-family="Arial" font-size="13" font-weight="700" fill="#3a2350">Operator handles</text>
+    <text x="20" y="112" font-family="Arial" font-size="12" fill="#20303d">- license acceptance outside git</text>
+    <text x="20" y="130" font-family="Arial" font-size="12" fill="#20303d">- installer staging in runtime env</text>
+    <text x="20" y="148" font-family="Arial" font-size="12" fill="#20303d">- skill stays prep-only here</text>
+
+    <text x="20" y="178" font-family="Arial" font-size="12" fill="#46515c">examples: ChimeraX, Phenix,</text>
+    <text x="20" y="194" font-family="Arial" font-size="12" fill="#46515c">commercial CryoSPARC</text>
+  </g>
+</svg>

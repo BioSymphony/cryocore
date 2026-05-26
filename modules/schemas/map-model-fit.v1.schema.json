@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "module_type": "schema_contract",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modules/schemas/map-model-fit.v1.schema.json",
+  "title": "CryoCore map/model fit v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ok",
+    "evidence_level",
+    "pixel_size_angstrom",
+    "map_model_correlation",
+    "local_resolution",
+    "mask_provenance",
+    "handedness_check",
+    "geometry_validation",
+    "fsc_provenance",
+    "source_hashes",
+    "deposition_report_ids",
+    "caveats"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "ok": { "type": "boolean" },
+    "evidence_level": { "type": "string", "minLength": 1 },
+    "pdb_id": { "type": ["string", "null"] },
+    "emdb_id": { "type": ["string", "null"] },
+    "pixel_size_angstrom": {},
+    "map_model_correlation": {},
+    "local_resolution": {},
+    "mask_provenance": {},
+    "handedness_check": {},
+    "geometry_validation": {},
+    "fsc_provenance": {},
+    "source_hashes": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "deposition_report_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "caveats": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "software_versions": { "type": "object" }
+  },
+  "additionalProperties": true
+}

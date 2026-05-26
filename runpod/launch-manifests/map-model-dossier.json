@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "manifest_id": "cryocore-map-model-dossier-emdb-43816-pdb-9asj",
+  "execution_profile": "map-model-dossier",
+  "provider": "runpod",
+  "provider_class": "pod",
+  "run_id": "cryocore-emdb-43816-pdb-9asj-dossier",
+  "campaign_id": "cryocore-emdb-43816-pdb-9asj-dossier",
+  "stage_contract": "runpod/stage-contracts/map-model-dossier.stage-contract.json",
+  "progress_ledger": "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/stage-progress.jsonl",
+  "repo": {
+    "url": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "git_ref": "public-release-prep",
+    "delivery": "public_github_clone"
+  },
+  "data_policy": {
+    "allow_large_downloads": true,
+    "allow_raw_cryoem_downloads": false,
+    "allow_private_data": false,
+    "expected_download_bytes": 1500000000,
+    "max_download_bytes": 2000000000
+  },
+  "artifact_plan": {
+    "data_module": "modules/data-modules/emdb-43816-pdb-9asj.map-model.v1.json",
+    "allow_raw_cryoem_downloads": false,
+    "expected_inputs": ["EMD-43816", "9ASJ"],
+    "expected_outputs": ["validation", "figures", "methods", "claim_ledger", "provenance"]
+  },
+  "scratch_policy": {
+    "scratch_only": true,
+    "delete_after_export": true,
+    "export_only_small_artifacts": true
+  },
+  "runpod": {
+    "mode": "pod",
+    "recommended_gpu": "NVIDIA RTX 4090",
+    "fallback_gpu": "NVIDIA L40S",
+    "gpu_count": 1,
+    "container_disk_gb": 160,
+    "volume_mount": "/workspace",
+    "network_volume_required": false,
+    "template_family": "model-build",
+    "image_name": "registry.example.org/biosymphony/cryocore-model-build:prep",
+    "image_visibility": "public",
+    "image_digest_required_for_real": true,
+    "registry_auth": {
+      "required": false,
+      "provider": "ghcr",
+      "runtime_secret_refs": [],
+      "credential_policy": "runtime_reference_only"
+    },
+    "monitoring": {
+      "desired_status_only_ok": false,
+      "progress_ledger": "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/stage-progress.jsonl",
+      "required_signals": [
+        "provider_actual_status",
+        "runtime_uptime_seconds",
+        "image_pull_success_or_failure",
+        "stage_progress_heartbeat"
+      ]
+    },
+    "ports": ["8888/http"]
+  },
+  "environment": {
+    "CRYOCORE_RUN_ID": "cryocore-emdb-43816-pdb-9asj-dossier",
+    "CRYOCORE_REPO_URL": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "CRYOCORE_GIT_REF": "public-release-prep",
+    "CRYOCORE_VOLUME_ROOT": "/workspace/cryocore",
+    "CRYOCORE_EXECUTION_PROFILE": "map-model-dossier",
+    "CRYOCORE_ALLOW_MAP_MODEL_DOWNLOADS": "1"
+  },
+  "smoke_checks": [
+    "repo_clone_manifest",
+    "python_tooling",
+    "scratch_write_read",
+    "image_version_manifest",
+    "map_model_intake_ledger",
+    "stage_contract",
+    "stage_progress_ledger",
+    "input_audit",
+    "artifact_manifest",
+    "contract_self_check"
+  ],
+  "expected_artifacts": [
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/dossier_manifest.json",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/validation/input-audit.json",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/validation/map_model_fit.json",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/figures/",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/methods.md",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/claim_ledger.md",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/stage-progress.jsonl",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/validation/stage-contract-check.json",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/validation/contract-self-check.json",
+    "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/provenance.md"
+  ],
+  "license_gates": [
+    "phenix",
+    "chimerax"
+  ]
+}

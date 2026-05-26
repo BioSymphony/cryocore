@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "module_type": "lane_module",
+  "lane_id": "map-to-model-v1",
+  "owner": "biosymphony-cryocore-public",
+  "claim_kind": "model_supported_by_map",
+  "inputs": [
+    "map_pointer",
+    "half_map_pointers_optional",
+    "sequence_or_entity_manifest",
+    "processing_manifest"
+  ],
+  "stages": [
+    "input_audit",
+    "model_build",
+    "model_refine_or_review",
+    "map_model_validation",
+    "claim_ledger"
+  ],
+  "required_outputs": [
+    "model_build_manifest.json",
+    "validation_summary.json",
+    "claim_ledger.md",
+    "artifact_manifest.json"
+  ],
+  "downstream_handoff": "structure_factory_prediction_or_design_comparison"
+}

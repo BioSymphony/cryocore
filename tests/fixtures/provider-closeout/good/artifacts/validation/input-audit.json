@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "known_inputs": [
+    {
+      "kind": "fixture",
+      "id": "fixture-good-run"
+    }
+  ],
+  "missing_operator_items": []
+}

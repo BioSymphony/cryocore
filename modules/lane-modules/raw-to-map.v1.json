@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "module_type": "lane_module",
+  "lane_id": "raw-to-map-v1",
+  "owner": "biosymphony-cryocore-public",
+  "claim_kind": "experimental_evidence",
+  "inputs": [
+    "dataset_accession_or_operator_dataset_pointer",
+    "microscope_and_detector_metadata",
+    "subset_policy",
+    "budget_and_compute_policy"
+  ],
+  "stages": [
+    "input_audit",
+    "motion_correction",
+    "ctf_estimation",
+    "picking",
+    "classification",
+    "refinement",
+    "map_postprocessing",
+    "artifact_hashing"
+  ],
+  "required_outputs": [
+    "input_audit.json",
+    "stage-progress.jsonl",
+    "map_processing_manifest.json",
+    "validation_summary.json",
+    "artifact_manifest.json"
+  ],
+  "downstream_handoff": "map_model_dossier"
+}

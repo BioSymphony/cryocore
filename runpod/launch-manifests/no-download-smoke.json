@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "manifest_id": "cryocore-no-download-smoke",
+  "execution_profile": "no-download-smoke",
+  "provider": "runpod",
+  "provider_class": "pod",
+  "run_id": "cryocore-no-download-smoke",
+  "campaign_id": "cryocore-empiar-10204-v0",
+  "stage_contract": "runpod/stage-contracts/no-download-smoke.stage-contract.json",
+  "progress_ledger": "/workspace/cryocore/runs/cryocore-no-download-smoke/stage-progress.jsonl",
+  "repo": {
+    "url": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "git_ref": "public-release-prep",
+    "delivery": "public_github_clone"
+  },
+  "data_policy": {
+    "allow_large_downloads": false,
+    "allow_raw_cryoem_downloads": false,
+    "allow_private_data": false,
+    "expected_download_bytes": 0
+  },
+  "scratch_policy": {
+    "scratch_only": false,
+    "delete_after_export": false
+  },
+  "runpod": {
+    "mode": "pod",
+    "recommended_gpu": "NVIDIA GeForce RTX 4090",
+    "fallback_gpu": "NVIDIA L40S",
+    "gpu_count": 1,
+    "container_disk_gb": 80,
+    "volume_mount": "/workspace",
+    "network_volume_required": true,
+    "template_family": "cryo-core",
+    "image_name": "registry.example.org/biosymphony/cryocore-core:prep",
+    "image_visibility": "public",
+    "image_digest_required_for_real": true,
+    "registry_auth": {
+      "required": false,
+      "provider": "ghcr",
+      "runtime_secret_refs": [],
+      "credential_policy": "runtime_reference_only"
+    },
+    "monitoring": {
+      "desired_status_only_ok": false,
+      "progress_ledger": "/workspace/cryocore/runs/cryocore-no-download-smoke/stage-progress.jsonl",
+      "required_signals": [
+        "provider_actual_status",
+        "runtime_uptime_seconds",
+        "image_pull_success_or_failure",
+        "stage_progress_heartbeat"
+      ]
+    },
+    "ports": []
+  },
+  "environment": {
+    "CRYOCORE_RUN_ID": "cryocore-no-download-smoke",
+    "CRYOCORE_REPO_URL": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "CRYOCORE_GIT_REF": "public-release-prep",
+    "CRYOCORE_VOLUME_ROOT": "/workspace/cryocore",
+    "CRYOCORE_EXECUTION_PROFILE": "no-download-smoke",
+    "CRYOCORE_NO_DOWNLOAD": "1"
+  },
+  "smoke_checks": [
+    "repo_clone_manifest",
+    "python_tooling",
+    "gpu_visibility",
+    "network_volume_write_read",
+    "image_version_manifest",
+    "no_large_download_policy",
+    "stage_contract",
+    "stage_progress_ledger",
+    "input_audit",
+    "artifact_manifest",
+    "contract_self_check"
+  ],
+  "expected_artifacts": [
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/run-manifest.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/input-audit.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/toolcheck.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/gpu.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/storage.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/stage-progress.jsonl",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/stage-contract-check.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/validation/contract-self-check.json",
+    "/workspace/cryocore/runs/cryocore-no-download-smoke/provenance.md"
+  ],
+  "license_gates": [
+    "cryosparc",
+    "phenix",
+    "chimerax"
+  ]
+}

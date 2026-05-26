@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "pack_id": "biosymphony-cryocore-public",
+  "title": "BioSymphony CryoCore Public Skill Pack",
+  "skills": [
+    {
+      "id": "cryocore",
+      "path": "skills/cryocore/SKILL.md",
+      "agent_metadata": "skills/cryocore/agents/openai.yaml",
+      "primary": true
+    },
+    {
+      "id": "cryocore-public-safety",
+      "path": "skills/cryocore-public-safety/SKILL.md",
+      "agent_metadata": "skills/cryocore-public-safety/agents/openai.yaml",
+      "primary": false
+    },
+    {
+      "id": "cryocore-map-model-dossier",
+      "path": "skills/cryocore-map-model-dossier/SKILL.md",
+      "agent_metadata": "skills/cryocore-map-model-dossier/agents/openai.yaml",
+      "primary": false
+    },
+    {
+      "id": "cryocore-run-closeout",
+      "path": "skills/cryocore-run-closeout/SKILL.md",
+      "agent_metadata": "skills/cryocore-run-closeout/agents/openai.yaml",
+      "primary": false
+    },
+    {
+      "id": "cryocore-toolwatch",
+      "path": "skills/cryocore-toolwatch/SKILL.md",
+      "agent_metadata": "skills/cryocore-toolwatch/agents/openai.yaml",
+      "primary": false
+    },
+    {
+      "id": "cryocore-heterogeneity-jury",
+      "path": "skills/cryocore-heterogeneity-jury/SKILL.md",
+      "agent_metadata": "skills/cryocore-heterogeneity-jury/agents/openai.yaml",
+      "primary": false
+    },
+    {
+      "id": "cryocore-figure-dossier",
+      "path": "skills/cryocore-figure-dossier/SKILL.md",
+      "agent_metadata": "skills/cryocore-figure-dossier/agents/openai.yaml",
+      "primary": false
+    }
+  ]
+}
+

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="CryoCore claim ladder">
+  <rect width="1000" height="600" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Claim Ladder</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">Four climbing rungs and two side outcomes. The schema in modules/schemas/claim-ledger.v1.schema.json is the authority.</text>
+
+  <g transform="translate(70 488)">
+    <rect width="440" height="62" rx="8" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.2"/>
+    <text x="20" y="28" font-family="Arial" font-size="15" font-weight="700" fill="#163b35">candidate</text>
+    <text x="20" y="50" font-family="Arial" font-size="12" fill="#20303d">plausible observation or hypothesis; metadata, geometry, or planning only</text>
+  </g>
+
+  <g transform="translate(70 414)">
+    <rect width="440" height="62" rx="8" fill="#eef2fb" stroke="#344e85" stroke-width="1.2"/>
+    <text x="20" y="28" font-family="Arial" font-size="15" font-weight="700" fill="#24365e">processed</text>
+    <text x="20" y="50" font-family="Arial" font-size="12" fill="#20303d">real artifacts produced from declared inputs and passed structural checks</text>
+  </g>
+
+  <g transform="translate(70 340)">
+    <rect width="440" height="62" rx="8" fill="#fff5dc" stroke="#806128" stroke-width="1.2"/>
+    <text x="20" y="28" font-family="Arial" font-size="15" font-weight="700" fill="#5a4215">validated</text>
+    <text x="20" y="50" font-family="Arial" font-size="12" fill="#20303d">artifacts joined to inputs, tool versions, hashes, validation outputs, caveats</text>
+  </g>
+
+  <g transform="translate(70 266)">
+    <rect width="440" height="62" rx="8" fill="#f3ecfa" stroke="#68458e" stroke-width="1.2"/>
+    <text x="20" y="28" font-family="Arial" font-size="15" font-weight="700" fill="#4b2f68">publishable</text>
+    <text x="20" y="50" font-family="Arial" font-size="12" fill="#20303d">dossier complete enough for expert review and possible publication support</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.6" fill="none">
+    <line x1="290" y1="488" x2="290" y2="478"/>
+    <path d="M285 482 L290 476 L295 482"/>
+    <line x1="290" y1="414" x2="290" y2="404"/>
+    <path d="M285 408 L290 402 L295 408"/>
+    <line x1="290" y1="340" x2="290" y2="330"/>
+    <path d="M285 334 L290 328 L295 334"/>
+  </g>
+
+  <g transform="translate(550 266)">
+    <rect width="380" height="142" rx="10" fill="#f5ece1" stroke="#7a5a2c" stroke-width="1.2"/>
+    <text x="20" y="32" font-family="Arial" font-size="15" font-weight="700" fill="#503819">Climb when</text>
+    <text x="20" y="56" font-family="Arial" font-size="12" fill="#3a2e15">the next layer of evidence is on disk</text>
+    <text x="20" y="74" font-family="Arial" font-size="12" fill="#3a2e15">and joined to the declared inputs.</text>
+
+    <text x="20" y="102" font-family="Arial" font-size="15" font-weight="700" fill="#503819">Downgrade when</text>
+    <text x="20" y="122" font-family="Arial" font-size="11" fill="#3a2e15">artifacts missing or unhashed; validation incomplete;</text>
+    <text x="20" y="136" font-family="Arial" font-size="11" fill="#3a2e15">license unresolved; mock or fallback evidence used</text>
+  </g>
+
+  <g transform="translate(550 432)">
+    <rect width="380" height="118" rx="10" fill="#f7f7f4" stroke="#3a3a32" stroke-width="1.2"/>
+    <text x="20" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#2a2a22">Side outcomes (off the ladder)</text>
+    <text x="20" y="56" font-family="Arial" font-size="12" font-weight="700" fill="#2a2a22">insufficient_evidence</text>
+    <text x="20" y="74" font-family="Arial" font-size="11" fill="#3a3a32">the run does not support the proposed claim;</text>
+    <text x="20" y="88" font-family="Arial" font-size="11" fill="#3a3a32">a scientific boundary, recorded honestly</text>
+    <text x="20" y="108" font-family="Arial" font-size="12" font-weight="700" fill="#2a2a22">blocked</text>
+    <text x="200" y="108" font-family="Arial" font-size="11" fill="#3a3a32">a required input, license, or gate is missing</text>
+  </g>
+
+  <text x="290" y="174" font-family="Arial" font-size="12" font-style="italic" fill="#46515c" text-anchor="middle">higher rung means more evidence joined to the dossier</text>
+  <text x="740" y="174" font-family="Arial" font-size="12" font-style="italic" fill="#46515c" text-anchor="middle">conditions that move you across rungs</text>
+
+  <g transform="translate(70 124)">
+    <text x="220" y="20" font-family="Arial" font-size="14" font-weight="700" fill="#13212e" text-anchor="middle">Rungs (low to high)</text>
+  </g>
+  <g transform="translate(550 124)">
+    <text x="190" y="20" font-family="Arial" font-size="14" font-weight="700" fill="#13212e" text-anchor="middle">Rules and side outcomes</text>
+  </g>
+</svg>

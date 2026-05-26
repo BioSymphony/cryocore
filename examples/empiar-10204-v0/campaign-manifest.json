@@ -1,0 +1,19 @@
+{
+  "campaign_id": "cryocore-empiar-10204-v0",
+  "subgroup": "cryocore",
+  "campaign_family": "cryoem-raw-to-atomic-dossier",
+  "status": "planning",
+  "public_inputs": [
+    {
+      "id": "empiar-10204",
+      "kind": "raw_cryoem_dataset",
+      "source": "EMPIAR",
+      "storage_policy": "external_or_runpod_volume_only"
+    }
+  ],
+  "expected_dossier": "structure-dossier/",
+  "notes": [
+    "Use as a smoke campaign before large multimer datasets.",
+    "Do not commit raw data or generated maps/models."
+  ]
+}

@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520" role="img" aria-label="CryoCore local-or-cloud topology">
+  <rect width="1100" height="520" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Local or Cloud, Same Shape</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">The same CryoCore contracts run across six provider lanes.</text>
+
+  <g transform="translate(250 116)">
+    <rect width="600" height="80" rx="10" fill="#e8eef5" stroke="#2d3b58" stroke-width="1.6"/>
+    <text x="30" y="34" font-family="Arial" font-size="18" font-weight="700" fill="#1c2a45">CryoCore contracts (in git)</text>
+    <text x="30" y="60" font-family="Arial" font-size="13" fill="#20303d">schemas · stage contracts · provider profiles · artifact checks</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.6" fill="none">
+    <line x1="550" y1="196" x2="550" y2="218"/>
+    <line x1="138" y1="218" x2="962" y2="218"/>
+    <line x1="138" y1="218" x2="138" y2="252"/>
+    <line x1="302" y1="218" x2="302" y2="252"/>
+    <line x1="466" y1="218" x2="466" y2="252"/>
+    <line x1="630" y1="218" x2="630" y2="252"/>
+    <line x1="794" y1="218" x2="794" y2="252"/>
+    <line x1="958" y1="218" x2="958" y2="252"/>
+    <path d="M131 244 L138 259 L145 244"/>
+    <path d="M295 244 L302 259 L309 244"/>
+    <path d="M459 244 L466 259 L473 244"/>
+    <path d="M623 244 L630 259 L637 244"/>
+    <path d="M787 244 L794 259 L801 244"/>
+    <path d="M951 244 L958 259 L965 244"/>
+  </g>
+
+  <g transform="translate(64 268)">
+    <rect width="148" height="106" rx="8" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#163b35">Laptop</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">CPU or local GPU</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">public-accession</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">demos and validators</text>
+  </g>
+
+  <g transform="translate(228 268)">
+    <rect width="148" height="106" rx="8" fill="#eef2fb" stroke="#344e85" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#24365e">RunPod</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">GPU pods</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">bridge manifests</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">stage contracts</text>
+  </g>
+
+  <g transform="translate(392 268)">
+    <rect width="148" height="106" rx="8" fill="#fff5dc" stroke="#806128" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#5a4215">AWS Batch</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">queue-based</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">scale-out fanout</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">contract-only today</text>
+  </g>
+
+  <g transform="translate(556 268)">
+    <rect width="148" height="106" rx="8" fill="#f3ecfa" stroke="#68458e" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#4b2f68">SSH / HPC</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">Slurm institution</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">site storage and</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">license review</text>
+  </g>
+
+  <g transform="translate(720 268)">
+    <rect width="148" height="106" rx="8" fill="#f5ece1" stroke="#7a5a2c" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#503819">Neocloud</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">alternative GPU</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">pod providers</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">adapter contracts</text>
+  </g>
+
+  <g transform="translate(884 268)">
+    <rect width="148" height="106" rx="8" fill="#ecf3ec" stroke="#3a6a3a" stroke-width="1.2"/>
+    <text x="14" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#1f4a1f">Generic cloud VM</text>
+    <text x="14" y="56" font-family="Arial" font-size="12" fill="#20303d">portable fallback</text>
+    <text x="14" y="76" font-family="Arial" font-size="12" fill="#20303d">cloud-VM pattern</text>
+    <text x="14" y="92" font-family="Arial" font-size="12" fill="#20303d">adapter contracts</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.6" fill="none">
+    <line x1="138" y1="374" x2="138" y2="408"/>
+    <line x1="302" y1="374" x2="302" y2="408"/>
+    <line x1="466" y1="374" x2="466" y2="408"/>
+    <line x1="630" y1="374" x2="630" y2="408"/>
+    <line x1="794" y1="374" x2="794" y2="408"/>
+    <line x1="958" y1="374" x2="958" y2="408"/>
+    <line x1="138" y1="408" x2="962" y2="408"/>
+    <line x1="550" y1="408" x2="550" y2="438"/>
+    <path d="M543 430 L550 445 L557 430"/>
+  </g>
+
+  <g transform="translate(280 452)">
+    <rect width="540" height="50" rx="10" fill="#f0e7f5" stroke="#5a3a72" stroke-width="1.4"/>
+    <text x="270" y="32" font-family="Arial" font-size="15" font-weight="700" fill="#3a2350" text-anchor="middle">Same review shape, same artifact proof</text>
+  </g>
+</svg>

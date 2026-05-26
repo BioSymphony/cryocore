@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "ok": true,
+  "evidence_level": "fixture_map_model_fit",
+  "pdb_id": "9ASJ",
+  "emdb_id": "EMD-43816",
+  "pixel_size_angstrom": {
+    "x": 1.0,
+    "y": 1.0,
+    "z": 1.0
+  },
+  "map_model_correlation": {
+    "metric": "fixture",
+    "value": 0.75,
+    "sampled_atom_count": 10
+  },
+  "local_resolution": {
+    "source": "fixture"
+  },
+  "mask_provenance": {
+    "source": "fixture"
+  },
+  "handedness_check": {
+    "method": "fixture"
+  },
+  "geometry_validation": {
+    "source": "fixture"
+  },
+  "fsc_provenance": {
+    "source": "fixture",
+    "reported_resolution": 3.0
+  },
+  "source_hashes": {
+    "fixture.map": "abc123"
+  },
+  "deposition_report_ids": ["9ASJ", "EMD-43816"],
+  "caveats": ["Fixture only."]
+}

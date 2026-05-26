@@ -1,0 +1,31 @@
+[project]
+name = "biosymphony-cryocore-public"
+version = "0.1.0-prealpha"
+description = "Public-safe source-checkout toolkit for cryo-EM evidence workflows."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "BioSymphony contributors" }]
+keywords = ["cryo-em", "structural-biology", "agents", "provenance", "validation"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+[project.urls]
+Homepage = "https://github.com/BioSymphony/biosymphony-cryocore-public"
+Documentation = "https://github.com/BioSymphony/biosymphony-cryocore-public/tree/main/docs"
+Issues = "https://github.com/BioSymphony/biosymphony-cryocore-public/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+
+[tool.py_compile]
+paths = ["scripts/cryocore"]

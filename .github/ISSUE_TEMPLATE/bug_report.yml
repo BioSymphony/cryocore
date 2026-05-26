@@ -1,0 +1,32 @@
+name: Bug Report
+description: Report a public-safe validator, manifest, or documentation bug.
+title: "[Bug]: "
+labels: ["bug", "public-safe"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include credentials, private data, provider logs, private paths, raw cryo-EM data, maps, model weights, or license files.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What failed or behaved unexpectedly?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Public-safe commands, manifests, or tiny fixtures needed to reproduce.
+      render: bash
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation Output
+      description: Paste public-safe output from `make release-check` or a targeted command.
+

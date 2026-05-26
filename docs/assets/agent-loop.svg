@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="360" viewBox="0 0 1000 360" role="img" aria-label="Agent workflow loop for CryoCore">
+  <rect width="1000" height="360" fill="#ffffff"/>
+  <text x="36" y="48" font-family="Arial" font-size="26" font-weight="700" fill="#13212e">Agent Loop</text>
+  <text x="36" y="78" font-family="Arial" font-size="14" fill="#46515c">The repo tells an agent what to read, what to produce, what to avoid, and how to prove the result.</text>
+
+  <g transform="translate(54 132)">
+    <circle cx="48" cy="48" r="46" fill="#e8f4f1" stroke="#1f5f55"/>
+    <text x="48" y="43" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">Read</text>
+    <text x="48" y="62" text-anchor="middle" font-family="Arial" font-size="11">AGENTS + skill</text>
+  </g>
+  <g transform="translate(246 132)">
+    <circle cx="48" cy="48" r="46" fill="#eef2fb" stroke="#344e85"/>
+    <text x="48" y="43" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">Plan</text>
+    <text x="48" y="62" text-anchor="middle" font-family="Arial" font-size="11">inputs + claims</text>
+  </g>
+  <g transform="translate(438 132)">
+    <circle cx="48" cy="48" r="46" fill="#fff5dc" stroke="#806128"/>
+    <text x="48" y="43" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">Run</text>
+    <text x="48" y="62" text-anchor="middle" font-family="Arial" font-size="11">local validators</text>
+  </g>
+  <g transform="translate(630 132)">
+    <circle cx="48" cy="48" r="46" fill="#f3ecfa" stroke="#68458e"/>
+    <text x="48" y="43" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">Report</text>
+    <text x="48" y="62" text-anchor="middle" font-family="Arial" font-size="11">artifacts + caveats</text>
+  </g>
+  <g transform="translate(822 132)">
+    <circle cx="48" cy="48" r="46" fill="#fdecec" stroke="#9b3030"/>
+    <text x="48" y="43" text-anchor="middle" font-family="Arial" font-size="13" font-weight="700">Block</text>
+    <text x="48" y="62" text-anchor="middle" font-family="Arial" font-size="11">unsafe release</text>
+  </g>
+
+  <g stroke="#344" stroke-width="2" fill="none">
+    <path d="M154 180 H236"/>
+    <path d="M226 173 L238 180 L226 187"/>
+    <path d="M346 180 H428"/>
+    <path d="M418 173 L430 180 L418 187"/>
+    <path d="M538 180 H620"/>
+    <path d="M610 173 L622 180 L610 187"/>
+    <path d="M730 180 H812"/>
+    <path d="M802 173 L814 180 L802 187"/>
+  </g>
+
+  <text x="54" y="278" font-family="Arial" font-size="13" fill="#46515c">Best first prompt: "Use the CryoCore skill pack. Stay local. Build a map/model review or figure workflow.</text>
+  <text x="54" y="300" font-family="Arial" font-size="13" fill="#46515c">Run the relevant validators and report exact artifacts."</text>
+</svg>

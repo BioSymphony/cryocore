@@ -1,0 +1,10 @@
+{
+  "check_type": "cryocore_stage_contract_check",
+  "errors": [],
+  "ok": true,
+  "require_terminal": true,
+  "terminal_by_stage": {
+    "closeout": "completed"
+  },
+  "warnings": []
+}

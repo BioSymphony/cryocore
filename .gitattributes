@@ -1,0 +1,26 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+
+*.mrc binary
+*.mrcs binary
+*.map binary
+*.eer binary
+*.tif binary
+*.tiff binary
+*.dm4 binary
+*.star binary
+*.cs binary
+*.h5 binary
+*.hdf5 binary
+*.npy binary
+*.npz binary
+*.pt binary
+*.pth binary
+*.safetensors binary
+*.ckpt binary
+

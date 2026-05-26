@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="520" viewBox="0 0 1120 520" role="img" aria-label="CryoCore workflow selector">
+  <rect width="1120" height="520" fill="#f7f9fb"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#17212b">Choose the right CryoCore workflow</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#4d5b66">Start local, inspect structure evidence, gate cloud resources, then trust only joined artifacts and claims.</text>
+
+  <g transform="translate(44 126)">
+    <rect x="0" y="0" width="154" height="250" rx="8" fill="#ffffff" stroke="#cfd8e3"/>
+    <text x="18" y="36" font-family="Arial" font-size="18" font-weight="700" fill="#17212b">Local</text>
+    <text x="18" y="68" font-family="Arial" font-size="13" fill="#4d5b66">Demo</text>
+    <text x="18" y="90" font-family="Arial" font-size="13" fill="#4d5b66">Validators</text>
+    <text x="18" y="112" font-family="Arial" font-size="13" fill="#4d5b66">Public metadata</text>
+    <rect x="18" y="174" width="118" height="38" rx="5" fill="#e7f5ef"/>
+    <text x="33" y="198" font-family="Arial" font-size="13" font-weight="700" fill="#126b44">safe default</text>
+  </g>
+
+  <path d="M214 250 L264 250" stroke="#607285" stroke-width="3"/>
+  <path d="M256 242 L264 250 L256 258" fill="none" stroke="#607285" stroke-width="3"/>
+
+  <g transform="translate(274 126)">
+    <rect x="0" y="0" width="154" height="250" rx="8" fill="#ffffff" stroke="#cfd8e3"/>
+    <text x="18" y="36" font-family="Arial" font-size="18" font-weight="700" fill="#17212b">Agent</text>
+    <text x="18" y="68" font-family="Arial" font-size="13" fill="#4d5b66">Skills</text>
+    <text x="18" y="90" font-family="Arial" font-size="13" fill="#4d5b66">Prompts</text>
+    <text x="18" y="112" font-family="Arial" font-size="13" fill="#4d5b66">Claim ceiling</text>
+    <rect x="18" y="174" width="118" height="38" rx="5" fill="#eef2ff"/>
+    <text x="35" y="198" font-family="Arial" font-size="13" font-weight="700" fill="#334a9f">bounded task</text>
+  </g>
+
+  <path d="M444 250 L494 250" stroke="#607285" stroke-width="3"/>
+  <path d="M486 242 L494 250 L486 258" fill="none" stroke="#607285" stroke-width="3"/>
+
+  <g transform="translate(504 126)">
+    <rect x="0" y="0" width="154" height="250" rx="8" fill="#ffffff" stroke="#cfd8e3"/>
+    <text x="18" y="36" font-family="Arial" font-size="18" font-weight="700" fill="#17212b">Review</text>
+    <text x="18" y="68" font-family="Arial" font-size="13" fill="#4d5b66">Inputs</text>
+    <text x="18" y="90" font-family="Arial" font-size="13" fill="#4d5b66">Figures</text>
+    <text x="18" y="112" font-family="Arial" font-size="13" fill="#4d5b66">Provenance</text>
+    <rect x="18" y="174" width="118" height="38" rx="5" fill="#fff6dc"/>
+    <text x="33" y="198" font-family="Arial" font-size="13" font-weight="700" fill="#7a5700">public output</text>
+  </g>
+
+  <path d="M674 250 L724 250" stroke="#607285" stroke-width="3"/>
+  <path d="M716 242 L724 250 L716 258" fill="none" stroke="#607285" stroke-width="3"/>
+
+  <g transform="translate(734 126)">
+    <rect x="0" y="0" width="154" height="250" rx="8" fill="#ffffff" stroke="#cfd8e3"/>
+    <text x="18" y="36" font-family="Arial" font-size="18" font-weight="700" fill="#17212b">Cloud</text>
+    <text x="18" y="68" font-family="Arial" font-size="13" fill="#4d5b66">RunPod</text>
+    <text x="18" y="90" font-family="Arial" font-size="13" fill="#4d5b66">AWS/HPC</text>
+    <text x="18" y="112" font-family="Arial" font-size="13" fill="#4d5b66">Operator gate</text>
+    <rect x="18" y="174" width="118" height="38" rx="5" fill="#fdecec"/>
+    <text x="35" y="198" font-family="Arial" font-size="13" font-weight="700" fill="#9b2b2b">not automatic</text>
+  </g>
+
+  <path d="M904 250 L954 250" stroke="#607285" stroke-width="3"/>
+  <path d="M946 242 L954 250 L946 258" fill="none" stroke="#607285" stroke-width="3"/>
+
+  <g transform="translate(964 126)">
+    <rect x="0" y="0" width="112" height="250" rx="8" fill="#ffffff" stroke="#cfd8e3"/>
+    <text x="18" y="36" font-family="Arial" font-size="18" font-weight="700" fill="#17212b">Trust</text>
+    <text x="18" y="68" font-family="Arial" font-size="13" fill="#4d5b66">Artifacts</text>
+    <text x="18" y="90" font-family="Arial" font-size="13" fill="#4d5b66">Hashes</text>
+    <text x="18" y="112" font-family="Arial" font-size="13" fill="#4d5b66">Claims</text>
+    <rect x="18" y="174" width="76" height="38" rx="5" fill="#e9f7fb"/>
+    <text x="33" y="198" font-family="Arial" font-size="13" font-weight="700" fill="#126174">proof</text>
+  </g>
+
+  <g transform="translate(44 420)">
+    <rect x="0" y="0" width="1032" height="56" rx="8" fill="#17212b"/>
+    <text x="20" y="35" font-family="Arial" font-size="15" font-weight="700" fill="#ffffff">Rule:</text>
+    <text x="66" y="35" font-family="Arial" font-size="15" fill="#ffffff">a job ID, pod state, or queue state is intent only. Success requires joined inputs, artifacts, checks, hashes, cleanup, and claim boundaries.</text>
+  </g>
+</svg>

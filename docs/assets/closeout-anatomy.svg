@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-label="CryoCore provider run review anatomy">
+  <rect width="1100" height="500" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Provider Run Review</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">A run is trustworthy when all six pieces sit on disk and join back to the declared inputs.</text>
+
+  <g transform="translate(60 116)">
+    <rect width="980" height="356" rx="12" fill="#fbfaf6" stroke="#6e6a5a" stroke-width="1.6" stroke-dasharray="5 3"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700" fill="#46402c">provider evidence package</text>
+
+    <g transform="translate(24 60)">
+      <rect width="296" height="124" rx="8" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#163b35">1. Fetched artifacts</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">declared maps, models,</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">figures, intermediate files</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">pulled to the artifact root</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">from the provider</text>
+    </g>
+
+    <g transform="translate(340 60)">
+      <rect width="296" height="124" rx="8" fill="#eef2fb" stroke="#344e85" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#24365e">2. Artifact hashes</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">SHA-256 per file,</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">recorded against</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">declared inputs in the</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">artifact pull report</text>
+    </g>
+
+    <g transform="translate(656 60)">
+      <rect width="296" height="124" rx="8" fill="#fff5dc" stroke="#806128" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#5a4215">3. Validation outputs</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">schemas, contract</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">self-check, map-to-model</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">fit, wwPDB rollup if the</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">deposit has been released</text>
+    </g>
+
+    <g transform="translate(24 204)">
+      <rect width="296" height="124" rx="8" fill="#f3ecfa" stroke="#68458e" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#4b2f68">4. Cost records</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">provider billing</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">summary, GPU hours,</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">storage egress,</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">budget reconciliation</text>
+    </g>
+
+    <g transform="translate(340 204)">
+      <rect width="296" height="124" rx="8" fill="#f5ece1" stroke="#7a5a2c" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#503819">5. Cleanup proof</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">pod terminated,</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">volumes released or</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">retained per policy,</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">orphan checks pass</text>
+    </g>
+
+    <g transform="translate(656 204)">
+      <rect width="296" height="124" rx="8" fill="#ecf3ec" stroke="#3a6a3a" stroke-width="1.2"/>
+      <text x="16" y="30" font-family="Arial" font-size="15" font-weight="700" fill="#1f4a1f">6. Claim boundaries</text>
+      <text x="16" y="56" font-family="Arial" font-size="12" fill="#20303d">ceiling set against the</text>
+      <text x="16" y="74" font-family="Arial" font-size="12" fill="#20303d">evidence on disk, with</text>
+      <text x="16" y="98" font-family="Arial" font-size="12" fill="#20303d">caveats and a final</text>
+      <text x="16" y="116" font-family="Arial" font-size="12" fill="#20303d">outcome block</text>
+    </g>
+  </g>
+</svg>

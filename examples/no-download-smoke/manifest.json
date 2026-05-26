@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "example_id": "cryocore-no-download-smoke",
+  "mode": "fixture_or_demo",
+  "description": "Public-safe local contract smoke. Confirms registry shape, repo preflight, and module JSON parse. No network, providers, or gated tools involved.",
+  "expected_checks": [
+    "software_registry_shape",
+    "repo_preflight",
+    "module_json_parse"
+  ],
+  "claim_level": "candidate"
+}

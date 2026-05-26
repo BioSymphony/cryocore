@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "cryocore",
+  "title": "CryoCore Router",
+  "description": "Route cryo-EM evidence, validation, and provider-prep tasks to the right public-safe skill.",
+  "entrypoint": "skills/cryocore/SKILL.md",
+  "read_first": ["AGENTS.md", "README.md", "docs/public-quickstart.md", "docs/claim-levels.md"],
+  "validators": ["make release-check"],
+  "forbidden_actions": ["commit private data", "launch paid providers by default", "treat provider state as scientific success"],
+  "output_contract": "Mode, data tier, claim ceiling, files touched, validation commands, and next gate."
+}
+

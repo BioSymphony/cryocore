@@ -1,0 +1,11 @@
+{
+  "template_name": "biosymphony-cryocore-cryosparc",
+  "image_family": "cryosparc",
+  "image_name": "registry.example.org/biosymphony/cryocore-cryosparc:prep",
+  "gpu_class": "L40S/A100 for real jobs; use only after license setup",
+  "volume_mount": "/workspace",
+  "ports": ["39000/http"],
+  "startup_command": "bash /opt/cryocore/entrypoints/license-gated-placeholder.sh",
+  "purpose": "License-gated CryoSPARC master/worker planning lane.",
+  "license_policy": "Runtime license only. Do not bake license IDs or private installers into image."
+}

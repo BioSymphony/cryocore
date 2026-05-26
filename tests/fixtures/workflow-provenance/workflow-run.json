@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "run_id": "fixture-good-run",
+  "workflow_engine": "repo-entrypoint",
+  "workflow_version": "fixture",
+  "workflow_ref": "fixture-ref",
+  "profile": "map-model-dossier",
+  "executor": "runpod",
+  "trace_path": "stage-progress.jsonl",
+  "work_dir": "/workspace/cryocore/runs/fixture-good-run",
+  "output_root": "runpod-execution/artifacts",
+  "resume_mode": "fresh",
+  "exit_status": "completed",
+  "stage_progress": "stage-progress.jsonl",
+  "artifact_index": "artifact_hashes.json",
+  "tool_versions": {
+    "python": "fixture"
+  }
+}
