@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "manifest_id": "fixture-figure-dossier",
+  "figures": [
+    {
+      "figure_id": "fixture-svg",
+      "path": "figures/fixture.svg",
+      "caption": "Tiny fixture SVG for figure manifest validation.",
+      "renderer": "stdlib-svg",
+      "source_accessions": ["PDB:9ASJ", "EMDB:EMD-43816"],
+      "source_hashes": {
+        "fixture": "abc123"
+      },
+      "contour_levels": "not_applicable",
+      "software_versions": {
+        "python": "fixture"
+      },
+      "caveats": [
+        "Fixture figure only; not scientific evidence."
+      ]
+    }
+  ]
+}

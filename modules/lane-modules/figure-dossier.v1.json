@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "module_type": "lane_module",
+  "lane_id": "figure-dossier-v1",
+  "owner": "biosymphony-cryocore-public",
+  "claim_kind": "visualization_of_existing_evidence",
+  "inputs": [
+    "validated_map_or_model_bundle",
+    "figure_spec",
+    "renderer_license_posture"
+  ],
+  "stages": [
+    "renderer_gate",
+    "scripted_render",
+    "operator_spot_check_optional",
+    "methods_and_command_log",
+    "artifact_hashing"
+  ],
+  "required_outputs": [
+    "figures/",
+    "executed_commands.jsonl",
+    "methods.md",
+    "figure_manifest.json",
+    "artifact_manifest.json"
+  ],
+  "duplicated_tools": [
+    "chimerax",
+    "blender",
+    "molstar"
+  ]
+}

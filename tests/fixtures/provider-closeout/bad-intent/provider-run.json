@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "provider": "runpod",
+  "run_id": "fixture-bad-run",
+  "status": "running",
+  "desired_status": "running",
+  "actual_status": null,
+  "runtime_uptime_seconds": null,
+  "claim_level": "validated",
+  "evidence_mode": "provider_native",
+  "errors": []
+}

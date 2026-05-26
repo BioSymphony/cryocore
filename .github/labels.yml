@@ -1,0 +1,27 @@
+- name: bug
+  color: d73a4a
+  description: Something is broken or unsafe.
+- name: demo
+  color: 0e8a16
+  description: Public accession demo or recipe.
+- name: documentation
+  color: 0075ca
+  description: Documentation improvement.
+- name: enhancement
+  color: a2eeef
+  description: Public-safe feature request.
+- name: good first issue
+  color: 7057ff
+  description: Small, bounded contribution.
+- name: help wanted
+  color: 008672
+  description: Community contribution welcome.
+- name: privacy-security
+  color: b60205
+  description: Privacy, secret, license, or provider safety.
+- name: question
+  color: d876e3
+  description: Usage or design question.
+- name: release-blocker
+  color: b60205
+  description: Blocks public switch.

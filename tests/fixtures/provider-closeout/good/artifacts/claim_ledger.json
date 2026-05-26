@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "overall_claim_level": "processed",
+  "evidence_mode": "provider_native",
+  "claims": [
+    {
+      "claim": "Fixture provider run produced fetched, hashed closeout artifacts.",
+      "claim_level": "processed",
+      "evidence_artifact": "provenance.md"
+    }
+  ]
+}

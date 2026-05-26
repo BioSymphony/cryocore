@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-label="CryoCore public use case map">
+  <rect width="1100" height="500" fill="#ffffff"/>
+  <text x="44" y="52" font-family="Arial" font-size="28" font-weight="700" fill="#13212e">Public Use Cases</text>
+  <text x="44" y="82" font-family="Arial" font-size="14" fill="#46515c">Five useful ways to point an agent at CryoCore without exposing private data.</text>
+
+  <g transform="translate(52 128)">
+    <rect width="300" height="120" rx="8" fill="#e8f4f1" stroke="#1f5f55"/>
+    <text x="18" y="32" font-family="Arial" font-size="16" font-weight="700">Public Accession Review</text>
+    <text x="18" y="62" font-family="Arial" font-size="13">EMDB/PDB metadata, figures,</text>
+    <text x="18" y="84" font-family="Arial" font-size="13">density support, caveats.</text>
+  </g>
+  <g transform="translate(400 128)">
+    <rect width="300" height="120" rx="8" fill="#eef2fb" stroke="#344e85"/>
+    <text x="18" y="32" font-family="Arial" font-size="16" font-weight="700">Provider Run Review</text>
+    <text x="18" y="62" font-family="Arial" font-size="13">Reject intent-only success; require</text>
+    <text x="18" y="84" font-family="Arial" font-size="13">hashes, cost, cleanup, artifacts.</text>
+  </g>
+  <g transform="translate(748 128)">
+    <rect width="300" height="120" rx="8" fill="#fff5dc" stroke="#806128"/>
+    <text x="18" y="32" font-family="Arial" font-size="16" font-weight="700">Public Release Safety</text>
+    <text x="18" y="62" font-family="Arial" font-size="13">Scan secrets, private markers,</text>
+    <text x="18" y="84" font-family="Arial" font-size="13">heavy artifacts, license posture.</text>
+  </g>
+  <g transform="translate(224 300)">
+    <rect width="300" height="120" rx="8" fill="#f3ecfa" stroke="#68458e"/>
+    <text x="18" y="32" font-family="Arial" font-size="16" font-weight="700">Toolwatch + License Posture</text>
+    <text x="18" y="62" font-family="Arial" font-size="13">Sort tools into open, watch,</text>
+    <text x="18" y="84" font-family="Arial" font-size="13">or runtime-gated lanes.</text>
+  </g>
+  <g transform="translate(576 300)">
+    <rect width="300" height="120" rx="8" fill="#fdecec" stroke="#9b3030"/>
+    <text x="18" y="32" font-family="Arial" font-size="16" font-weight="700">Figure + Structural Review</text>
+    <text x="18" y="62" font-family="Arial" font-size="13">Renderer plan, figure manifest,</text>
+    <text x="18" y="84" font-family="Arial" font-size="13">methods, provenance, caveats.</text>
+  </g>
+</svg>

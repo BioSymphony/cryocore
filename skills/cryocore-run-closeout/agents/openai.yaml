@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "cryocore-run-closeout",
+  "title": "CryoCore Run Closeout",
+  "description": "Validate provider and long-running workflow closeout evidence without false success.",
+  "entrypoint": "skills/cryocore-run-closeout/SKILL.md",
+  "read_first": ["docs/no-false-success-hardening.md", "docs/provider-execution-model.md", "references/validation-gates.md"],
+  "validators": ["make provider-closeout-check", "make release-check"],
+  "forbidden_actions": ["accept RUNNING as success", "ignore missing hashes", "skip cleanup proof"],
+  "output_contract": "Closeout status, missing evidence, claim level, cost/cleanup state, and blockers."
+}
+

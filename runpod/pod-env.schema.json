@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CryoCore RunPod Environment",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "CRYOCORE_RUN_ID": {
+      "type": "string",
+      "description": "Unique run identifier used under /workspace/cryocore/runs."
+    },
+    "CRYOCORE_REPO_URL": {
+      "type": "string",
+      "description": "Public repo URL or operator-controlled clone URL. Credentials must be configured outside git."
+    },
+    "CRYOCORE_GIT_REF": {
+      "type": "string",
+      "description": "Pinned branch, tag, or commit to clone."
+    },
+    "CRYOCORE_VOLUME_ROOT": {
+      "type": "string",
+      "default": "/workspace/cryocore"
+    },
+    "CRYOCORE_NO_DOWNLOAD": {
+      "type": "string",
+      "enum": ["1", "true", "yes"],
+      "description": "Must be set for prep smoke runs."
+    },
+    "CRYOCORE_EXECUTION_PROFILE": {
+      "type": "string",
+      "enum": ["no-download-smoke", "raw-subset-open", "raw-subset-gated", "map-model-dossier"],
+      "description": "Execution profile selected by the launch manifest."
+    },
+    "CRYOCORE_ALLOW_RAW_DOWNLOADS": {
+      "type": "string",
+      "enum": ["1", "true", "yes"],
+      "description": "Required for raw-subset profiles. Never set for no-download smoke."
+    },
+    "CRYOCORE_OPERATOR_AUTHORIZED": {
+      "type": "string",
+      "enum": ["1", "true", "yes"],
+      "description": "Required at runtime for cost-bearing or download-bearing profiles. Do not set in repo manifests as proof of approval."
+    },
+    "CRYOCORE_EXECUTION_MODE": {
+      "type": "string",
+      "enum": ["prep", "real"],
+      "description": "Use prep only for local dry runs. Real RunPod runs should use real and fail if mock or dry-run evidence appears."
+    },
+    "CRYOCORE_STAGE_CONTRACT": {
+      "type": "string",
+      "description": "Optional absolute path to the stage-contract JSON used by the entrypoint."
+    },
+    "CRYOCORE_STAGE_PROGRESS": {
+      "type": "string",
+      "description": "Optional absolute path to stage-progress.jsonl. Defaults under /workspace/cryocore/runs/<run-id>."
+    },
+    "CRYOCORE_REMOTE_LAUNCH_ALLOWED": {
+      "type": "string",
+      "enum": ["1", "true", "yes"],
+      "description": "Required by execution-ready preflight before paid RunPod launch."
+    },
+    "CRYOCORE_ALLOW_MAP_MODEL_DOWNLOADS": {
+      "type": "string",
+      "enum": ["1", "true", "yes"],
+      "description": "Required for map/model dossier profiles."
+    },
+    "CRYOCORE_SUBSET_PROFILE": {
+      "type": "string",
+      "description": "Raw subset profile such as raw_movies_50 or raw_movies_100."
+    },
+    "CRYOCORE_ENABLE_CRYOSPARC": {
+      "type": "string",
+      "description": "Enable CryoSPARC gated lane when CRYOSPARC_LICENSE_ID is provided at runtime."
+    },
+    "CRYOCORE_ENABLE_PHENIX": {
+      "type": "string",
+      "description": "Enable Phenix gated lane when approved runtime access is provided."
+    },
+    "CRYOCORE_ENABLE_CHIMERAX": {
+      "type": "string",
+      "description": "Enable ChimeraX gated lane when approved runtime access is provided."
+    },
+    "RUNPOD_VOLUME_ID": {
+      "type": "string",
+      "description": "RunPod-provided network volume id when attached."
+    },
+    "RUNPOD_GHCR_REGISTRY_AUTH_ID": {
+      "type": "string",
+      "description": "Runtime reference to provider-side GHCR registry auth. Store in RunPod/provider secrets, not git."
+    },
+    "RUNPOD_GHCR_USERNAME": {
+      "type": "string",
+      "description": "Runtime GHCR username only when direct registry auth injection is used."
+    },
+    "RUNPOD_GHCR_TOKEN": {
+      "type": "string",
+      "description": "Runtime GHCR token only when direct registry auth injection is used. Never commit real values."
+    },
+    "CRYOSPARC_LICENSE_ID": {
+      "type": "string",
+      "description": "Optional license-gated runtime value. Never commit real values."
+    },
+    "PHENIX_ACCESS_REF": {
+      "type": "string",
+      "description": "Optional secure reference for Phenix installer/license access."
+    }
+  },
+  "required": [
+    "CRYOCORE_RUN_ID",
+    "CRYOCORE_REPO_URL",
+    "CRYOCORE_GIT_REF",
+    "CRYOCORE_VOLUME_ROOT",
+    "CRYOCORE_EXECUTION_PROFILE"
+  ]
+}

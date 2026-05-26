@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540" role="img" aria-label="CryoCore harness compatibility">
+  <rect width="1100" height="540" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Harness Compatibility</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">Several agent harnesses, one CryoCore skill pack underneath.</text>
+
+  <g transform="translate(44 128)">
+    <rect width="232" height="120" rx="8" fill="#eef2fb" stroke="#344e85" stroke-width="1.2"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700" fill="#24365e">Symphony</text>
+    <text x="20" y="62" font-family="Arial" font-size="13" fill="#20303d">Codex workers, Linear issues</text>
+    <text x="20" y="84" font-family="Arial" font-size="13" fill="#20303d">parallel autonomous fanout</text>
+    <text x="20" y="106" font-family="Arial" font-size="13" fill="#20303d">long-horizon campaigns</text>
+  </g>
+
+  <g transform="translate(290 128)">
+    <rect width="232" height="120" rx="8" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.2"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700" fill="#163b35">Linear + Claude workers</text>
+    <text x="20" y="62" font-family="Arial" font-size="13" fill="#20303d">tracker-driven wave</text>
+    <text x="20" y="84" font-family="Arial" font-size="13" fill="#20303d">Claude API or Claude Code</text>
+    <text x="20" y="106" font-family="Arial" font-size="13" fill="#20303d">issue-shaped contracts</text>
+  </g>
+
+  <g transform="translate(536 128)">
+    <rect width="232" height="120" rx="8" fill="#fff5dc" stroke="#806128" stroke-width="1.2"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700" fill="#5a4215">Claude Code / Codex CLI</text>
+    <text x="20" y="62" font-family="Arial" font-size="13" fill="#20303d">one agent in your terminal</text>
+    <text x="20" y="84" font-family="Arial" font-size="13" fill="#20303d">single-mission sessions</text>
+    <text x="20" y="106" font-family="Arial" font-size="13" fill="#20303d">paste-prompt workflows</text>
+  </g>
+
+  <g transform="translate(782 128)">
+    <rect width="232" height="120" rx="8" fill="#f3ecfa" stroke="#68458e" stroke-width="1.2"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700" fill="#4b2f68">Your own harness</text>
+    <text x="20" y="62" font-family="Arial" font-size="13" fill="#20303d">any orchestration</text>
+    <text x="20" y="84" font-family="Arial" font-size="13" fill="#20303d">contracts are plain JSON</text>
+    <text x="20" y="106" font-family="Arial" font-size="13" fill="#20303d">and Markdown</text>
+  </g>
+
+  <g stroke="#344" stroke-width="2" fill="none">
+    <line x1="160" y1="248" x2="160" y2="298"/>
+    <path d="M153 290 L160 305 L167 290"/>
+    <line x1="406" y1="248" x2="406" y2="298"/>
+    <path d="M399 290 L406 305 L413 290"/>
+    <line x1="652" y1="248" x2="652" y2="298"/>
+    <path d="M645 290 L652 305 L659 290"/>
+    <line x1="898" y1="248" x2="898" y2="298"/>
+    <path d="M891 290 L898 305 L905 290"/>
+  </g>
+
+  <g transform="translate(160 314)">
+    <rect width="780" height="118" rx="10" fill="#e8eef5" stroke="#2d3b58" stroke-width="1.6"/>
+    <text x="30" y="38" font-family="Arial" font-size="20" font-weight="700" fill="#1c2a45">CryoCore skill pack</text>
+    <text x="30" y="68" font-family="Arial" font-size="14" fill="#20303d">skills · schemas · validators · templates · provider profiles</text>
+    <text x="30" y="92" font-family="Arial" font-size="13" fill="#46515c">read by any agent, harness-agnostic, research-ready</text>
+  </g>
+
+  <g stroke="#344" stroke-width="2" fill="none">
+    <line x1="550" y1="432" x2="550" y2="468"/>
+    <path d="M543 460 L550 475 L557 460"/>
+  </g>
+
+  <g transform="translate(370 484)">
+    <rect width="360" height="44" rx="8" fill="#f7f7f4" stroke="#3a3a32" stroke-width="1.2"/>
+    <text x="180" y="29" font-family="Arial" font-size="15" font-weight="600" fill="#2a2a22" text-anchor="middle">Any cryo-EM mission</text>
+  </g>
+</svg>

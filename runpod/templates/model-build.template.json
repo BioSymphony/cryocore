@@ -1,0 +1,11 @@
+{
+  "template_name": "biosymphony-cryocore-model-build",
+  "image_family": "model-build",
+  "image_name": "registry.example.org/biosymphony/cryocore-model-build:prep",
+  "gpu_class": "RTX 4090/L40S for ModelAngelo smoke; A100 for larger maps",
+  "volume_mount": "/workspace",
+  "ports": ["8888/http"],
+  "startup_command": "bash /opt/cryocore/entrypoints/no-download-smoke.sh",
+  "purpose": "ModelAngelo, Phenix, Coot, ChimeraX, ISOLDE, validation, and figure support.",
+  "license_policy": "ModelAngelo/Coot can be open lanes; Phenix and ChimeraX require runtime/license policy review."
+}

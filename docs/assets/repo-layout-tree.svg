@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620" viewBox="0 0 1100 620" role="img" aria-label="CryoCore repo layout grouped by purpose">
+  <rect width="1100" height="620" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Repo Layout</text>
+  <text x="44" y="84" font-family="Arial" font-size="16" fill="#46515c">Top-level areas grouped by the job they do.</text>
+
+  <g transform="translate(365 118)">
+    <rect width="370" height="68" rx="10" fill="#e8eef5" stroke="#2d3b58" stroke-width="1.6"/>
+    <text x="185" y="32" font-family="Arial" font-size="18" font-weight="700" fill="#1c2a45" text-anchor="middle">biosymphony-cryocore-public</text>
+    <text x="185" y="54" font-family="Arial" font-size="14" fill="#46515c" text-anchor="middle">agent workflows for structural review</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.5" fill="none">
+    <line x1="550" y1="186" x2="550" y2="210"/>
+    <line x1="128" y1="210" x2="972" y2="210"/>
+    <line x1="185" y1="210" x2="185" y2="232"/>
+    <line x1="428" y1="210" x2="428" y2="232"/>
+    <line x1="671" y1="210" x2="671" y2="232"/>
+    <line x1="914" y1="210" x2="914" y2="232"/>
+  </g>
+
+  <g transform="translate(44 232)">
+    <rect width="282" height="190" rx="10" fill="#eef2fb" stroke="#344e85" stroke-width="1.4"/>
+    <text x="20" y="34" font-family="Arial" font-size="17" font-weight="700" fill="#24365e">Read and learn</text>
+    <text x="20" y="68" font-family="Arial" font-size="15" fill="#20303d">README.md</text>
+    <text x="20" y="94" font-family="Arial" font-size="15" fill="#20303d">docs/</text>
+    <text x="20" y="120" font-family="Arial" font-size="15" fill="#20303d">demos/</text>
+    <text x="20" y="146" font-family="Arial" font-size="15" fill="#20303d">examples/</text>
+    <text x="20" y="172" font-family="Arial" font-size="14" fill="#46515c">public quickstarts and fixtures</text>
+  </g>
+
+  <g transform="translate(356 232)">
+    <rect width="282" height="190" rx="10" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.4"/>
+    <text x="20" y="34" font-family="Arial" font-size="17" font-weight="700" fill="#163b35">Validate evidence</text>
+    <text x="20" y="68" font-family="Arial" font-size="15" fill="#20303d">modules/</text>
+    <text x="20" y="94" font-family="Arial" font-size="15" fill="#20303d">references/</text>
+    <text x="20" y="120" font-family="Arial" font-size="15" fill="#20303d">tests/</text>
+    <text x="20" y="146" font-family="Arial" font-size="15" fill="#20303d">scripts/cryocore/</text>
+    <text x="20" y="172" font-family="Arial" font-size="14" fill="#46515c">schemas, registries, validators</text>
+  </g>
+
+  <g transform="translate(668 232)">
+    <rect width="182" height="190" rx="10" fill="#f3ecfa" stroke="#68458e" stroke-width="1.4"/>
+    <text x="20" y="34" font-family="Arial" font-size="17" font-weight="700" fill="#4b2f68">Guide agents</text>
+    <text x="20" y="70" font-family="Arial" font-size="15" fill="#20303d">skills/</text>
+    <text x="20" y="100" font-family="Arial" font-size="15" fill="#20303d">templates/</text>
+    <text x="20" y="130" font-family="Arial" font-size="15" fill="#20303d">campaigns/</text>
+    <text x="20" y="166" font-family="Arial" font-size="14" fill="#46515c">prompts, issues, gates</text>
+  </g>
+
+  <g transform="translate(880 232)">
+    <rect width="176" height="190" rx="10" fill="#fff5dc" stroke="#806128" stroke-width="1.4"/>
+    <text x="20" y="34" font-family="Arial" font-size="17" font-weight="700" fill="#5a4215">Prepare runs</text>
+    <text x="20" y="70" font-family="Arial" font-size="15" fill="#20303d">runpod/</text>
+    <text x="20" y="100" font-family="Arial" font-size="15" fill="#20303d">containers/</text>
+    <text x="20" y="130" font-family="Arial" font-size="15" fill="#20303d">Makefile</text>
+    <text x="20" y="166" font-family="Arial" font-size="14" fill="#46515c">prep packets, checks</text>
+  </g>
+
+  <g transform="translate(44 452)">
+    <rect width="1012" height="64" rx="10" fill="#f7f7f4" stroke="#3a3a32" stroke-width="1.2"/>
+    <text x="20" y="28" font-family="Arial" font-size="15" font-weight="700" fill="#2a2a22">Root policy files</text>
+    <text x="20" y="50" font-family="Arial" font-size="14" fill="#3a3a32">AGENTS.md, PUBLIC_RELEASE.md, SECURITY.md, BIOSAFETY.md, NON_CLAIMS.md, CONTRIBUTING.md, LICENSE, CITATION.cff</text>
+  </g>
+
+  <g transform="translate(44 540)">
+    <rect width="1012" height="54" rx="10" fill="#fbfaf6" stroke="#6e6a5a" stroke-width="1.4" stroke-dasharray="5 3"/>
+    <text x="20" y="26" font-family="Arial" font-size="15" font-weight="700" fill="#46402c">Out of git</text>
+    <text x="116" y="26" font-family="Arial" font-size="14" fill="#3a3a32">runtime outputs, raw data, maps, model weights, license files, provider credentials, billing records, signed URLs</text>
+  </g>
+</svg>

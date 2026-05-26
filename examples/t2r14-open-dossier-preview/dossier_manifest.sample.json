@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "run_id": "cryocore-demo-t2r14-open-dossier",
+  "pdb_id": "9W0Q",
+  "emdb_id": "EMD-65512",
+  "claim_level": "processed",
+  "license_gated_tools_used": [],
+  "raw_data_downloaded": false,
+  "figures": [
+    "figures/interchain-contact-heatmap.svg",
+    "figures/chain-residue-inventory.svg",
+    "figures/ligand-neighborhoods.svg"
+  ]
+}

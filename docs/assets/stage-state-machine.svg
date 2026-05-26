@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-label="CryoCore stage state machine">
+  <rect width="1100" height="500" fill="#ffffff"/>
+  <text x="44" y="54" font-family="Arial" font-size="30" font-weight="700" fill="#13212e">Stage State Machine</text>
+  <text x="44" y="84" font-family="Arial" font-size="15" fill="#46515c">A stage advances when the evidence required at each transition is on disk.</text>
+
+  <g transform="translate(60 200)">
+    <rect width="180" height="100" rx="8" fill="#f7f7f4" stroke="#3a3a32" stroke-width="1.2"/>
+    <text x="90" y="36" font-family="Arial" font-size="16" font-weight="700" fill="#2a2a22" text-anchor="middle">pending</text>
+    <text x="90" y="60" font-family="Arial" font-size="12" fill="#3a3a32" text-anchor="middle">brief drafted,</text>
+    <text x="90" y="78" font-family="Arial" font-size="12" fill="#3a3a32" text-anchor="middle">inputs declared</text>
+  </g>
+
+  <g transform="translate(290 200)">
+    <rect width="180" height="100" rx="8" fill="#e8f4f1" stroke="#1f5f55" stroke-width="1.2"/>
+    <text x="90" y="36" font-family="Arial" font-size="16" font-weight="700" fill="#163b35" text-anchor="middle">prep mode</text>
+    <text x="90" y="60" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">contracts validated,</text>
+    <text x="90" y="78" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">launch request ready</text>
+  </g>
+
+  <g transform="translate(520 200)">
+    <rect width="180" height="100" rx="8" fill="#eef2fb" stroke="#344e85" stroke-width="1.2"/>
+    <text x="90" y="36" font-family="Arial" font-size="16" font-weight="700" fill="#24365e" text-anchor="middle">real mode</text>
+    <text x="90" y="60" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">running, artifacts</text>
+    <text x="90" y="78" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">in progress</text>
+  </g>
+
+  <g transform="translate(750 200)">
+    <rect width="180" height="100" rx="8" fill="#f3ecfa" stroke="#68458e" stroke-width="1.2"/>
+    <text x="90" y="36" font-family="Arial" font-size="16" font-weight="700" fill="#4b2f68" text-anchor="middle">closed</text>
+    <text x="90" y="60" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">artifacts hashed,</text>
+    <text x="90" y="78" font-family="Arial" font-size="12" fill="#20303d" text-anchor="middle">closeout complete</text>
+  </g>
+
+  <g stroke="#344" stroke-width="1.6" fill="none">
+    <line x1="240" y1="250" x2="278" y2="250"/>
+    <path d="M271 243 L283 250 L271 257"/>
+    <line x1="470" y1="250" x2="508" y2="250"/>
+    <path d="M501 243 L513 250 L501 257"/>
+    <line x1="700" y1="250" x2="738" y2="250"/>
+    <path d="M731 243 L743 250 L731 257"/>
+  </g>
+
+  <text x="259" y="194" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">contracts pass</text>
+  <text x="489" y="194" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">operator gate open</text>
+  <text x="719" y="194" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">closeout package complete</text>
+
+  <text x="259" y="324" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">brief, manifest,</text>
+  <text x="259" y="340" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">resource mode</text>
+  <text x="489" y="324" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">launch request,</text>
+  <text x="489" y="340" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">stage contract</text>
+  <text x="719" y="324" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">progress ledger,</text>
+  <text x="719" y="340" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">artifact hashes</text>
+  <text x="839" y="324" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">claim ledger,</text>
+  <text x="839" y="340" font-family="Arial" font-size="11" font-style="italic" fill="#46515c" text-anchor="middle">final outcome</text>
+
+  <g transform="translate(60 380)">
+    <rect width="1000" height="92" rx="10" fill="#fff5dc" stroke="#806128" stroke-width="1.4"/>
+    <text x="20" y="30" font-family="Arial" font-size="14" font-weight="700" fill="#5a4215">Side outcomes from any state</text>
+    <text x="20" y="54" font-family="Arial" font-size="12" fill="#3a2e15">blocked: operator gate needed, license unresolved, or a required contract missing</text>
+    <text x="20" y="72" font-family="Arial" font-size="12" fill="#3a2e15">failed: an irrecoverable error or refused validation, recorded honestly with the available evidence</text>
+    <text x="540" y="54" font-family="Arial" font-size="12" fill="#3a2e15">partial: some artifacts on disk, others missing or unhashed</text>
+    <text x="540" y="72" font-family="Arial" font-size="12" fill="#3a2e15">degraded: ran with reduced inputs or known caveats; claim ledger downgraded</text>
+  </g>
+</svg>

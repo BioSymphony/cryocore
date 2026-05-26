@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "provider": "runpod",
+  "run_id": "fixture-good-run",
+  "pulled_at": "2026-05-16T00:01:00Z",
+  "overall_status": "OK",
+  "artifacts": [
+    {
+      "declared_path": "provenance.md",
+      "local_path": "provenance.md",
+      "required": true,
+      "bytes": 112,
+      "accepted": true,
+      "format": "markdown",
+      "format_ok": true,
+      "proxy_error_body": false,
+      "hash_status": "matched"
+    }
+  ]
+}

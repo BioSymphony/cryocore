@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="360" viewBox="0 0 840 360" role="img" aria-label="T2R14 public dossier preview">
+  <rect width="840" height="360" fill="#ffffff"/>
+  <text x="28" y="42" font-family="Arial" font-size="24" font-weight="700">T2R14 Public Dossier Preview</text>
+  <text x="28" y="70" font-family="Arial" font-size="13" fill="#46515c">Public coordinates only. No raw movies, maps, private data, or gated tools.</text>
+  <g transform="translate(34 104)">
+    <rect width="210" height="178" rx="6" fill="#e7f3ef" stroke="#24453d"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700">Input Audit</text>
+    <text x="20" y="66" font-family="Arial" font-size="13">PDB 9W0Q</text>
+    <text x="20" y="90" font-family="Arial" font-size="13">RCSB metadata</text>
+    <text x="20" y="114" font-family="Arial" font-size="13">mmCIF coordinates</text>
+    <text x="20" y="146" font-family="Arial" font-size="12" fill="#345">raw downloads: false</text>
+  </g>
+  <g transform="translate(316 104)">
+    <rect width="210" height="178" rx="6" fill="#eef1f8" stroke="#2f3b64"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700">Dossier Artifacts</text>
+    <text x="20" y="66" font-family="Arial" font-size="13">chain inventory</text>
+    <text x="20" y="90" font-family="Arial" font-size="13">contact matrix</text>
+    <text x="20" y="114" font-family="Arial" font-size="13">ligand neighborhoods</text>
+    <text x="20" y="146" font-family="Arial" font-size="12" fill="#345">figures + claim ledger</text>
+  </g>
+  <g transform="translate(598 104)">
+    <rect width="210" height="178" rx="6" fill="#fff3d8" stroke="#6b5524"/>
+    <text x="20" y="34" font-family="Arial" font-size="16" font-weight="700">Claim Boundary</text>
+    <text x="20" y="66" font-family="Arial" font-size="13">processed geometry</text>
+    <text x="20" y="90" font-family="Arial" font-size="13">candidate neighborhoods</text>
+    <text x="20" y="114" font-family="Arial" font-size="13">mechanism not proven</text>
+    <text x="20" y="146" font-family="Arial" font-size="12" fill="#5a4215">expert review required</text>
+  </g>
+  <path d="M254 193 H304" stroke="#344" stroke-width="2"/>
+  <path d="M294 186 L306 193 L294 200" fill="none" stroke="#344" stroke-width="2"/>
+  <path d="M536 193 H586" stroke="#344" stroke-width="2"/>
+  <path d="M576 186 L588 193 L576 200" fill="none" stroke="#344" stroke-width="2"/>
+</svg>

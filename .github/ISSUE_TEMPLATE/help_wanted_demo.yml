@@ -1,0 +1,28 @@
+name: Public Demo Contribution
+description: Propose a tiny public-accession demo or recipe.
+title: "[Demo]: "
+labels: ["help wanted", "demo"]
+body:
+  - type: textarea
+    id: accession
+    attributes:
+      label: Public accession inputs
+      description: List released PDB, EMDB, EMPIAR, or other public accession identifiers and URLs.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Expected outputs
+      description: What ledgers, summaries, figures, schemas, or claims should the demo produce?
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Public demo constraints
+      options:
+        - label: The demo does not require raw movies, private data, model weights, gated tools, credentials, or paid provider mutation.
+          required: true
+        - label: Any generated artifacts are small and claim-bounded.
+          required: true

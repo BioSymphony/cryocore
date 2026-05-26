@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "provider": "runpod",
+  "run_id": "fixture-good-run",
+  "checked_at": "2026-05-16T00:02:00Z",
+  "cleanup": {
+    "requested": true,
+    "verified": true,
+    "policy": "delete temporary pod"
+  },
+  "deleted_resources": [
+    {
+      "resource_id": "pod-fixture-good",
+      "resource_type": "runpod_pod",
+      "deleted": true
+    }
+  ],
+  "remaining_resources": [],
+  "overall_status": "verified"
+}

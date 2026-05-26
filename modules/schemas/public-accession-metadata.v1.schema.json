@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "module_type": "schema_contract",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modules/schemas/public-accession-metadata.v1.schema.json",
+  "title": "CryoCore public accession metadata v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "retrieved_at",
+    "raw_data_download_required",
+    "accessions",
+    "source_api_endpoints",
+    "linked_accessions",
+    "validation_report_urls",
+    "api_response_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "retrieved_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "raw_data_download_required": {
+      "const": false
+    },
+    "accessions": {
+      "type": "object",
+      "properties": {
+        "empiar": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "emdb": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pdb": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "source_api_endpoints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "linked_accessions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_report_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "api_response_sha256": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "responses": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80" viewBox="0 0 120 80">
+  <rect width="120" height="80" fill="#ffffff"/>
+  <circle cx="40" cy="40" r="18" fill="#2f7d7e"/>
+  <text x="65" y="45" font-family="Arial" font-size="12">fixture</text>
+</svg>

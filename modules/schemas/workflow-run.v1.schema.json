@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "module_type": "schema_contract",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modules/schemas/workflow-run.v1.schema.json",
+  "title": "CryoCore workflow run v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "workflow_engine",
+    "workflow_version",
+    "workflow_ref",
+    "profile",
+    "executor",
+    "trace_path",
+    "output_root",
+    "resume_mode",
+    "exit_status"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "run_id": { "type": "string", "minLength": 1 },
+    "workflow_engine": { "type": "string", "minLength": 1 },
+    "workflow_version": { "type": "string", "minLength": 1 },
+    "workflow_ref": { "type": "string", "minLength": 1 },
+    "profile": { "type": "string", "minLength": 1 },
+    "executor": { "type": "string", "minLength": 1 },
+    "trace_path": { "type": "string", "minLength": 1 },
+    "work_dir": { "type": ["string", "null"] },
+    "output_root": { "type": "string", "minLength": 1 },
+    "resume_mode": { "enum": ["fresh", "resume", "cache_reuse", "not_applicable"] },
+    "exit_status": { "enum": ["completed", "failed", "blocked", "partial"] },
+    "stage_progress": { "type": "string" },
+    "artifact_index": { "type": "string" },
+    "tool_versions": { "type": "object" }
+  },
+  "additionalProperties": true
+}

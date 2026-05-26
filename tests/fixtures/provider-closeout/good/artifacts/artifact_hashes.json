@@ -1,0 +1,14 @@
+{
+  "sha256": {
+    "stage-progress.jsonl": "5bffe400b8805aa6e92bcf7d7011f10ae4662e2f3a534c4dca0a13e714c6e7f8",
+    "validation/input-audit.json": "e1172f06eef06dfee3a94fd5c48c96a725ad0361a4ea66181cee55b49128b552",
+    "validation/stage-contract-check.json": "12180cdaba89a6f11c577cf49786fb20e235157c1be5ba60d137dbafa76cb235",
+    "validation/contract-self-check.json": "421f9e206e200f3f5a8922949309dc881084333c7371625622a81b80093abd81",
+    "executed-commands.jsonl": "d4847b457afdb2c696a4c3a3185c912014e5614f6d4fe94af7771949d104551d",
+    "claim_ledger.json": "0872848ab0a4d7325eb33cfc23ffc13dfe1c3d76053d71b414a0a5e285619ced",
+    "provenance.md": "77b3c2c444c7a0f85149921d0c2602cb354c3fbc3b5f7d57b1b0a0d8ecbecc9c",
+    "validation/artifact-pull-report.json": "1c0e1769c58885d363ea9c54176e1880376f793480cf7b3142944b1b2ff144f5",
+    "cost_report.json": "0ee5f3f044d306aa4cc7c7fdde66b82308ea0a9027569e1b8d65e41849cd675b",
+    "cleanup_proof.json": "20e072d3ac420ac18ddd4c1def50c28c7affea6eb78dd6c039ed62f2d407833c"
+  }
+}

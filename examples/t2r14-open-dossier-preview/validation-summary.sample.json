@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "input_class": "public PDB/RCSB metadata and mmCIF coordinates",
+  "raw_movies_downloaded": false,
+  "maps_downloaded": false,
+  "license_gated_tools_used": [],
+  "claim_ceiling": "processed",
+  "non_claims": [
+    "No final biological mechanism is established.",
+    "No deposited density inspection is performed in this tiny coordinate-only demo.",
+    "No private data or gated software is used."
+  ]
+}

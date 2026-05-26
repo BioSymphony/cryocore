@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-05-15T00:00:00Z",
+  "raw_data_download_required": false,
+  "accessions": {
+    "empiar": ["EMPIAR-10204"],
+    "emdb": ["EMD-43816"],
+    "pdb": ["9ASJ"]
+  },
+  "source_api_endpoints": [
+    "https://www.ebi.ac.uk/empiar/api/entry/10204",
+    "https://www.ebi.ac.uk/emdb/api/entry/EMD-43816",
+    "https://data.rcsb.org/rest/v1/core/entry/9ASJ"
+  ],
+  "linked_accessions": [
+    "EMPIAR-10204",
+    "EMD-43816",
+    "9ASJ"
+  ],
+  "validation_report_urls": [
+    "https://files.wwpdb.org/pub/pdb/validation_reports/as/9asj/9asj_validation.xml.gz",
+    "https://files.wwpdb.org/pub/pdb/validation_reports/as/9asj/9asj_full_validation.pdf.gz"
+  ],
+  "api_response_sha256": {}
+}

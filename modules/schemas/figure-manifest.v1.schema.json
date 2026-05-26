@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "module_type": "schema_contract",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "modules/schemas/figure-manifest.v1.schema.json",
+  "title": "CryoCore figure manifest v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "manifest_id",
+    "figures"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "manifest_id": { "type": "string", "minLength": 1 },
+    "figures": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "figure_id",
+          "path",
+          "caption",
+          "renderer",
+          "source_accessions",
+          "software_versions",
+          "caveats"
+        ],
+        "properties": {
+          "figure_id": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "caption": { "type": "string", "minLength": 1 },
+          "renderer": { "type": "string", "minLength": 1 },
+          "source_accessions": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "source_hashes": {
+            "type": "object",
+            "additionalProperties": { "type": "string", "minLength": 1 }
+          },
+          "contour_levels": {},
+          "software_versions": { "type": "object" },
+          "caveats": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

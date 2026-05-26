@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "provider": "runpod",
+  "run_id": "fixture-good-run",
+  "currency": "USD",
+  "total_cost_usd": 0.25,
+  "max_authorized_spend_usd": 1.0,
+  "runtime_minutes": 2,
+  "budget_status": "within_budget",
+  "line_items": [
+    {
+      "description": "fixture run",
+      "cost_usd": 0.25
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use BioSymphony CryoCore, cite the repository and the public accessions, tools, and datasets used by your run."
+title: "BioSymphony CryoCore"
+type: software
+version: "0.1.0-prealpha"
+date-released: 2026-05-23
+license: MIT
+repository-code: "https://github.com/BioSymphony/biosymphony-cryocore-public"
+abstract: "A public-safe control plane for cryo-EM evidence workflows, provider launch gates, artifact hashes, license posture, and claim-bounded structural reports."
+authors:
+  - name: "BioSymphony contributors"
+keywords:
+  - cryo-EM
+  - structural biology
+  - validation
+  - provenance
+  - artifact contracts
+

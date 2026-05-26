@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "cryocore-toolwatch",
+  "title": "CryoCore Toolwatch",
+  "description": "Audit cryo-EM tools, public APIs, preprints, workflow systems, and license posture.",
+  "entrypoint": "skills/cryocore-toolwatch/SKILL.md",
+  "read_first": ["docs/tooling-and-licensing.md", "docs/toolwatch-2026-05-15.md", "references/software-registry.yaml"],
+  "validators": ["make registry-check", "make public-release-report"],
+  "forbidden_actions": ["copy license files", "add binaries or weights", "claim current terms without source review"],
+  "output_contract": "Source-backed planned/gated/watch posture with license, runtime, and redistribution notes."
+}
+

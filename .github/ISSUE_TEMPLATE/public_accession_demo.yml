@@ -1,0 +1,38 @@
+name: Public Accession Demo
+description: Propose a public-safe accession, metadata, or deposited-artifact demo.
+title: "[Demo]: "
+labels: ["demo", "public-accession"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public accessions are acceptable. Do not attach downloaded maps, movies, particle stacks, private structures, unpublished sequences, or model weights.
+  - type: input
+    id: accessions
+    attributes:
+      label: Public Accessions
+      description: EMPIAR, EMDB, PDB, or related accession IDs.
+      placeholder: "EMDB EMD-43816; PDB 9ASJ"
+    validations:
+      required: true
+  - type: dropdown
+    id: data_tier
+    attributes:
+      label: Data Tier
+      options:
+        - metadata-only
+        - deposited public artifacts into ignored runtime storage
+        - raw cryo-EM data with separate operator gate
+    validations:
+      required: true
+  - type: textarea
+    id: claim_boundary
+    attributes:
+      label: Claim Boundary
+      description: What claims should this demo support, and what must remain insufficient evidence?
+  - type: textarea
+    id: expected_artifacts
+    attributes:
+      label: Expected Artifacts
+      description: Small ledgers, figures, schemas, or validation reports expected from the demo.
+

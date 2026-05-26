@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "id": "cryocore-heterogeneity-jury",
+  "title": "CryoCore Heterogeneity Jury",
+  "description": "Plan and review heterogeneity, state-analysis, ensemble, and disagreement evidence lanes.",
+  "entrypoint": "skills/cryocore-heterogeneity-jury/SKILL.md",
+  "read_first": ["docs/claim-levels.md", "references/validation-gates.md", "docs/tooling-and-licensing.md"],
+  "validators": ["make module-check", "make release-check"],
+  "forbidden_actions": ["make mechanism claims from latent clusters alone", "commit particle stacks"],
+  "output_contract": "State evidence plan, disagreement matrix, caveats, claim ceiling, and validation artifacts."
+}
+
