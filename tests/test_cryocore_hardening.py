@@ -82,7 +82,7 @@ def test_runpod_reference_check_current_repo_passes() -> None:
 
 
 def test_tooling_freshness_check_current_docs_pass() -> None:
-    summary = tooling_freshness_check(ROOT, 120, today=date(2026, 5, 24))
+    summary = tooling_freshness_check(ROOT, 120, today=date(2026, 5, 27))
     assert summary["ok"] is True, summary["errors"]
 
 

@@ -34,6 +34,7 @@ Tool and license posture:
 
 - [Tooling And Licensing](tooling-and-licensing.md)
 - [License Scope](license-scope.md)
+- [Toolwatch 2026-05-27](toolwatch-2026-05-27.md)
 - [Toolwatch 2026-05-15](toolwatch-2026-05-15.md)
 - [Toolwatch To Lane Policy](toolwatch-to-lane-policy.md)
 - [ChimeraX Shared Posture](chimerax-shared-posture.md)

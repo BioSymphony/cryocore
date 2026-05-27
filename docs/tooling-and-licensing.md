@@ -1,6 +1,6 @@
 # Tooling And Licensing
 
-Last reviewed: 2026-05-15
+Last reviewed: 2026-05-27
 
 This is the public, human-readable tool posture for BioSymphony CryoCore. It complements the machine-readable registry at `references/software-registry.yaml`.
 
@@ -16,8 +16,12 @@ These are default candidates for public scaffolding or public images after norma
 - Warp/M/WarpTools, currently audited against v2.0.0dev39. The current v2 dev lane requires CUDA 12.9/.NET 10 and declares RELION 5 compatibility.
 - MotionCor3 from the CZI BSD-3-Clause source repository.
 - Topaz, with GPL/source-compliance handling.
+- CryoSPARC Tools for metadata export only when the underlying CryoSPARC access is already cleared.
 - ModelAngelo code. Keep large weights in runtime caches or reviewed image layers with hashes.
+- CryoAtom2 code. Keep ESM, RNA-FM, and CryoAtom weights in runtime caches or reviewed image layers with hashes.
 - cryoDRGN, with GPL-3.0 source-compliance and dependency review.
+- DynaMight, with RELION-compatible input capture and independent validation.
+- AreTomo3, DenoisET, and copick for bounded cryo-ET preprocessing, denoising, and annotation projects.
 - Coot open-source builds, gemmi, mrcfile, starfile, pyem, NumPy/SciPy/Pandas.
 - Mol*, Blender, and open-source PyMOL builds for public-safe visualization where terms permit.
 
@@ -33,6 +37,12 @@ These can be useful and can be mentioned publicly, but image inclusion or execut
 - cisTEM.
 - EMAN2.
 - Scipion/Xmipp and plugin stacks.
+- Easymode pretrained models.
+- MissAlignment.
+- EMReady2 and other map-enhancement models.
+- CryoARC, CryoHype, CryoPANDA, and Cas9 benchmark datasets until data size, access terms, and example runs are pinned.
+- CryoDECO, CryoFSL, ParSeek, and StructAgent until model weights, checkpoints, datasets, and linked third-party tools are pinned.
+- WebCalEM or other hosted calibration tools when upload behavior is involved.
 - DeepEMhancer, especially model-weight redistribution.
 - GNINA or other cross-domain tools if pulled into a map/model validation lane.
 - CUDA/NVIDIA base images and drivers under current NVIDIA container terms.
@@ -47,12 +57,14 @@ Policy snippet for watch tools:
 These may have public docs, gates, and runtime placeholders, but should not be baked into public images without explicit operator/license posture:
 
 - CryoSPARC.
+- CryoWizard, because execution inherits CryoSPARC access, project data, model posture, and secret-handling gates.
 - Phenix.
 - ChimeraX, currently tracked as ChimeraX 1.11 / staged 1.11.1 package posture. Noncommercial use or commercial license posture must be recorded per campaign.
 - MotionCor2 UCSF binary.
 - crYOLO.
 - Gctf unless redistributable current terms are confirmed.
 - RECOVAR current upstream main, because it identifies a Princeton academic/noncommercial license; older PyPI 0.4.5 was GPLv3, so exact version and use context are required.
+- CryoREAD, DiffModeler, ComplexModeler, DAQ, and other Kihara tools unless the exact tool and use context are separately cleared.
 - Schrodinger/Incentive PyMOL binaries and license files.
 
 Policy snippet for gated tools:
@@ -61,7 +73,7 @@ Policy snippet for gated tools:
 
 ## Second-Wave Red Flags
 
-The following red flags were source-backed on 2026-05-15 and should drive registry status:
+The following red flags were source-backed on 2026-05-15 and refreshed on 2026-05-27. They should drive registry status:
 
 - CryoSPARC: noncommercial academic license, no copying/distribution/third-party use, and usage/performance/license telemetry language. Status: `gated`.
 - Phenix: no-cost for non-profit work, for-profit users through the Phenix Industrial Consortium, and download requires license-term agreement. Status: `gated`.
@@ -74,6 +86,8 @@ The following red flags were source-backed on 2026-05-15 and should drive regist
 - VMD/NAMD/MDFF: VMD and NAMD are noncommercial-use licensed and commercial use requires a commercial license; MDFF lanes inherit VMD/NAMD packaging gates. Status: `gated`.
 - NVIDIA CUDA/base images: acceptable as a common runtime base only after the current NVIDIA container EULA and image tag are recorded; CUDA images are proprietary runtime artifacts, not open-source dependencies. Status: `watch`.
 - Large model weights from CryoAtom, ModelAngelo, CryoFM, and Cryo-IEF: weights are heavy runtime artifacts, may have terms distinct from code, and must live in runtime caches, provider volumes, private reviewed image layers, or fetched artifacts with hashes. Status: `watch` for weight packaging even when code is open/planned.
+- Derived maps from EMReady2, DenoisET, CryoFM, DeepEMhancer, or similar methods are not original experimental maps. They require original-map joins, weight hashes, parameters, and independent validation before supporting stronger claims.
+- Public benchmark datasets such as cryoPANDA, engineered Cas9 heterogeneity data, CZDP tilt series, EMPIAR raw movies, and CryoBench must be tracked as external data. Keep metadata pointers in git, not the data.
 
 ## Shared With Structure Factory
 
