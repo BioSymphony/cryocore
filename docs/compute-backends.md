@@ -16,7 +16,7 @@ execution happened.
 | AWS Batch | Future scale-out backend after provider adapter parity. | Contract-only until explicit implementation issue. |
 | SSH/HPC | Institutional or Slurm execution route. | Requires site-specific data, license, and storage review. |
 | generic cloud VM | Portable cloud fallback pattern. | Contract-only until an adapter issue owns the route. |
-| neocloud GPU pod | Alternative GPU pod pattern. | Contract-only until an adapter issue owns the route. |
+| neocloud GPU pod | Alternative GPU pod pattern (e.g. Lambda, other neocloud GPU providers). | Contract-only until an adapter issue owns the route. |
 
 ## Choose A Backend
 
@@ -26,7 +26,7 @@ execution happened.
 | A public pod demo or GPU smoke | `RunPod` | Reference pod-style path with public manifests and stage contracts. |
 | Repeated cloud fanout later | `AWS Batch` | Best fit for queue-based scale once adapter parity exists. |
 | Institutional compute | `SSH/HPC` | Fits site-managed Slurm, storage, and license controls. |
-| Provider portability | `generic cloud VM` or `neocloud` | Useful as adapter contracts after the RunPod path is proven. |
+| Provider portability | `generic cloud VM` or `neocloud` (e.g. Lambda) | Useful as adapter contracts after the RunPod path is proven. |
 
 Use [Workflow Blueprints](workflows.md#4-provider-prep-and-cloud-launch-request)
 and [Provider Readiness](provider-readiness.md) before asking an agent to

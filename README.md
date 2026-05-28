@@ -24,6 +24,8 @@ providers you already use. The rigor stays in the contracts so researchers and
 agents can move faster without losing provenance, data boundaries, or claim
 discipline.
 
+![CryoCore at a glance: inputs become contracts, pass execution gates, and end as bounded review outputs](docs/assets/cryocore-overview.svg)
+
 ## How You Use It
 
 Point your agent at this repo and hand it a cryo-EM goal. The agent reads
@@ -47,7 +49,7 @@ The pieces an agent reads and acts on while doing real cryo-EM work:
 - **Figure and state workflows** route ChimeraX, Mol*, Coot, PyMOL, Blender, heterogeneity, and comparison work into reproducible figure or review outputs.
 - **Cryo-EM lane modules** describe real stages: raw movies, corrected micrographs, particles, maps, models, figures, and state-review artifacts. See `modules/lane-modules/raw-to-map.v1.json`, `map-to-model.v1.json`, and `figure-dossier.v1.json`.
 - **Tool posture docs** name which cryo-EM tools fit which lane and under what license terms (RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, and more in `references/software-registry.yaml`). The agent picks tools from this catalog rather than guessing.
-- **Provider profiles** for RunPod, AWS Batch, AWS EC2, SSH/HPC Slurm, neocloud GPU pod, generic cloud GPU VM, and local workstation give the agent a shape for launching those tools on real GPUs, with budget and cleanup gates baked in. Users with custom compute can author their own profile against the same schema. See [Compute Backends](docs/compute-backends.md#custom-providers).
+- **Provider profiles** for RunPod, AWS Batch, AWS EC2, SSH/HPC Slurm, neocloud GPU pod (e.g. Lambda), generic cloud GPU VM, and local workstation give the agent a shape for launching those tools on real GPUs, with budget and cleanup gates baked in. Users with custom compute can author their own profile against the same schema. See [Compute Backends](docs/compute-backends.md#custom-providers).
 - **Schemas, ledgers, and validators** type the intermediate outputs and check artifacts, hashes, cost records, cleanup proof, and claim boundaries so a follow-on agent or reviewer can pick up the work without re-deriving context.
 
 The review outputs, figure manifests, provider plans, and issue waves under [Use Cases](docs/use-cases.md) show how those pieces come together for real goals.
@@ -58,10 +60,14 @@ The review outputs, figure manifests, provider plans, and issue waves under [Use
 | --- | --- |
 | Map/model and density review | Hand an agent EMDB/PDB IDs or operator-declared inputs and get back summaries of maps, models, density support, fit metrics, caveats, and follow-up work. |
 | Figure and state workflows | Prepare reproducible structural figures, renderer routes, comparison axes, and heterogeneity or conformational-state review plans. |
-| Real cryo-EM tool routing | RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, Mol*, and related tools stay mapped to lanes, licenses, and runtime boundaries. |
+| Real cryo-EM tool routing | RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, Mol*, PyMOL, and related tools stay mapped to lanes, licenses, and runtime boundaries. |
 | Local or cloud, same shape | RunPod, AWS Batch, SSH/HPC, neocloud, generic cloud VM, or laptop CPU. Provider profiles, stage contracts, launch prep, and budget/cleanup gates stay uniform across them. |
 | Works with the harness you already use | Symphony, Linear with Claude or Codex workers, Claude Code, Codex CLI, or your own orchestration. The skill pack, schemas, and validators are harness-agnostic. |
 | Trust layer for agent work | Artifacts, hashes, validation outputs, cost records, cleanup proof, provenance, and claim boundaries are checked before a result is treated as reliable. |
+
+Every tool the agent picks routes through one of three license lanes:
+
+![Tool lane routing: open, watch, and runtime-gated lanes by license posture](docs/assets/tool-lane-routing.svg)
 
 ## What You Can Do With It
 
@@ -141,6 +147,8 @@ What the first run gives you:
 
 No run yet? Inspect the static sample shape in
 [T2R14 Open Dossier Preview](examples/t2r14-open-dossier-preview/).
+
+![T2R14 dossier shape: input audit, then dossier artifacts, then claim boundary](docs/assets/demo-gallery/t2r14-preview.svg)
 
 Expected success looks like:
 
@@ -223,12 +231,16 @@ package is on the roadmap.
 The shape a mission follows from starting goal to useful structural output.
 Your agent carries each step. You step in at the gates.
 
-1. Declare public accessions or operator-provided inputs.
-2. Audit inputs and data boundaries before work starts.
-3. Inspect maps, models, density support, states, or figure needs.
-4. Route tools through open, watch, or runtime-gated lanes.
-5. Track stage progress, artifacts, hashes, cost, cleanup, and claim level.
-6. Emit a review output with figures, methods, provenance, caveats, and next steps.
+![Mission arc: user goal, goal brief, wave plan, execution, review output, with the human and agent roles at each step](docs/assets/mission-arc.svg)
+
+In detail, each mission:
+
+1. Declares public accessions or operator-provided inputs.
+2. Audits inputs and data boundaries before work starts.
+3. Inspects maps, models, density support, states, or figure needs.
+4. Routes tools through open, watch, or runtime-gated lanes.
+5. Tracks stage progress, artifacts, hashes, cost, cleanup, and claim level.
+6. Emits a review output with figures, methods, provenance, caveats, and next steps.
 
 The same shape works at three scales:
 
@@ -306,6 +318,9 @@ The shape of one mission, at a glance:
 
 ![Repo layout](docs/assets/repo-layout-tree.svg)
 
+<details>
+<summary>Full file listing</summary>
+
 ```text
 campaigns/        CryoCore campaign contracts
 containers/       Public image posture and runtime separation notes
@@ -319,6 +334,8 @@ skills/cryocore/  Repo-local skill instructions
 templates/        Tracker issue and operator-gate templates
 tests/            Lightweight validator tests
 ```
+
+</details>
 
 ## High-ROI Assets
 
@@ -349,6 +366,10 @@ The two repos intentionally duplicate a small set of shared posture records. Chi
 
 See [Split Evaluation](docs/split-evaluation.md) and
 [Move/Duplicate Map](docs/move-duplicate-map.md).
+
+## Related Projects
+
+- [Proteus](https://github.com/jvogan/proteus): structural-biology skills for AI coding agents — PyMOL and ChimeraX automation, plus AlphaFold DB, RCSB PDB, UniProt, and Rosetta workflows. Pairs well with CryoCore when a mission needs hands-on molecular visualization or sequence/structure lookups alongside cryo-EM map/model review.
 
 ## Public Demos
 

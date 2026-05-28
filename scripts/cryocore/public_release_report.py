@@ -201,12 +201,12 @@ CONTENT_SCAN_EXCLUDE = {
 
 def prohibited_release_markers() -> list[str]:
     # Markers that should never appear in the public release. Several entries
-    # are operator-specific (e.g. the private GitHub user and the operator's
-    # private repo name). Strings are split with string concatenation so this
-    # scanner's own source does not trip itself. Adopters of CryoCore should
-    # replace operator-specific markers with their own private identifiers.
+    # are operator-specific (e.g. the operator's private repo name). Strings are
+    # split with string concatenation so this scanner's own source does not trip
+    # itself. Adopters of CryoCore should replace operator-specific markers with
+    # their own private identifiers. Links to the operator's own public repos
+    # (e.g. the Proteus skill pack at github.com/jvogan/proteus) are allowed.
     runpod_key = "RUNPOD" + "_API_KEY"
-    private_repo_host = "github.com/" + "jvogan"
     private_repo_name = "biosymphony-" + "CryoCore"
     keychain_marker = "Keychain-" + "backed"
     provider_doctor = "runpod-global-" + "doctor"
@@ -218,7 +218,6 @@ def prohibited_release_markers() -> list[str]:
     paid_run_flag = "--yes-create-" + "paid-runpod"
     private_clone_text = "private GitHub " + "clone"
     return [
-        private_repo_host,
         private_repo_name,
         keychain_marker,
         provider_doctor,

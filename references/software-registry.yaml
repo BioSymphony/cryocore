@@ -228,6 +228,22 @@ software:
     citation_notes: "Record ChimeraX version, session, command script, and operator use posture."
     status: gated
     notes: "Intentionally duplicated with CryoCore. Do not redistribute binaries or store license acceptance records in git."
+  pymol:
+    role: visualization_figures_model_review
+    image_family: model-build
+    install_method: runtime_installer_or_local_review
+    upstream_release_tag: "v3.1.0"
+    upstream_release_date: "2025-02-01"
+    upstream_repo: "https://github.com/schrodinger/pymol-open-source"
+    license_class: open_source_or_commercial_incentive
+    license_gate: open_source_build_or_incentive_license_review
+    runpod_fit: gui_or_scripted
+    gpu_class: "CPU/L4/L40S for offscreen rendering"
+    smoke_command: "pymol -cq -d 'print(cmd.get_version_message())'"
+    runtime_artifacts: "pymol_session.pse, pymol_render_manifest.json, executed_commands.pml"
+    citation_notes: "Record PyMOL version and build (open-source vs Schrodinger Incentive) and operator use posture."
+    status: watch
+    notes: "Open-source PyMOL build is permissive; the Schrodinger Incentive build is commercial. Do not store commercial license acceptance records in git."
   ccpem:
     role: cryoem_model_building_suite
     image_family: model-build

@@ -109,3 +109,10 @@ execution or redistribution gated until current terms are reviewed.
 - Baking gated tools or private images into public manifests.
 - Letting a public issue or PR contain credentials, provider logs, private
   structures, or unpublished biological material.
+
+## Related Skill Packs
+
+- [Proteus](https://github.com/jvogan/proteus): structural-biology skills for AI
+  coding agents (PyMOL and ChimeraX automation, AlphaFold DB, RCSB PDB, UniProt,
+  Rosetta). Use alongside CryoCore when a mission needs hands-on molecular
+  visualization or sequence/structure lookups next to cryo-EM map/model review.

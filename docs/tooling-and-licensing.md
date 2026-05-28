@@ -100,6 +100,7 @@ Cryo-specific model-building, reconstruction, and refinement posture such as Mod
 - [License Scope](license-scope.md): the repo-level license boundary that pairs with this tool posture.
 - [Toolwatch To Lane Policy](toolwatch-to-lane-policy.md): how `watch` and `gated` tools move into a runtime lane.
 - [ChimeraX Shared Posture](chimerax-shared-posture.md): the cross-repo ChimeraX policy referenced above.
+- [Proteus](https://github.com/jvogan/proteus): companion skill pack for agent-driven PyMOL and ChimeraX workflows beyond figure prep.
 - [Glossary](glossary.md): one-liner reference for the tools listed here.
 - [Software Registry](../references/software-registry.yaml): machine-readable posture entries for each tool.
 - [Recipe: Toolwatch Audit](recipes/toolwatch-audit.md): how to update this posture from a primary-source audit.
