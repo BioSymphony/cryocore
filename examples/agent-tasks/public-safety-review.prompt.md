@@ -1,6 +1,6 @@
 # Prompt: Public Release Review
 
-Review this local `biosymphony-cryocore-public` checkout for public release
+Review this local `cryocore` checkout for public release
 readiness. Stay local. Do not push, publish, launch providers, or request
 credentials.
 

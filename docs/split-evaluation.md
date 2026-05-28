@@ -6,7 +6,7 @@ Last reviewed: 2026-05-15
 
 ## Decision
 
-Create `biosymphony-cryocore-public` as a sidecar repo for cryo-EM evidence production and structural review. Start by duplicating the contracts that need to exist in both repos, then promote concrete campaigns or scripts only after each lane has a clear owner.
+Create `cryocore` as a sidecar repo for cryo-EM evidence production and structural review. Start by duplicating the contracts that need to exist in both repos, then promote concrete campaigns or scripts only after each lane has a clear owner.
 
 ## Why This Split Is Useful
 

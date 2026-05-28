@@ -5,7 +5,7 @@
 
   <g transform="translate(365 118)">
     <rect width="370" height="68" rx="10" fill="#e8eef5" stroke="#2d3b58" stroke-width="1.6"/>
-    <text x="185" y="32" font-family="Arial" font-size="18" font-weight="700" fill="#1c2a45" text-anchor="middle">biosymphony-cryocore-public</text>
+    <text x="185" y="32" font-family="Arial" font-size="18" font-weight="700" fill="#1c2a45" text-anchor="middle">cryocore</text>
     <text x="185" y="54" font-family="Arial" font-size="14" fill="#46515c" text-anchor="middle">agent workflows for structural review</text>
   </g>
 

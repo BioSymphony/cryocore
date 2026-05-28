@@ -3,7 +3,7 @@ set -euo pipefail
 
 RUN_ID="${CRYOCORE_RUN_ID:-cryocore-no-download-smoke}"
 VOLUME_ROOT="${CRYOCORE_VOLUME_ROOT:-/workspace/cryocore}"
-REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/biosymphony-cryocore-public}"
+REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/cryocore}"
 MANIFEST="${CRYOCORE_LAUNCH_MANIFEST:-${REPO_ROOT}/runpod/launch-manifests/no-download-smoke.json}"
 STAGE_CONTRACT="${CRYOCORE_STAGE_CONTRACT:-${REPO_ROOT}/runpod/stage-contracts/no-download-smoke.stage-contract.json}"
 RUN_ROOT="${VOLUME_ROOT}/runs/${RUN_ID}"

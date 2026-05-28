@@ -6,7 +6,7 @@ description: Use when planning or executing BioSymphony CryoCore campaigns for c
 # CryoCore
 
 Use this repo-local skill for CryoCore work in the current
-`biosymphony-cryocore-public` checkout.
+`cryocore` checkout.
 
 ## Local Memory
 

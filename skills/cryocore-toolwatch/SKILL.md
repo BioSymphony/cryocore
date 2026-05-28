@@ -5,7 +5,7 @@ description: Use when researching, triaging, or updating BioSymphony CryoCore to
 
 # CryoCore Toolwatch
 
-Use this skill in the current `biosymphony-cryocore-public` checkout when a task
+Use this skill in the current `cryocore` checkout when a task
 asks for new cryo-EM tools, repos, preprints, public data sources, validation
 services, workflow engines, or repo skills.
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/biosymphony-cryocore-public}"
+REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/cryocore}"
 REPO_URL="${CRYOCORE_REPO_URL:-}"
 GIT_REF="${CRYOCORE_GIT_REF:-main}"
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "module_type": "lane_module",
   "lane_id": "figure-dossier-v1",
-  "owner": "biosymphony-cryocore-public",
+  "owner": "cryocore",
   "claim_kind": "visualization_of_existing_evidence",
   "inputs": [
     "validated_map_or_model_bundle",

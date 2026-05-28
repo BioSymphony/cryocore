@@ -2,7 +2,7 @@
   "schema_version": 1,
   "module_type": "lane_module",
   "lane_id": "map-to-model-v1",
-  "owner": "biosymphony-cryocore-public",
+  "owner": "cryocore",
   "claim_kind": "model_supported_by_map",
   "inputs": [
     "map_pointer",

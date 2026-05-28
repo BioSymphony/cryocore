@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve `biosymphony-cryocore-public`.
+Thanks for helping improve `cryocore`.
 
 ## New here?
 

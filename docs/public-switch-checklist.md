@@ -7,7 +7,7 @@ Use this checklist before changing the local public staging repo into a public G
 - Run `make release-check`.
 - Run `python3 scripts/cryocore/public_release_report.py --repo-root . --json`.
 - After the initial public commit, remote, and tag exist, run
-  `python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --expected-remote https://github.com/BioSymphony/biosymphony-cryocore-public.git --json`.
+  `python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --expected-remote https://github.com/BioSymphony/cryocore.git --json`.
 - Confirm `git remote -v` is empty or points only to the intended public repository.
 - Confirm the first commit is created from the scrubbed public tree, not from private history.
 - Confirm `.runtime/`, `artifacts/`, `outputs/`, raw-data caches, provider logs, and model weights are absent or ignored.

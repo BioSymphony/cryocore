@@ -21,7 +21,7 @@ Before public release or tag:
 make clean
 make release-check
 python3 scripts/cryocore/public_release_report.py --repo-root . --json
-python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --expected-remote https://github.com/BioSymphony/biosymphony-cryocore-public.git --json
+python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --expected-remote https://github.com/BioSymphony/cryocore.git --json
 ```
 
 The `--publish-ready` check is expected to fail while this repo is still local

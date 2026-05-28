@@ -39,7 +39,7 @@ For the final public switch after an initial commit, remote, and tag exist, use:
 python3 scripts/cryocore/public_release_report.py \
   --repo-root . \
   --publish-ready \
-  --expected-remote https://github.com/BioSymphony/biosymphony-cryocore-public.git \
+  --expected-remote https://github.com/BioSymphony/cryocore.git \
   --json
 ```
 

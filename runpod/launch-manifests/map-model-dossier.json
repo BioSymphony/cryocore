@@ -9,7 +9,7 @@
   "stage_contract": "runpod/stage-contracts/map-model-dossier.stage-contract.json",
   "progress_ledger": "/workspace/cryocore/runs/cryocore-emdb-43816-pdb-9asj-dossier/stage-progress.jsonl",
   "repo": {
-    "url": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "url": "https://github.com/BioSymphony/cryocore.git",
     "git_ref": "public-release-prep",
     "delivery": "public_github_clone"
   },
@@ -63,7 +63,7 @@
   },
   "environment": {
     "CRYOCORE_RUN_ID": "cryocore-emdb-43816-pdb-9asj-dossier",
-    "CRYOCORE_REPO_URL": "https://github.com/BioSymphony/biosymphony-cryocore-public.git",
+    "CRYOCORE_REPO_URL": "https://github.com/BioSymphony/cryocore.git",
     "CRYOCORE_GIT_REF": "public-release-prep",
     "CRYOCORE_VOLUME_ROOT": "/workspace/cryocore",
     "CRYOCORE_EXECUTION_PROFILE": "map-model-dossier",

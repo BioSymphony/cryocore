@@ -4,7 +4,7 @@ Prepare the CryoCore public checkout for a clean-history public repository, with
 
 ## Inputs
 
-- `repo` - current `biosymphony-cryocore-public` checkout.
+- `repo` - current `cryocore` checkout.
 - `remote` - public repository remote to be added only after scrub and operator approval.
 
 ## Expected Artifacts

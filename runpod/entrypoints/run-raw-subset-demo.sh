@@ -5,7 +5,7 @@ RUN_ID="${CRYOCORE_RUN_ID:-cryocore-raw-subset}"
 VOLUME_ROOT="${CRYOCORE_VOLUME_ROOT:-/workspace/cryocore}"
 RUN_ROOT="${VOLUME_ROOT}/runs/${RUN_ID}"
 SCRATCH_ROOT="${VOLUME_ROOT}/scratch/${RUN_ID}"
-REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/biosymphony-cryocore-public}"
+REPO_ROOT="${CRYOCORE_REPO_ROOT:-/workspace/cryocore}"
 MANIFEST="${CRYOCORE_LAUNCH_MANIFEST:-${REPO_ROOT}/runpod/launch-manifests/raw-subset-open.json}"
 STAGE_CONTRACT="${CRYOCORE_STAGE_CONTRACT:-${REPO_ROOT}/runpod/stage-contracts/raw-subset-open.stage-contract.json}"
 if [[ "${MANIFEST}" == *raw-subset-gated* ]]; then

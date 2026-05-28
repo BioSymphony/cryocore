@@ -4,7 +4,7 @@ Add prep-only RunPod scaffolding for open and license-gated CryoCore lanes. This
 
 ## Inputs
 
-- `repo` - `path/to/biosymphony-cryocore-public`
+- `repo` - `path/to/cryocore`
 - `license posture` - CryoSPARC, Phenix, and ChimeraX remain runtime-gated; MotionCor3 is open-source but still needs exact build/version verification.
 
 ## Expected Artifacts

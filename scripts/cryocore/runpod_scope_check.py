@@ -27,7 +27,7 @@ FORBIDDEN_CROSS_CAMPAIGN_MARKERS = ("GENECLUSTER", "BIOPROSPECTOR", "DOE_", "OBS
 CRYOCORE_VOLUME_REF = "CRYOCORE_RUNPOD_NETWORK_VOLUME_ID"
 ALLOWED_SOFTWARE_ROOTS = ("/workspace/cryocore/", "/workspace/software")
 ALLOWED_REPO_SOURCES = {"git_remote_or_snapshot", "inline_commands"}
-SOURCELESS_WORKDIR_BASENAMES = {"biosymphony-cryocore", "biosymphony-cryocore-public"}
+SOURCELESS_WORKDIR_BASENAMES = {"cryocore"}
 INLINE_PAYLOAD_RE = re.compile(r"payload\s*=\s*(['\"])(?P<payload>[A-Za-z0-9+/=]+)\1")
 MAX_INLINE_BUNDLE_BYTES = 2_000_000
 MAX_INLINE_MEMBER_BYTES = 1_000_000

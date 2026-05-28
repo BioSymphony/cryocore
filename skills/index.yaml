@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "pack_id": "biosymphony-cryocore-public",
+  "pack_id": "cryocore",
   "title": "BioSymphony CryoCore Public Skill Pack",
   "skills": [
     {
