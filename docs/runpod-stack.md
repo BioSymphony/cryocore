@@ -36,6 +36,11 @@ Do not interpret `desiredStatus: RUNNING` as execution progress. Closeout needs 
 
 For externally dispatched runs, sandboxed workers prepare a launch request after local validation. Operator-owned host-side hooks create pods, verify workload artifacts, fetch and hash outputs, delete pods, confirm cleanup, and only then close the tracker item as successful.
 
+Public demo prep targets call an operator-owned provider bridge CLI through
+`PROVIDER_BRIDGE_CLI`, defaulting to `symphony-neocloud-bridge`. Override that
+variable for local stubs or site-specific launch wrappers; do not commit
+operator-specific absolute paths or provider identifiers.
+
 ## Storage Policy
 
 - Use a dedicated CryoCore RunPod Network Volume for writable state.

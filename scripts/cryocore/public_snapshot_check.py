@@ -84,18 +84,20 @@ SECRET_PATTERNS = [
     re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH |)PRIVATE KEY-----"),
 ]
 
-# Operator-specific markers that point at this operator's private workshop.
-# If a file in the public repo contains any of these strings, something
-# escaped from the operator's private environment. The strings are split with
-# string concatenation so this scanner's own source does not trip itself.
-# Adopters of CryoCore should replace these with markers that match their own
-# private workshop paths, image registries, and tool names.
+# Generic markers that should not appear in a public snapshot. Patterns are
+# kept operator-neutral so the public checker does not publish local usernames,
+# private repo names, or machine-specific paths.
 PUBLIC_PRIVATE_MARKERS = [
-    "/Users/" + "jacobvogan/",
-    "autonomy" + "/bin",
-    "ghcr.io/" + "jvogan",
+    "private-workshop" + "/bin",
+    "ghcr.io/" + "private-org",
     "private_github" + "_clone",
-    "biosymphony" + "-runpod-bridge",
+    "private-cloud" + "-bridge",
+    "runpod" + "-bridge",
+]
+
+PUBLIC_PRIVATE_PATTERNS = [
+    ("macOS home path", re.compile(r"/Users/[A-Za-z0-9._-]+/")),
+    ("Linux home path", re.compile(r"/home/[A-Za-z0-9._-]+/")),
 ]
 
 CONTENT_PATTERN_ALLOWLIST = {
@@ -174,6 +176,7 @@ def check_path(root: Path, path: Path, profile: str, max_file_bytes: int) -> tup
                 errors.append(f"{rel}: secret-like content matched {pattern.pattern}")
 
     private_hits = [marker for marker in PUBLIC_PRIVATE_MARKERS if marker in text]
+    private_hits.extend(label for label, pattern in PUBLIC_PRIVATE_PATTERNS if pattern.search(text))
     if private_hits:
         message = f"{rel}: private/workshop markers present: {', '.join(private_hits)}"
         if profile == "public" and rel not in PUBLIC_MARKER_ALLOWLIST:

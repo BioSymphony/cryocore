@@ -9,7 +9,7 @@ Use this checklist before changing the local public staging repo into a public G
 - After the initial public commit, remote, and tag exist, run
   `python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --expected-remote https://github.com/BioSymphony/cryocore.git --json`.
 - Confirm `git remote -v` is empty or points only to the intended public repository.
-- Confirm the first commit is created from the scrubbed public tree, not from private history.
+- Confirm the first commit is created from the clean public tree, not from private history.
 - Confirm `.runtime/`, `artifacts/`, `outputs/`, raw-data caches, provider logs, and model weights are absent or ignored.
 
 ## Privacy And Security
@@ -45,4 +45,4 @@ The public repo can publish prep manifests with placeholder images. A real paid 
 - Add the public remote explicitly.
 - Run CI on the public remote before announcing readiness.
 - Keep private run notes and private learnings outside this repository.
-- Convert reusable private lessons into generic docs, tests, or fixtures only after scrub review.
+- Convert reusable private lessons into generic docs, tests, or fixtures only after release-safety review.

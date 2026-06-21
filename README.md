@@ -5,24 +5,21 @@
 [![Release gate](https://img.shields.io/badge/release%20gate-make%20release--check-brightgreen.svg)](#five-minute-start)
 [![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-orange.svg)](#status)
 
-**Cryo-EM maps to structural insight for scientific agents: map/model review, density support, figures, states, and local or cloud compute lanes.**
+**A cryo-EM skill pack for agents that need to plan, run, and review long-horizon structural work.**
 
 ![BioSymphony CryoCore banner](docs/assets/cryocore-banner.jpg)
 
-CryoCore helps an agent inspect cryo-EM maps and models, summarize what the
-density supports, plan reproducible structural figures, compare deposited
-states, and prepare compute lanes for real cryo-EM tools. It works with the
-agent stack you already use: Symphony driving Codex workers, Linear tickets
-driving Claude workers, Claude Code or Codex CLI in your terminal, or your own
-orchestration setup.
+CryoCore gives coding agents a practical operating layer for cryo-EM work. An
+agent can read the skills, choose the right workflow, keep inputs and outputs
+organized, prepare figures, compare structures, and set up local or cloud runs
+without inventing a process from scratch.
 
 The repo supplies skill instructions, prompt fixtures, JSON Schema contracts,
-tool-lane records, provider launch templates, and local validators your agents
-can read directly and act on. The same workflow shape runs on a laptop with
-public accessions or on RunPod, AWS Batch, SSH/HPC, neocloud VMs, and other
-providers you already use. The rigor stays in the contracts so researchers and
-agents can move faster without losing provenance, data boundaries, or claim
-discipline.
+tool-lane records, provider launch templates, and local checkers your agents can
+read directly and act on. The same workflow shape runs on a laptop with public
+accessions or on RunPod, AWS Batch, SSH/HPC, neocloud VMs, and other providers
+you already use. The contracts keep long-running agent work legible across
+handoffs.
 
 ![CryoCore at a glance: inputs become contracts, pass execution gates, and end as bounded review outputs](docs/assets/cryocore-overview.svg)
 
@@ -32,8 +29,8 @@ Point your agent at this repo and hand it a cryo-EM goal. The agent reads
 [AGENTS.md](AGENTS.md), the relevant skill under [skills/](skills/), and the
 schemas under [modules/schemas/](modules/schemas/). It can fetch
 public-accession metadata when the workflow calls for it, inspect map/model
-inputs, draft figure plans, compare states, prepare provider lanes, and return
-a review package with methods, provenance, artifacts, caveats, and next steps.
+inputs, draft figure plans, compare states, prepare provider lanes, and return a
+clear work package with methods, provenance, artifacts, caveats, and next steps.
 
 You stay the principal. You set the goal, you open gates that need human
 authorization (paid GPU time, license acceptance, raw-data access, claim
@@ -46,11 +43,11 @@ when you want to verify a step or explore the repo directly.
 The pieces an agent reads and acts on while doing real cryo-EM work:
 
 - **Map/model review** starts from public EMDB/PDB accessions or operator-declared inputs and asks what the density, model, fit metrics, and caveats support.
-- **Figure and state workflows** route ChimeraX, Mol*, Coot, PyMOL, Blender, heterogeneity, and comparison work into reproducible figure or review outputs.
+- **Figure and state workflows** route ChimeraX, Mol*, Coot, PyMOL, Blender, heterogeneity, and comparison work into reproducible figure or comparison outputs.
 - **Cryo-EM lane modules** describe real stages: raw movies, corrected micrographs, particles, maps, models, figures, and state-review artifacts. See `modules/lane-modules/raw-to-map.v1.json`, `map-to-model.v1.json`, and `figure-dossier.v1.json`.
 - **Tool posture docs** name which cryo-EM tools fit which lane and under what license terms (RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, and more in `references/software-registry.yaml`). The agent picks tools from this catalog rather than guessing.
 - **Provider profiles** for RunPod, AWS Batch, AWS EC2, SSH/HPC Slurm, neocloud GPU pod (e.g. Lambda), generic cloud GPU VM, and local workstation give the agent a shape for launching those tools on real GPUs, with budget and cleanup gates baked in. Users with custom compute can author their own profile against the same schema. See [Compute Backends](docs/compute-backends.md#custom-providers).
-- **Schemas, ledgers, and validators** type the intermediate outputs and check artifacts, hashes, cost records, cleanup proof, and claim boundaries so a follow-on agent or reviewer can pick up the work without re-deriving context.
+- **Schemas, ledgers, and checkers** type the intermediate outputs and check artifacts, hashes, cost records, cleanup proof, and claim boundaries so a follow-on agent or reviewer can pick up the work without re-deriving context.
 
 The review outputs, figure manifests, provider plans, and issue waves under [Use Cases](docs/use-cases.md) show how those pieces come together for real goals.
 
@@ -63,7 +60,7 @@ The review outputs, figure manifests, provider plans, and issue waves under [Use
 | Real cryo-EM tool routing | RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, Mol*, PyMOL, and related tools stay mapped to lanes, licenses, and runtime boundaries. |
 | Local or cloud, same shape | RunPod, AWS Batch, SSH/HPC, neocloud, generic cloud VM, or laptop CPU. Provider profiles, stage contracts, launch prep, and budget/cleanup gates stay uniform across them. |
 | Works with the harness you already use | Symphony, Linear with Claude or Codex workers, Claude Code, Codex CLI, or your own orchestration. The skill pack, schemas, and validators are harness-agnostic. |
-| Trust layer for agent work | Artifacts, hashes, validation outputs, cost records, cleanup proof, provenance, and claim boundaries are checked before a result is treated as reliable. |
+| Handoff layer for agent work | Artifacts, hashes, checker outputs, cost records, cleanup proof, provenance, and claim boundaries are recorded before a result is treated as complete. |
 
 Every tool the agent picks routes through one of three license lanes:
 
@@ -73,12 +70,12 @@ Every tool the agent picks routes through one of three license lanes:
 
 | Use case | What CryoCore gives you |
 | --- | --- |
-| Point an agent at a cryo-EM repo | Skills, prompts, docs, schemas, and validation commands that turn loose requests into executable structural review workflows. |
+| Point an agent at a cryo-EM repo | Skills, prompts, docs, schemas, and check commands that turn loose requests into executable structural workflows. |
 | Review EMDB/PDB accessions | Input audits, map/model summaries, density-support checks, figures, provenance, caveats, and bounded claims. |
 | Prepare figure or state work | Renderer routes, figure manifests, methods/provenance text, heterogeneity comparison axes, and reproducibility notes. |
 | Prepare cloud or HPC execution lanes | Provider profiles, stage contracts, launch-request prep, budget gates, cleanup requirements, and artifact expectations. |
 | Run agent issue waves | Tracker-ready templates, labels, DAGs, worker outcome blocks, and reference checks. |
-| Review a provider run | Confirms artifacts, hashes, cost records, cleanup proof, and allowed claims before a stage is treated as complete. |
+| Review a provider run | Checks artifacts, hashes, cost records, cleanup proof, and allowed claims before a stage is treated as complete. |
 | Track cryo-EM tool posture | Open/watch/gated registry records with license and image-packaging boundaries. |
 
 See [Workflow Blueprints](docs/workflows.md) for how to choose a path,
@@ -112,7 +109,7 @@ The `Claim ceiling` column uses CryoCore's claim ladder. See
 | EMDB/PDB IDs | Plan or build a map/model review | [Map/Model Dossier](docs/recipes/map-model-dossier.md) | public metadata/artifact fetch only when commanded | input audit, summaries, figures, provenance, caveats | `processed` or `candidate` |
 | Cloud/HPC idea | Prepare provider work | `make provider-check` | no provider mutation | provider profile, gates, launch-request plan | `candidate` until artifacts are joined |
 | Linear campaign | Split work for agents | `make issue-check` | no network or provider mutation | issue DAG, dependencies, labels | `candidate` |
-| Fetched run artifacts | Decide if run really succeeded | `make provider-closeout-check` | local fixture check only | blockers, hashes, cost, cleanup, claim level | evidence-dependent |
+| Fetched run artifacts | Decide if a run is complete | `make provider-closeout-check` | local fixture check only | blockers, hashes, cost, cleanup, claim level | artifact-dependent |
 | Public switch | Check publishability | `make release-check` | local checks and secret scan | release report and blockers | repo readiness only |
 
 ## Five-Minute Start
@@ -181,12 +178,11 @@ prompt; [docs/agent-quickstart.md](docs/agent-quickstart.md) uses the same one.
 Use the CryoCore skill pack in this repo. Stay local. Read AGENTS.md,
 README.md, docs/goal-orchestration.md, docs/workflows.md, docs/use-cases.md,
 and the relevant skill under skills/. Build a useful cryo-EM map/model review,
-figure workflow, state comparison, provider plan, or evidence package. Keep
+figure workflow, state comparison, provider plan, or artifact package. Keep
 private data, secrets, raw or heavy artifacts, provider logs, model weights,
 and license files out of git and public outputs. Run the smallest relevant
-validators first, then
-`make release-check` when the task is release-readiness. Report exact
-artifacts, claim levels, validation results, and residual risks.
+checks first, then `make release-check` when the task is release-readiness.
+Report exact artifacts, claim levels, check results, and remaining issues.
 ```
 
 More agent patterns are in [Agent Quickstart](docs/agent-quickstart.md) and
@@ -257,21 +253,20 @@ ModelAngelo, ChimeraX, Coot, and validation tooling keep their own images and
 dependency surfaces apart from RFdiffusion, Boltz, Chai, ProteinMPNN, and
 screening stacks.
 
-## The Trust Layer
+## Handoff Layer
 
-CryoCore keeps the evidence chain explicit underneath the scientific workflow
-so an agent can carry work across days or weeks and hand it to a human reviewer
-with nothing missing:
+CryoCore keeps the working record explicit so an agent can carry work across
+days or weeks and hand it to a human reviewer with nothing missing:
 
 - the public accession, operator dataset, or derived artifact used as input
 - the tool lane that was planned, gated, or executed
 - the stage that actually completed
 - the artifacts that were produced and hashed
 - the licenses or use-context approvals required
-- the claims or next steps supported by the evidence
+- the claims or next steps supported by the artifacts
 
 A stage becomes trustworthy when the artifacts are joined to the declared
-inputs and the validation outputs, checksums, cost records, cleanup proof, and
+inputs and the check outputs, checksums, cost records, cleanup proof, and
 claim boundaries are all in place.
 
 The shape of one mission, at a glance:
@@ -303,7 +298,7 @@ The shape of one mission, at a glance:
                          |
                          v
    +-------------------------------------------+
-   |  validation: schemas, contract self-check,|
+   |  checks: schemas, contract self-check,    |
    |  wwPDB rollup                             |
    +---------------------+---------------------+
                          |
@@ -324,7 +319,7 @@ The shape of one mission, at a glance:
 ```text
 campaigns/        CryoCore campaign contracts
 containers/       Public image posture and runtime separation notes
-demos/            Public cryo evidence demos and review readouts
+demos/            Public cryo demos and review readouts
 docs/             Durable architecture, split, licensing, and data-policy docs
 examples/         Tiny example manifests
 modules/          Image, lane, and provider contracts
@@ -342,10 +337,10 @@ tests/            Lightweight validator tests
 - `modules/lane-modules/raw-to-map.v1.json`, `map-to-model.v1.json`, and `figure-dossier.v1.json`: scientific lane shapes for processing, model review, and figures.
 - `scripts/cryocore/t2r14_open_dossier.py`, `poltheta_map_model_dossier.py`, and `structure_jury_dossier.py`: runnable public-accession review demos.
 - `modules/schemas/`: provider-run, workflow-run, claim-ledger, figure-manifest, map-model-fit, artifact-index, cost, cleanup, and accession metadata schemas.
-- `modules/artifact-contracts/structure-dossier.v1.json`: evidence maturity ladder and required artifacts.
+- `modules/artifact-contracts/structure-dossier.v1.json`: claim-level ladder and required artifacts.
 - `runpod/stage-contracts/`: stage contracts with progress-ledger requirements that close only when each stage is confirmed.
 - `scripts/cryocore/provider_closeout_check.py`: confirms artifacts, hashes, cost records, and cleanup proof are all in place before a provider run is treated as complete.
-- `scripts/cryocore/contract_self_check.py`: verifies that real provider results are backed by real evidence rather than mocks, fixtures, planned-only entries, or fallbacks.
+- `scripts/cryocore/contract_self_check.py`: checks that real provider results are backed by real artifacts rather than mocks, fixtures, planned-only entries, or fallbacks.
 - `scripts/cryocore/public_snapshot_check.py`: scans a public snapshot for secrets, heavy cryo-EM artifacts, local paths, and private execution markers.
 - `scripts/cryocore/runpod_scope_check.py`: scans public bridge manifests, inline source bundles, public service scope, and prep-only gates.
 - `scripts/cryocore/runpod_reference_check.py`: confirms public entrypoints are present and resume commands are current.
@@ -360,7 +355,7 @@ tests/            Lightweight validator tests
 
 ![CryoCore and Structure Factory boundary](docs/assets/cryocore-sf-boundary.svg)
 
-CryoCore owns experimental evidence production and structural review. Structure Factory owns cross-lane orchestration, prediction/design, screening, and campaign synthesis.
+CryoCore owns experimental cryo-EM processing and structural review. Structure Factory owns cross-lane orchestration, prediction/design, screening, and campaign synthesis.
 
 The two repos intentionally duplicate a small set of shared posture records. ChimeraX is the clearest example: it belongs in CryoCore for map/model inspection and figure rendering, and it belongs in Structure Factory for design and atlas reports. Duplicating these records lets each repo keep a focused scientific runtime.
 
@@ -369,13 +364,13 @@ See [Split Evaluation](docs/split-evaluation.md) and
 
 ## Related Projects
 
-- [Proteus](https://github.com/jvogan/proteus): structural-biology skills for AI coding agents — PyMOL and ChimeraX automation, plus AlphaFold DB, RCSB PDB, UniProt, and Rosetta workflows. Pairs well with CryoCore when a mission needs hands-on molecular visualization or sequence/structure lookups alongside cryo-EM map/model review.
+- [Proteus](https://github.com/jvogan/proteus): structural-biology skills for AI coding agents, including PyMOL and ChimeraX automation plus AlphaFold DB, RCSB PDB, UniProt, and Rosetta workflows. Pairs well with CryoCore when a mission needs hands-on molecular visualization or sequence/structure lookups alongside cryo-EM map/model review.
 
 ## Public Demos
 
 - [T2R14 Open Dossier](demos/t2r14-open-dossier/): CPU-only public PDB/EMDB metadata and coordinate review.
 - [Pol Theta Map/Model Dossier](demos/poltheta-map-model-dossier/): public EMDB/PDB/wwPDB validation review shape for a map/model lane.
-- [Structure Jury Dual Dossier](demos/structure-jury-dual-dossier/): joins two public deposited-structure lanes into one claim-audited review.
+- [Dual Structure Comparison](demos/structure-jury-dual-dossier/): joins two public deposited-structure lanes into one review package.
 
 Demo launch manifests are public scaffolds for the prep stage. Paid provider execution is operator-initiated, uses current credentials kept outside the repo, and is reviewed against fetched, hashed artifacts.
 

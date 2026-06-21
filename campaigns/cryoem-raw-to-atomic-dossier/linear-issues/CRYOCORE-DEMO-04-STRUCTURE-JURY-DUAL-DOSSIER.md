@@ -62,8 +62,8 @@ Run the next CryoCore RunPod demo: a two-target public deposited-structure jury 
 ```bash
 python3 -m py_compile scripts/cryocore/structure_jury_dossier.py scripts/cryocore/build_structure_jury_bridge_manifest.py scripts/cryocore/t2r14_open_dossier.py scripts/cryocore/poltheta_map_model_dossier.py
 python3 scripts/cryocore/build_structure_jury_bridge_manifest.py
-runpod-bridge validate-manifest runpod/bridge-manifests/structure-jury-dual-dossier.json --json
-runpod-bridge prepare runpod/bridge-manifests/structure-jury-dual-dossier.json --out-dir .runtime/structure-jury-dual-dossier-packet --json
+symphony-neocloud-bridge validate-manifest runpod/bridge-manifests/structure-jury-dual-dossier.json --json
+symphony-neocloud-bridge prepare runpod/bridge-manifests/structure-jury-dual-dossier.json --out-dir .runtime/structure-jury-dual-dossier-packet --json
 python3 scripts/cryocore/runpod_launch_request.py --manifest runpod/launch-manifests/map-model-dossier.json --issue CRYOCORE-DEMO-04 --max-spend-usd 2 --execution-mode prep --out .runtime/structure-jury-dual-dossier-launch-request.json --json
 ```
 

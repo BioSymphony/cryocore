@@ -178,24 +178,25 @@ demo-t2r14-local:
 	@printf '%s\n' 'Open .runtime/t2r14-open-dossier/artifacts/report.html'
 
 # The three demo-*-check targets below build a bridge manifest and then validate
-# it with the external runpod-bridge CLI. The CLI is operator-owned and lives
+# it with the external provider bridge CLI. The CLI is operator-owned and lives
 # outside this public repo. Install or stub it before running these targets.
 # Newcomers should start with `make demo-local`, which is self-contained.
+PROVIDER_BRIDGE_CLI ?= symphony-neocloud-bridge
 
 demo-t2r14-check:
 	python3 scripts/cryocore/build_t2r14_bridge_manifest.py
-	@command -v runpod-bridge >/dev/null 2>&1 || { echo 'runpod-bridge CLI not found; this target needs the operator-owned bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
-	runpod-bridge validate-manifest runpod/bridge-manifests/t2r14-open-dossier.json --json
+	@command -v $(PROVIDER_BRIDGE_CLI) >/dev/null 2>&1 || { echo '$(PROVIDER_BRIDGE_CLI) CLI not found; this target needs the operator-owned provider bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
+	$(PROVIDER_BRIDGE_CLI) validate-manifest runpod/bridge-manifests/t2r14-open-dossier.json --json
 
 demo-poltheta-prep-check:
 	python3 scripts/cryocore/build_poltheta_bridge_manifest.py
-	@command -v runpod-bridge >/dev/null 2>&1 || { echo 'runpod-bridge CLI not found; this target needs the operator-owned bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
-	runpod-bridge validate-manifest runpod/bridge-manifests/poltheta-map-model-dossier.json --json
+	@command -v $(PROVIDER_BRIDGE_CLI) >/dev/null 2>&1 || { echo '$(PROVIDER_BRIDGE_CLI) CLI not found; this target needs the operator-owned provider bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
+	$(PROVIDER_BRIDGE_CLI) validate-manifest runpod/bridge-manifests/poltheta-map-model-dossier.json --json
 
 demo-structure-jury-prep-check:
 	python3 scripts/cryocore/build_structure_jury_bridge_manifest.py
-	@command -v runpod-bridge >/dev/null 2>&1 || { echo 'runpod-bridge CLI not found; this target needs the operator-owned bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
-	runpod-bridge validate-manifest runpod/bridge-manifests/structure-jury-dual-dossier.json --json
+	@command -v $(PROVIDER_BRIDGE_CLI) >/dev/null 2>&1 || { echo '$(PROVIDER_BRIDGE_CLI) CLI not found; this target needs the operator-owned provider bridge CLI installed (see docs/runpod-stack.md). Newcomers can use make demo-local instead.'; exit 1; }
+	$(PROVIDER_BRIDGE_CLI) validate-manifest runpod/bridge-manifests/structure-jury-dual-dossier.json --json
 
 list:
 	find campaigns containers demos docs examples modules references runpod scripts skills templates tests -maxdepth 4 -type f | sort

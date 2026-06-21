@@ -39,7 +39,7 @@ def test_public_snapshot_check_blocks_secret_like_content(tmp_path: Path) -> Non
 
 def test_public_snapshot_check_blocks_public_private_marker(tmp_path: Path) -> None:
     local_file = tmp_path / "notes.md"
-    local_path = "/Users/" + "jacobvogan/" + "autonomy" + "/bin/runpod-bridge"
+    local_path = "/Users/" + "operator/" + "private-workshop" + "/bin/private-cloud" + "-bridge"
     local_file.write_text(f"Use {local_path} here.\n")
     summary = run_check(tmp_path, "public", 2_000_000)
     assert summary["ok"] is False
@@ -407,7 +407,7 @@ Bad command.
 - [ ] no paid worker mutation
 ## Validation Commands
 ```bash
-runpod-bridge run-remote runpod/bridge-manifests/t2r14-open-dossier.json --execute --yes-create-""" + """paid-runpod
+symphony-neocloud-bridge run-remote runpod/bridge-manifests/t2r14-open-dossier.json --execute --yes-create-""" + """paid-runpod
 ```
 ## Touched Areas
 - `runpod/`

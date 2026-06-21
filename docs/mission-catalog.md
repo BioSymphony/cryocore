@@ -31,12 +31,22 @@ operator authorization.
 | Audit one PDB entry's wwPDB validation report and summarize what the deposit supports. | public-metadata-network | A bounded-claims note plus a short prose summary of the validation report. | 1-2 hours. |
 | Reproduce the Pol Theta map/model prep check and describe the contract-self-check output. | public-metadata-network | The prep-check log plus a contract-self-check pass record. | 1 hour. |
 
+## Advanced public-data missions
+
+These are good second-wave tasks after the local demo works. They use public
+accessions and keep heavy files out of git.
+
+| Mission | Resource mode | First artifact | Rough scope |
+| --- | --- | --- | --- |
+| Plan an RNA map/model review for PDB `10ZT` and EMDB `EMD-75574`. Focus on input inventory, figure plan, and which model-building tools would be tried first. | public-metadata-network | A public input ledger with EMDB, PDB, map, half-map, sequence, and wwPDB report links. | 2-3 hours. |
+| Plan a cryo-ET portal walkthrough for CryoET Data Portal dataset `10301`. Focus on metadata intake, copick project shape, and what screenshots or annotation files an agent should return. | public-metadata-network | A dataset inventory and proposed copick config outline. | 2-3 hours. |
+
 ## Tracker wave missions
 
 | Mission | Resource mode | First artifact | Rough scope |
 | --- | --- | --- | --- |
 | Draft a Linear-style wave for a four-stage raw-to-atomic campaign on EMPIAR-10204. | tracker-wave | Four issue bodies with dependencies, labels, and operator gates. | 2 hours. |
-| Plan a heterogeneity jury wave that compares two structural interpretations of one public dataset. | tracker-wave | A wave plan with the comparison contract spelled out. | 2 hours. |
+| Plan a state-comparison wave that compares two structural interpretations of one public dataset. | tracker-wave | A wave plan with the comparison contract spelled out. | 2 hours. |
 | Re-shape the [Pol Theta sample wave](../examples/sample-linear-wave/) into one that runs the same checks against a different EMDB/PDB pair. | tracker-wave | Updated issue bodies pointing at the new accessions. | 1 hour. |
 
 ## Provider missions (prep mode)

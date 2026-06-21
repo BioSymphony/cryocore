@@ -56,8 +56,8 @@ Run a small real CryoCore demo that uses only public RCSB/PDB coordinate metadat
 ```bash
 make demo-t2r14-check
 python3 -m py_compile scripts/cryocore/t2r14_open_dossier.py scripts/cryocore/build_t2r14_bridge_manifest.py
-runpod-bridge validate-manifest runpod/bridge-manifests/t2r14-open-dossier.json --json
-runpod-bridge prepare runpod/bridge-manifests/t2r14-open-dossier.json --out-dir .runtime/t2r14-open-dossier-packet --json
+symphony-neocloud-bridge validate-manifest runpod/bridge-manifests/t2r14-open-dossier.json --json
+symphony-neocloud-bridge prepare runpod/bridge-manifests/t2r14-open-dossier.json --out-dir .runtime/t2r14-open-dossier-packet --json
 python3 scripts/cryocore/runpod_launch_request.py --manifest runpod/launch-manifests/map-model-dossier.json --issue CRYOCORE-DEMO-01 --max-spend-usd 1 --execution-mode prep --out .runtime/t2r14-open-dossier-launch-request.json --json
 ```
 

@@ -23,9 +23,9 @@ Prepare the RunPod bridge packet:
 make demo-t2r14-check
 ```
 
-`demo-t2r14-check` requires the optional `runpod-bridge` CLI. If that CLI is
-not installed, the local dossier run above is still the recommended first
-success path.
+`demo-t2r14-check` requires the optional operator-owned provider bridge CLI,
+defaulting to `symphony-neocloud-bridge`. If that CLI is not installed, the
+local dossier run above is still the recommended first success path.
 
 Expected local output shape:
 
@@ -45,10 +45,10 @@ Or run the bridge steps directly:
 
 ```bash
 python3 scripts/cryocore/build_t2r14_bridge_manifest.py
-runpod-bridge validate-manifest \
+symphony-neocloud-bridge validate-manifest \
   runpod/bridge-manifests/t2r14-open-dossier.json \
   --json
-runpod-bridge prepare \
+symphony-neocloud-bridge prepare \
   runpod/bridge-manifests/t2r14-open-dossier.json \
   --out-dir .runtime/t2r14-open-dossier-packet \
   --json

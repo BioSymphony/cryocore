@@ -18,12 +18,11 @@ This is the canonical CryoCore agent prompt. The README's
 Use the CryoCore skill pack in this repo. Stay local. Read AGENTS.md,
 README.md, docs/goal-orchestration.md, docs/workflows.md, docs/use-cases.md,
 and the relevant skill under skills/. Build a useful cryo-EM map/model review,
-figure workflow, state comparison, provider plan, or evidence package. Keep
+figure workflow, state comparison, provider plan, or artifact package. Keep
 private data, secrets, raw or heavy artifacts, provider logs, model weights,
 and license files out of git and public outputs. Run the smallest relevant
-validators first, then
-`make release-check` when the task is release-readiness. Report exact
-artifacts, claim levels, validation results, and residual risks.
+checks first, then `make release-check` when the task is release-readiness.
+Report exact artifacts, claim levels, check results, and remaining issues.
 ```
 
 ## What The Agent Should Read
@@ -44,8 +43,8 @@ artifacts, claim levels, validation results, and residual risks.
 - A goal brief when the request is broad enough to need orchestration.
 - A claim ceiling using `docs/claim-levels.md`.
 - Artifacts or templates under the right repo directory.
-- Validation commands and results.
-- Data, license, and provider-risk notes.
+- Check commands and results.
+- Data, license, and provider notes.
 - A final outcome block shaped like `templates/final-outcome-block.md`.
 
 ## Minimum Acceptable Agent Run
@@ -70,8 +69,8 @@ For a public release or release-readiness review, an agent should at least:
    make release-check
    ```
 
-5. Report blockers first, then changed files, validation results, claim ceiling,
-   and residual risk.
+5. Report blockers first, then changed files, check results, claim ceiling, and
+   remaining issues.
 
 An answer that only says a provider is running, a command exited, or a demo
 looks good is incomplete.

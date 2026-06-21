@@ -6,9 +6,9 @@ Use this document as the first map for the public CryoCore repo.
 
 - `README.md`: product boundary and workflow.
 - `AGENTS.md`: agent operating rules.
-- `PUBLIC_RELEASE.md`: release gates and scrub rules.
+- `PUBLIC_RELEASE.md`: release gates and safety rules.
 - `docs/data-policy.md`: what may and may not live in git.
-- `docs/no-false-success-hardening.md`: how CryoCore confirms artifacts, hashes, validation, and cleanup before treating a run as complete.
+- `docs/no-false-success-hardening.md`: how CryoCore checks artifacts, hashes, reports, and cleanup before treating a run as complete.
 - `docs/tooling-and-licensing.md`: open, watch, and runtime-gated tool posture.
 
 ## First Workflows

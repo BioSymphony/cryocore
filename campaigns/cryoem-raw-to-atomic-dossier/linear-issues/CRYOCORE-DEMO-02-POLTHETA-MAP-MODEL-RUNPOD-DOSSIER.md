@@ -59,8 +59,8 @@ Run the second real CryoCore RunPod demo: a public map/model dossier for EMDB `E
 ```bash
 python3 -m py_compile scripts/cryocore/poltheta_map_model_dossier.py scripts/cryocore/build_poltheta_bridge_manifest.py scripts/cryocore/contract_self_check.py
 python3 scripts/cryocore/build_poltheta_bridge_manifest.py
-runpod-bridge validate-manifest runpod/bridge-manifests/poltheta-map-model-dossier.json --json
-runpod-bridge prepare runpod/bridge-manifests/poltheta-map-model-dossier.json --out-dir .runtime/poltheta-map-model-packet --json
+symphony-neocloud-bridge validate-manifest runpod/bridge-manifests/poltheta-map-model-dossier.json --json
+symphony-neocloud-bridge prepare runpod/bridge-manifests/poltheta-map-model-dossier.json --out-dir .runtime/poltheta-map-model-packet --json
 python3 scripts/cryocore/runpod_launch_request.py --manifest runpod/launch-manifests/map-model-dossier.json --issue CRYOCORE-DEMO-02 --max-spend-usd 1 --execution-mode prep --out .runtime/poltheta-map-model-launch-request.json --json
 ```
 

@@ -2,20 +2,26 @@
 
 Last reviewed: 2026-05-23
 
-This repository is ready to publish when it is a clean-history public control plane for BioSymphony CryoCore: useful enough for external cryo-EM users and agents, but free of private history, credentials, heavy artifacts, license files, provider logs, and unsupported biological claims.
+This repository is ready to publish when it is a clean-history public control
+plane for BioSymphony CryoCore: useful for external cryo-EM users and agents,
+with no private history, credentials, heavy artifacts, license files, provider
+logs, or unsupported biological claims.
 
 ## Release Positioning
 
-BioSymphony CryoCore is a public-safe harness for cryo-EM evidence workflows. It helps a user or long-running agent convert a public accession or operator-provided dataset into:
+BioSymphony CryoCore is a public-safe harness for cryo-EM agent workflows. It
+helps a user or long-running agent convert a public accession or
+operator-provided dataset into:
 
 - input and data-policy contracts
 - lane and image manifests
 - provider launch and stage contracts
 - artifact indexes, hashes, and closeout checks
-- map/model validation and figure dossier scaffolds
+- map/model review and figure dossier scaffolds
 - claim ledgers for scientist review
 
-It is not a raw-data store, wet-lab protocol system, clinical tool, therapeutic-claim system, or license-bypass mechanism.
+Out of scope: raw-data storage, wet-lab protocol management, clinical use,
+therapeutic claims, and license bypass.
 
 ## Release Gates
 
@@ -60,8 +66,8 @@ Expected release state:
 - No `.runtime`, `artifacts`, `outputs`, raw data, maps, model weights, provider logs, or cache directories are tracked.
 - No private workstation paths, private image namespaces, private clone markers, credentials, signed URLs, or license files appear.
 - RunPod manifests use public placeholders or digest-pinned public images; real execution still requires operator gates.
-- Claim levels stay on the schema ladder: `candidate`, `processed`, `validated`, `publishable`, `insufficient_evidence`, or `blocked`, with evidence artifacts attached at each level. A `publishable` claim still requires expert scientific review before public biological conclusions.
-- Git history is created only after the scrub passes.
+- Claim levels stay on the schema ladder: `candidate`, `processed`, `validated`, `publishable`, `insufficient_evidence`, or `blocked`, with supporting artifacts attached at each level. A `publishable` claim still requires expert scientific review before public biological conclusions.
+- Git history is created only after the release safety checks pass.
 
 ## First Agent Handoff
 
@@ -73,4 +79,7 @@ Expected release state:
 
 ## Known Status
 
-This is a pre-alpha public harness. It is strongest as a contract, validation, and orchestration layer. Real cryo-EM processing still depends on current tool terms, GPU/runtime compatibility, external heavy storage, and expert scientific review.
+This is a pre-alpha public harness. It is strongest as a skill pack, contract
+set, and orchestration layer for agents. Real cryo-EM processing still depends
+on current tool terms, GPU/runtime compatibility, external heavy storage, and
+expert scientific review.
