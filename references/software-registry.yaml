@@ -1,7 +1,8 @@
 # BioSymphony CryoCore software registry.
 # Each entry must be checked from primary sources before status moves to ready.
 # Human-readable posture: docs/tooling-and-licensing.md
-# Last source-backed audit: 2026-05-27 for high-impact cryo-core lanes.
+# Last source-backed audit: 2026-06-21 for targeted June toolwatch updates;
+# 2026-05-27 for broad high-impact cryo-core lanes.
 
 software:
   relion:
@@ -134,8 +135,8 @@ software:
     image_family: model-build
     install_method: pip_or_source
     upstream_repo: "https://github.com/3dem/model-angelo"
-    upstream_release_tag: "v1.0.17"
-    upstream_release_date: "2026-05-18"
+    upstream_release_tag: "v1.0.18"
+    upstream_release_date: "2026-06-15"
     license_class: open_source_mit
     license_gate: none
     runpod_fit: strong
@@ -144,7 +145,7 @@ software:
     runtime_artifacts: "modelangelo_output/, model_build_manifest.json"
     citation_notes: "Record model weights, version, sequence inputs, and map processing."
     status: planned
-    notes: "Automatic cryo-EM model building; keep large weights in runtime caches or reviewed image layers with hashes. v1.0.17 includes nucleotide postprocessing alignment fixes relevant to RNA/DNA map-to-model runs."
+    notes: "Automatic cryo-EM model building; keep large weights in runtime caches or reviewed image layers with hashes. v1.0.18 changes install-script termination; v1.0.17 includes nucleotide postprocessing alignment fixes relevant to RNA/DNA map-to-model runs."
   coot:
     role: model_review_building
     image_family: model-build
@@ -212,6 +213,22 @@ software:
     citation_notes: "Record Phenix version and module outputs."
     status: gated
     notes: "Runtime-gated refinement/validation lane; no license files in repo. Phenix mailing-list announcement reports Phenix 2.0 build 2.0-5936 available in January 2026."
+  servalcat:
+    role: model_refinement_validation
+    image_family: model-build
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/keitaroyam/servalcat"
+    upstream_release_tag: "0.4.131"
+    upstream_release_date: "2026-02-02"
+    license_class: open_source_mpl_2
+    license_gate: refmac_ccp4_gate_for_refmac_modes
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "servalcat --help"
+    runtime_artifacts: "servalcat_refinement_summary.json, model_validation_manifest.json"
+    citation_notes: "Record Servalcat version, Refmac/CCP4 use if any, map/model inputs, and refinement statistics."
+    status: planned
+    notes: "SPA refinement and map/model validation lane. Modes that call Refmac or CCP4 inherit those runtime gates; pure Servalcat use stays open-source."
   chimerax:
     role: visualization_figures_model_review
     image_family: model-build
@@ -244,6 +261,23 @@ software:
     citation_notes: "Record PyMOL version and build (open-source vs Schrodinger Incentive) and operator use posture."
     status: watch
     notes: "Open-source PyMOL build is permissive; the Schrodinger Incentive build is commercial. Do not store commercial license acceptance records in git."
+  agentic_pymol:
+    role: pymol_mcp_bridge_reference
+    image_family: figures
+    install_method: source_after_pymol_license_review
+    upstream_repo: "https://github.com/Arcadia-Science/agentic-pymol"
+    upstream_publication: "https://thestacks.org/publications/resource-agentic-pymol"
+    upstream_release_tag: "v1.0.0"
+    upstream_release_date: "2026-06-03"
+    license_class: open_source_mit_code_plus_pymol_license_review
+    license_gate: pymol_runtime_license_and_session_security_review
+    runpod_fit: possible
+    gpu_class: "CPU/GUI"
+    smoke_command: "python -c 'print(\"Agentic PyMOL MCP placeholder\")'"
+    runtime_artifacts: "agentic_pymol_session_manifest.json, pymol_command_log.jsonl"
+    citation_notes: "Record Agentic PyMOL release, PyMOL build/license posture, session port/security settings, and executed commands."
+    status: watch
+    notes: "MCP bridge for a live PyMOL session with structured readback. Useful as an agent-operated figure/review reference; keep PyMOL licensing and session security separate from the bridge code."
   ccpem:
     role: cryoem_model_building_suite
     image_family: model-build
@@ -664,6 +698,103 @@ software:
     citation_notes: "Record pyem version and source/destination metadata formats."
     status: planned
     notes: "High-leverage cryoSPARC-to-RELION metadata conversion helper."
+  cryoet_data_portal:
+    role: public_cryoet_data_metadata_api
+    image_family: metadata
+    install_method: pip_or_http_client
+    upstream_repo: "https://github.com/chanzuckerberg/cryoet-data-portal"
+    upstream_docs: "https://cryoetdataportal.czscience.com/"
+    pypi_package: "cryoet-data-portal==4.8.0"
+    upstream_release_date: "2026-03-20"
+    license_class: open_source_mit_code_public_dataset_terms
+    license_gate: raw_download_operator_gate
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python -c 'import cryoet_data_portal; print(\"cryoet-data-portal ok\")'"
+    runtime_artifacts: "cryoet_portal_metadata.json, dataset_download_manifest.json"
+    citation_notes: "Record portal client version, dataset ID, deposition metadata, downloaded file hashes if any, and annotation sources."
+    status: planned
+    notes: "Default public cryo-ET intake path for metadata, annotations, and bounded examples. Keep raw tomograms and tilt series out of git; store downloads only in ignored or provider storage."
+  popsicle_benchmark:
+    role: cryoet_segmentation_localization_benchmark
+    image_family: metadata
+    install_method: metadata_only_pointer_until_dataset_gate
+    upstream_preprint: "https://arxiv.org/abs/2606.10255"
+    upstream_release_date: "2026-06-08"
+    license_class: arxiv_cc_by_4_dataset_terms_review
+    license_gate: dataset_download_split_and_redistribution_review
+    runpod_fit: possible
+    gpu_class: "CPU for metadata; GPU for benchmark runs"
+    smoke_command: "python -c 'print(\"POPSICLE metadata-only pointer\")'"
+    runtime_artifacts: "popsicle_benchmark_manifest.json, benchmark_split_ledger.json"
+    citation_notes: "Record arXiv version, CryoET Data Portal dataset IDs, splits, labels, and benchmark metrics."
+    status: watch
+    notes: "June 2026 benchmark suite built from CryoET Data Portal for segmentation and localization. Good regression target for public-data agents; do not vendor dataset shards into git."
+  octopi:
+    role: cryoet_particle_picking
+    image_family: cryo-core
+    install_method: pip_or_source_after_dependency_review
+    upstream_repo: "https://github.com/chanzuckerberg/octopi"
+    upstream_docs: "https://chanzuckerberg.github.io/octopi/"
+    upstream_release_tag: "v1.6.0"
+    upstream_release_date: "2026-06-09"
+    license_class: open_source_mit_plus_dependency_terms_review
+    license_gate: model_weights_training_data_dependency_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100; SLURM optional"
+    smoke_command: "octopi --help"
+    runtime_artifacts: "octopi_run_manifest.json, particle_pick_manifest.json, training_split_manifest.json"
+    citation_notes: "Record OCTOPI version, copick project, model config, training split, and inference parameters."
+    status: planned
+    notes: "Copick-native 3D U-Net particle picking with CLI/API and SLURM support. Run a small public CZDP fixture first and record model/training split before larger runs."
+  py2rely:
+    role: relion5_sta_adapter
+    image_family: cryo-core
+    install_method: source_after_relion_and_hpc_review
+    upstream_repo: "https://github.com/chanzuckerberg/py2rely"
+    upstream_release_tag: "v0.1.0"
+    upstream_release_date: "2026-01-11"
+    license_class: open_source_mit_plus_relion_gplv2_and_dependency_review
+    license_gate: relion_runtime_hpc_dependency_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU by RELION job; SLURM expected"
+    smoke_command: "py2rely --help || py2rely"
+    runtime_artifacts: "py2rely_run_manifest.json, relion_sta_job_manifest.json"
+    citation_notes: "Record py2rely version, RELION version, AreTomo inputs, copick coordinates, SLURM profile, and output job graph."
+    status: gated
+    notes: "Adapter from AreTomo and copick metadata into RELION5 subtomogram averaging. Useful for HPC/SLURM examples after RELION and dependency posture are clear."
+  pytom_match_pick:
+    role: cryoet_template_matching_particle_picking
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/SBC-Utrecht/pytom-match-pick"
+    upstream_release_tag: "0.13.2"
+    upstream_release_date: "2026-06-05"
+    license_class: open_source_gplv2
+    license_gate: source_compliance_for_images
+    runpod_fit: strong
+    gpu_class: "CUDA GPU"
+    smoke_command: "pytom_match_template.py --help || pytom_match_template --help"
+    runtime_artifacts: "template_match_manifest.json, particle_pick_manifest.json"
+    citation_notes: "Record pytom-match-pick version, template source, masks, tomogram inputs, and thresholding parameters."
+    status: planned
+    notes: "GPU template-matching baseline for cryo-ET localization. Good non-ML comparison for public tomogram picking tasks."
+  tomodrgn:
+    role: cryoet_subtomogram_heterogeneity
+    image_family: cryo-core
+    install_method: source_after_dataset_and_dependency_review
+    upstream_repo: "https://github.com/bpowell122/tomodrgn"
+    upstream_release_tag: "v1.0.3"
+    upstream_release_date: "2026-05-28"
+    license_class: open_source_gplv3_dataset_terms_review
+    license_gate: source_compliance_dataset_checkpoint_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "tomodrgn --help"
+    runtime_artifacts: "tomodrgn_run_manifest.json, latent_embeddings/, subtomogram_state_maps/"
+    citation_notes: "Record tomoDRGN version, input tilt/subtomogram provenance, training parameters, and output maps."
+    status: watch
+    notes: "Extends cryoDRGN-style continuous heterogeneity analysis to cryo-ET subtomograms. Keep watch until a small public fixture and runtime profile are pinned."
   aretomo3:
     role: cryoet_tilt_series_preprocessing
     image_family: cryo-core
@@ -712,6 +843,7 @@ software:
     role: cryoet_cellular_feature_segmentation
     image_family: cryo-core
     install_method: pypi_or_sbgrid_after_weight_review
+    upstream_repo: "https://github.com/mgflast/easymode"
     upstream_docs: "https://sbgrid.org/software/titles/easymode"
     upstream_preprint: "https://doi.org/10.64898/2026.05.19.726344"
     pypi_package: "easymode==0.0.2"
@@ -725,13 +857,15 @@ software:
     runtime_artifacts: "easymode_toolcheck.json, segmentation_manifest.json, model_weight_manifest.json"
     citation_notes: "Record Easymode package or SBGrid version, preprint DOI, model names, feature classes, and weight hashes."
     status: watch
-    notes: "May 2026 cellular cryoET preprint with pretrained networks. PyPI lists GPLv3 and SBGrid lists a 4.9 GB package; model-weight and package posture need review before a default image."
+    notes: "May 2026 cellular cryoET preprint with pretrained networks and a public GitHub install path. PyPI lists GPLv3 and SBGrid lists a 4.9 GB package; model-weight and package posture need review before a default image."
   copick:
     role: cryoet_project_api_annotation
     image_family: metadata
     install_method: pip_or_source
     upstream_docs: "https://copick.github.io/copick/"
-    upstream_repo: "https://github.com/uermel/copick"
+    upstream_repo: "https://github.com/copick/copick"
+    upstream_release_tag: "v1.24.1"
+    upstream_release_date: "2026-05-05"
     license_class: open_source_mit
     license_gate: none
     runpod_fit: strong
@@ -741,6 +875,22 @@ software:
     citation_notes: "Record copick version, storage backend, CZDP or OME-Zarr source, annotation classes, and linked tool versions."
     status: planned
     notes: "Storage-agnostic cryoET project API with CZDP, OME-Zarr, Napari, ChimeraX, and MCP paths. Good default glue for bounded cellular cryoET workflows."
+  copick_mcp:
+    role: cryoet_agent_project_exploration
+    image_family: metadata
+    install_method: pip_or_source_after_agent_tool_review
+    upstream_repo: "https://github.com/copick/copick-mcp"
+    upstream_release_tag: "v0.6.0"
+    upstream_release_date: "2026-06-09"
+    license_class: open_source_mit
+    license_gate: mcp_tool_security_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python -m copick_mcp.main --help || python -c 'print(\"copick-mcp placeholder\")'"
+    runtime_artifacts: "copick_mcp_tool_manifest.json, read_only_project_inventory.json"
+    citation_notes: "Record copick-mcp version, copick project config, MCP client, tools used, and read/write mode."
+    status: planned
+    notes: "MCP server for copick read-only project exploration and CLI introspection. Keep write operations out of public examples unless a task declares expected output files."
   miss_alignment:
     role: cryoet_tilt_alignment_refinement
     image_family: cryo-core
@@ -946,6 +1096,23 @@ software:
     citation_notes: "Record Nextflow version, workflow ref, executor, and profile."
     status: planned
     notes: "Canonical candidate for provider-neutral workflow profiles after current manifest contracts stabilize."
+  nf_prov:
+    role: nextflow_provenance_plugin
+    image_family: provider-neutral
+    install_method: nextflow_plugin
+    upstream_repo: "https://github.com/nextflow-io/nf-prov"
+    upstream_registry: "https://registry.nextflow.io/plugins/nf-prov%401.7.0"
+    upstream_release_tag: "1.7.0"
+    upstream_release_date: "2026-01-05"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "nextflow plugin list | grep nf-prov"
+    runtime_artifacts: "workflow-run-crate/, biocompute-object.json, nextflow_provenance_manifest.json"
+    citation_notes: "Record nf-prov version, Nextflow version, executor, workflow ref, and generated provenance formats."
+    status: planned
+    notes: "Nextflow plugin that emits BioCompute Object and Workflow Run RO-Crate outputs. Good first adapter for workflow provenance once a Nextflow lane is active."
   snakemake:
     role: workflow_orchestration
     image_family: provider-neutral
@@ -965,6 +1132,8 @@ software:
     image_family: provider-neutral
     install_method: system_package_or_hpc_module
     upstream_repo: "https://github.com/apptainer/apptainer"
+    upstream_release_tag: "v1.5.1"
+    upstream_release_date: "2026-06-04"
     license_class: open_source_bsd_3_clause
     license_gate: none
     runpod_fit: not_primary
@@ -973,7 +1142,7 @@ software:
     runtime_artifacts: "sif_manifest.json, container-provenance.json"
     citation_notes: "Record Apptainer version and SIF hash."
     status: planned
-    notes: "Primary HPC container runtime posture for non-Docker clusters."
+    notes: "Primary HPC container runtime posture for non-Docker clusters. v1.5.x adds reproducible SIF build posture when SOURCE_DATE_EPOCH or the build flag is used."
   ro_crate:
     role: provenance_packaging
     image_family: provider-neutral
@@ -988,12 +1157,49 @@ software:
     citation_notes: "Record RO-Crate context/version and generated entity list."
     status: planned
     notes: "Lightweight evidence bundle provenance that complements artifact indexes."
+  workflow_run_crate:
+    role: workflow_run_provenance_profile
+    image_family: provider-neutral
+    install_method: metadata_profile
+    upstream_docs: "https://www.researchobject.org/workflow-run-crate/profiles/provenance_run_crate/"
+    upstream_repo: "https://github.com/ResearchObject/workflow-run-crate"
+    upstream_release_tag: "0.5.0"
+    upstream_release_date: "2026-06-19"
+    license_class: open_spec_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "test -f ro-crate-metadata.json"
+    runtime_artifacts: "ro-crate-metadata.json, workflow-run-crate-profile.json"
+    citation_notes: "Record Workflow Run Crate profile version, step graph, resource usage, intermediate outputs, and linked artifacts."
+    status: planned
+    notes: "Profile layer for workflow runs, step execution records, resources, and intermediate outputs. Good target format for agent-produced run packets."
+  rocrate_validator:
+    role: ro_crate_validation
+    image_family: provider-neutral
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/crs4/rocrate-validator"
+    upstream_docs: "https://rocrate-validator.readthedocs.io/en/stable/"
+    upstream_release_tag: "0.10.0"
+    upstream_release_date: "2026-06-01"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "rocrate-validator --help || python -m rocrate_validator --help"
+    runtime_artifacts: "rocrate_validation_report.json"
+    citation_notes: "Record rocrate-validator version, profile target, command args, and validation report path."
+    status: planned
+    notes: "Validator for generated RO-Crates. Use in release or run-closeout checks when a crate is produced."
   bagit:
     role: fixity_packaging
     image_family: provider-neutral
     install_method: metadata_template_or_python_tool
     upstream_docs: "https://www.rfc-editor.org/rfc/rfc8493.html"
-    license_class: ietf_rfc_terms
+    upstream_repo: "https://github.com/LibraryOfCongress/bagit-python"
+    python_package: "bagit==1.9.0"
+    upstream_release_date: "2025-06-13"
+    license_class: ietf_rfc_terms_plus_bagit_python_cc0
     license_gate: none
     runpod_fit: strong
     gpu_class: "CPU"
@@ -1001,7 +1207,53 @@ software:
     runtime_artifacts: "bagit.txt, bag-info.txt, manifest-sha256.txt"
     citation_notes: "Record BagIt profile and checksum algorithm."
     status: planned
-    notes: "Good transfer/fixity pattern for derived evidence bundles."
+    notes: "Good transfer/fixity pattern for derived evidence bundles. bagit-python supplies a small CLI/library implementation for creating and validating bags."
+  syft:
+    role: sbom_generation
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/anchore/syft"
+    upstream_release_tag: "v1.45.1"
+    upstream_release_date: "2026-06-05"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "syft version"
+    runtime_artifacts: "sbom.spdx.json, sbom.cyclonedx.json, syft_manifest.json"
+    citation_notes: "Record Syft version, scan target digest/path, output formats, and generated SBOM hashes."
+    status: planned
+    notes: "SBOM generator for container images and filesystems. Useful for public image review and provider-run artifact ledgers."
+  cosign:
+    role: container_signature_verification
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/sigstore/cosign"
+    license_class: open_source_apache_2
+    license_gate: key_and_identity_policy_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "cosign version"
+    runtime_artifacts: "cosign_verify.json, signature_policy_manifest.json"
+    citation_notes: "Record Cosign version, image digest, certificate identity or key posture, Rekor inclusion if used, and verify output."
+    status: planned
+    notes: "Signature verification helper for containers and binary artifacts. Prefer immutable digests and record verification outputs."
+  slsa_verifier:
+    role: provenance_attestation_verification
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/slsa-framework/slsa-verifier"
+    upstream_release_tag: "v2.7.1"
+    upstream_release_date: "2025-06-27"
+    license_class: open_source_apache_2
+    license_gate: builder_identity_policy_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "slsa-verifier version"
+    runtime_artifacts: "slsa_verify.json, provenance_attestation_manifest.json"
+    citation_notes: "Record SLSA verifier version, artifact digest, expected builder/source identity, and verification result."
+    status: planned
+    notes: "Verifies provenance from SLSA-compliant builders. Use immutable artifact references so verification and execution refer to the same digest."
   empiar_api:
     role: public_accession_metadata
     image_family: metadata

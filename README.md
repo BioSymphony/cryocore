@@ -381,10 +381,11 @@ agent-first path is [Agent Quickstart](docs/agent-quickstart.md).
 
 ## Current Toolwatch
 
-See [Toolwatch 2026-05-27](docs/toolwatch-2026-05-27.md) for the
-source-backed shortlist refreshed on 2026-05-27: cryo-EM tools, repos, public
-data APIs, workflow/provenance helpers, and preprints. The prior
-[Toolwatch 2026-05-15](docs/toolwatch-2026-05-15.md) remains as history. See
+See [Toolwatch 2026-06-21](docs/toolwatch-2026-06-21.md) for the
+source-backed June update: cryo-ET public-data tooling, agent-facing project
+APIs, workflow provenance helpers, and a small set of map/model review tools.
+[Toolwatch 2026-05-27](docs/toolwatch-2026-05-27.md) and
+[Toolwatch 2026-05-15](docs/toolwatch-2026-05-15.md) remain as history. See
 [Workflow Orchestration Provenance](docs/workflow-orchestration-provenance.md)
 and [Public Accession APIs](docs/public-accession-apis.md) for the recommended
 provenance and metadata-helper direction.
