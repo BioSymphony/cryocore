@@ -35,6 +35,7 @@ processing or model validation just because a figure exporter is unavailable.
 
 ## Related
 
+- [Figure Rendering](rendering.md): concrete PyMOL, ChimeraX, FSC, and HTML helper commands.
 - [Linear template: Figure Workflow](../../templates/linear-figure-dossier.md): tracker-ready issue shape for this recipe.
 - [Figure Workflow skill](../../skills/cryocore-figure-dossier/SKILL.md): the skill an agent loads to run this recipe.
 - [ChimeraX Shared Posture](../chimerax-shared-posture.md): renderer license posture and license-gate conventions.

@@ -1,0 +1,19 @@
+# CryoCore ChimeraX 360-degree turntable movie. Placeholders: {{MAP}} {{MODEL}} {{LEVEL}} {{OUT}} {{W}} {{H}}
+# Linux only (native movie encode needs a GL context): xvfb-run -a ChimeraX --offscreen --nogui --script this.cxc --exit
+# On macOS render PNG frames over REST and encode with ffmpeg instead.
+close session
+windowsize {{W}} {{H}}
+set bgColor white
+graphics silhouettes true width 1.4
+lighting simple
+open {{MAP}}
+open {{MODEL}}
+volume #1 style mesh level {{LEVEL}} step 1 color #9aa6b2
+cartoon #2
+nucleotides #2 ladder
+color #2 bychain
+view
+movie record
+turn y 2 180
+wait 180
+movie encode {{OUT}} framerate 30 quality higher

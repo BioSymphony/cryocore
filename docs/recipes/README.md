@@ -13,6 +13,7 @@ operator gates.
 | Review a provider run | [Provider Run Review](provider-closeout.md) |
 | Audit a tool or license posture | [Toolwatch Audit](toolwatch-audit.md) |
 | Review structural figures | [Figure Dossier](figure-dossier.md) |
+| Render snapshots, movies, or FSC panels | [Figure Rendering](rendering.md) |
 | Plan heterogeneity/state analysis | [Heterogeneity Jury](heterogeneity-jury.md) |
 
 ## Fast Local Check

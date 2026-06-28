@@ -20,6 +20,7 @@ High-use commands:
 - `skill_pack_check.py`: public skill-pack index and agent metadata validator.
 - `goal_brief_check.py`: lightweight `/goal` brief validator.
 - `issue_check.py`: tracker issue-pack validator.
+- `render/`: optional PyMOL, ChimeraX, FSC, and HTML helpers for figure lanes.
 
 Run the aggregate gate:
 

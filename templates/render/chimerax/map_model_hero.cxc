@@ -1,0 +1,18 @@
+# CryoCore ChimeraX map+model hero (mesh density). Placeholders: {{MAP}} {{MODEL}} {{LEVEL}} {{OUT}} {{W}} {{H}}
+# Linux:         xvfb-run -a ChimeraX --offscreen --nogui --script this.cxc --exit
+# macOS:         drive via GUI + remotecontrol rest (offscreen hangs on mac).
+close session
+windowsize {{W}} {{H}}
+set bgColor white
+graphics silhouettes true width 1.4
+graphics quality 3
+lighting simple
+open {{MAP}}
+open {{MODEL}}
+volume #1 style mesh level {{LEVEL}} step 1 color #9aa6b2
+cartoon #2
+nucleotides #2 ladder
+style #2 & ligand stick
+color #2 bychain
+view
+save {{OUT}} width {{W}} height {{H}} supersample 3
