@@ -1,0 +1,20 @@
+{
+  "name": "biosymphony-cryocore",
+  "interface": {
+    "displayName": "BioSymphony CryoCore"
+  },
+  "plugins": [
+    {
+      "name": "cryocore",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Research"
+    }
+  ]
+}

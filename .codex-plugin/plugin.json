@@ -1,0 +1,23 @@
+{
+  "name": "cryocore",
+  "version": "0.1.0",
+  "description": "BioSymphony CryoCore skills for public-safe cryo-EM workflow planning, validation, and closeout.",
+  "author": {
+    "name": "BioSymphony",
+    "url": "https://github.com/BioSymphony"
+  },
+  "homepage": "https://github.com/BioSymphony/cryocore",
+  "repository": "https://github.com/BioSymphony/cryocore",
+  "license": "MIT",
+  "keywords": ["cryo-em", "structural-biology", "agents"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "BioSymphony CryoCore",
+    "shortDescription": "Cryo-EM workflow skills",
+    "longDescription": "Public-safe CryoCore skills for cryo-EM processing plans, map/model validation, figure preparation, tool review, and provider run closeout.",
+    "developerName": "BioSymphony",
+    "category": "Research",
+    "capabilities": ["Skills"],
+    "defaultPrompt": ["Use $cryocore to plan or review a public-safe cryo-EM workflow."]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "cryocore",
+  "version": "0.1.0",
+  "description": "BioSymphony CryoCore skills for public-safe cryo-EM workflow planning, validation, and closeout.",
+  "author": {
+    "name": "BioSymphony",
+    "url": "https://github.com/BioSymphony"
+  },
+  "skills": [
+    "./skills/cryocore",
+    "./skills/cryocore-public-safety",
+    "./skills/cryocore-map-model-dossier",
+    "./skills/cryocore-run-closeout",
+    "./skills/cryocore-toolwatch",
+    "./skills/cryocore-heterogeneity-jury",
+    "./skills/cryocore-figure-dossier"
+  ]
+}

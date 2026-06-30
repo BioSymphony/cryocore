@@ -1,0 +1,30 @@
+{
+  "name": "biosymphony-cryocore",
+  "owner": {
+    "name": "BioSymphony"
+  },
+  "metadata": {
+    "version": "0.1.0",
+    "description": "Public-safe CryoCore skills for cryo-EM workflow planning and review."
+  },
+  "plugins": [
+    {
+      "name": "cryocore",
+      "displayName": "BioSymphony CryoCore",
+      "source": "./",
+      "description": "Plan and review public-safe cryo-EM workflows.",
+      "category": "life-sciences",
+      "tags": ["cryo-em", "structural-biology", "validation"],
+      "strict": false,
+      "skills": [
+        "./skills/cryocore",
+        "./skills/cryocore-public-safety",
+        "./skills/cryocore-map-model-dossier",
+        "./skills/cryocore-run-closeout",
+        "./skills/cryocore-toolwatch",
+        "./skills/cryocore-heterogeneity-jury",
+        "./skills/cryocore-figure-dossier"
+      ]
+    }
+  ]
+}

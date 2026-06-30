@@ -1,12 +1,4 @@
-{
-  "schema_version": 1,
-  "id": "cryocore-map-model-dossier",
-  "title": "CryoCore Map Model Dossier",
-  "description": "Build or review public EMDB/PDB map-model dossiers, validation summaries, and claim ledgers.",
-  "entrypoint": "skills/cryocore-map-model-dossier/SKILL.md",
-  "read_first": ["docs/data-policy.md", "docs/claim-levels.md", "modules/artifact-contracts/structure-dossier.v1.json"],
-  "validators": ["make schema-check", "make figure-manifest-check", "make release-check"],
-  "forbidden_actions": ["commit downloaded maps", "make mechanism claims without evidence"],
-  "output_contract": "Input accessions, artifact plan, claim ledger, caveats, and validation commands."
-}
-
+interface:
+  display_name: "CryoCore Map Model Review"
+  short_description: "Map and model evidence review"
+  default_prompt: "Use $cryocore-map-model-dossier to review public map and model evidence."

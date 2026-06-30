@@ -1,12 +1,4 @@
-{
-  "schema_version": 1,
-  "id": "cryocore-figure-dossier",
-  "title": "CryoCore Figure Dossier",
-  "description": "Review structural figures, renderer posture, captions, and reproducibility evidence.",
-  "entrypoint": "skills/cryocore-figure-dossier/SKILL.md",
-  "read_first": ["docs/chimerax-shared-posture.md", "docs/tooling-and-licensing.md", "modules/schemas/figure-manifest.v1.schema.json"],
-  "validators": ["make figure-manifest-check", "make release-check"],
-  "forbidden_actions": ["redistribute gated renderer binaries", "publish unlabeled non-reproducible figures"],
-  "output_contract": "Figure manifest, source accessions, renderer posture, captions, caveats, and validation state."
-}
-
+interface:
+  display_name: "CryoCore Figure Review"
+  short_description: "Structural figure evidence review"
+  default_prompt: "Use $cryocore-figure-dossier to review CryoCore figure evidence."

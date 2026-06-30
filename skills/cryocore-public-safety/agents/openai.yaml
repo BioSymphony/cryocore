@@ -1,12 +1,4 @@
-{
-  "schema_version": 1,
-  "id": "cryocore-public-safety",
-  "title": "CryoCore Public Safety Review",
-  "description": "Review changes for privacy, secret leakage, heavy data, provider-cost risk, license posture, and claim safety.",
-  "entrypoint": "skills/cryocore-public-safety/SKILL.md",
-  "read_first": ["PUBLIC_RELEASE.md", "SECURITY.md", "docs/privacy-threat-model.md"],
-  "validators": ["make public-release-report", "make release-check"],
-  "forbidden_actions": ["paste sensitive findings publicly", "suppress scanner findings without review"],
-  "output_contract": "Findings first with severity, file path, line, residual risk, and validation status."
-}
-
+interface:
+  display_name: "CryoCore Public Safety"
+  short_description: "Public release safety review"
+  default_prompt: "Use $cryocore-public-safety to review a CryoCore change before release."

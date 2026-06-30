@@ -6,45 +6,44 @@
     {
       "id": "cryocore",
       "path": "skills/cryocore/SKILL.md",
-      "agent_metadata": "skills/cryocore/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore/agents/pack-metadata.json",
       "primary": true
     },
     {
       "id": "cryocore-public-safety",
       "path": "skills/cryocore-public-safety/SKILL.md",
-      "agent_metadata": "skills/cryocore-public-safety/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-public-safety/agents/pack-metadata.json",
       "primary": false
     },
     {
       "id": "cryocore-map-model-dossier",
       "path": "skills/cryocore-map-model-dossier/SKILL.md",
-      "agent_metadata": "skills/cryocore-map-model-dossier/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-map-model-dossier/agents/pack-metadata.json",
       "primary": false
     },
     {
       "id": "cryocore-run-closeout",
       "path": "skills/cryocore-run-closeout/SKILL.md",
-      "agent_metadata": "skills/cryocore-run-closeout/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-run-closeout/agents/pack-metadata.json",
       "primary": false
     },
     {
       "id": "cryocore-toolwatch",
       "path": "skills/cryocore-toolwatch/SKILL.md",
-      "agent_metadata": "skills/cryocore-toolwatch/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-toolwatch/agents/pack-metadata.json",
       "primary": false
     },
     {
       "id": "cryocore-heterogeneity-jury",
       "path": "skills/cryocore-heterogeneity-jury/SKILL.md",
-      "agent_metadata": "skills/cryocore-heterogeneity-jury/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-heterogeneity-jury/agents/pack-metadata.json",
       "primary": false
     },
     {
       "id": "cryocore-figure-dossier",
       "path": "skills/cryocore-figure-dossier/SKILL.md",
-      "agent_metadata": "skills/cryocore-figure-dossier/agents/openai.yaml",
+      "agent_metadata": "skills/cryocore-figure-dossier/agents/pack-metadata.json",
       "primary": false
     }
   ]
 }
-
