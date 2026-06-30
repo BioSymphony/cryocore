@@ -1,0 +1,1312 @@
+# BioSymphony CryoCore software registry.
+# Each entry must be checked from primary sources before status moves to ready.
+# Human-readable posture: docs/tooling-and-licensing.md
+# Last source-backed audit: 2026-06-21 for targeted June toolwatch updates;
+# 2026-05-27 for broad high-impact cryo-core lanes.
+
+software:
+  relion:
+    role: cryoem_reconstruction
+    image_family: cryo-core
+    install_method: source_or_package_build
+    upstream_repo: "https://github.com/3dem/relion"
+    upstream_release_tag: "5.0.1"
+    upstream_release_date: "2025-09-22"
+    upstream_prerelease_tag: "5.1.0"
+    upstream_prerelease_date: "2026-03-13"
+    license_class: open_source_gplv2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "relion_refine --version"
+    runtime_artifacts: "versions.json, relion_toolcheck.json"
+    citation_notes: "Record RELION version and cite RELION methods papers appropriate to version."
+    status: planned
+    notes: "Primary open-source SPA processing lane; preserve GPLv2 compliance and record compiler/CUDA support. GitHub marks 5.0.1 as Latest stable; 5.1.0 is available as a pre-release and should be reviewed before adoption."
+  warp_m:
+    role: cryoem_cryoet_processing
+    image_family: cryo-core
+    install_method: source_or_release_build
+    upstream_repo: "https://github.com/warpem/warp"
+    upstream_release_tag: "v2.0.0dev39"
+    upstream_release_date: "2026-05-07"
+    license_class: open_source_gplv3
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "WarpTools --help"
+    runtime_artifacts: "warp_toolcheck.json, preprocessing_manifests/"
+    citation_notes: "Record Warp/M/WarpTools versions and cite corresponding methods."
+    status: planned
+    notes: "Current v2 dev lane requires CUDA 12.9/.NET 10 and declares compatibility with RELION 5 only."
+  motioncor3:
+    role: motion_correction
+    image_family: cryo-core
+    install_method: source_build
+    upstream_repo: "https://github.com/czimaginginstitute/MotionCor3"
+    upstream_release_tag: "v1.0.1"
+    upstream_release_date: "2023-10-26"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "MotionCor3 --help"
+    runtime_artifacts: "motioncorr_versions.json, corrected_micrograph_manifest.json"
+    citation_notes: "Record MotionCor3 version and detector/movie metadata."
+    status: planned
+    notes: "Open-source MotionCor3 lane from CZI. Keep UCSF MotionCor2 binary as a separate runtime-gated tool."
+  topaz:
+    role: particle_picking
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/tbepler/topaz"
+    pypi_package: "topaz-em==0.3.20"
+    upstream_release_tag: "0.3.20"
+    upstream_release_date: "2026-05-11"
+    license_class: open_source_gplv3
+    license_gate: source_compliance_for_images
+    runpod_fit: strong
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "topaz --help"
+    runtime_artifacts: "topaz_toolcheck.json, particle_pick_manifest.json"
+    citation_notes: "Record model/checkpoint and training/inference parameters."
+    status: planned
+    notes: "Open particle picking lane; keep source-compliance metadata with images. PyPI release history lists topaz-em 0.3.20 as the latest release on 2026-05-11."
+  ctffind:
+    role: ctf_estimation
+    image_family: cryo-core
+    install_method: source_or_binary_after_terms_review
+    license_class: janelia_research_campus_terms_review
+    license_gate: exact_version_terms_review
+    runpod_fit: strong
+    gpu_class: "CPU or GPU depending build"
+    smoke_command: "ctffind --help || ctffind4 --help"
+    runtime_artifacts: "ctf_estimation_manifest.json"
+    citation_notes: "Record CTFFIND version and microscope metadata."
+    status: watch
+    notes: "Useful CTF lane; confirm CTFFIND major version and Janelia/binary/source redistribution terms before image inclusion."
+  cistem:
+    role: cryoem_processing_pipeline
+    image_family: cryo-core
+    install_method: binary_or_source_after_terms_review
+    upstream_docs: "https://www.cistem.org/"
+    license_class: janelia_research_campus_license
+    license_gate: exact_binary_source_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending workflow"
+    smoke_command: "cisTEM --help || cisTEM"
+    runtime_artifacts: "cistem_toolcheck.json, cistem_project_manifest.json"
+    citation_notes: "Record cisTEM version and cite cisTEM/eLife methods paper."
+    status: watch
+    notes: "Do not treat Janelia-licensed binaries as generic redistributable open source until exact version terms are reviewed."
+  cryodrgn:
+    role: heterogeneity_analysis
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/ml-struct-bio/cryodrgn"
+    upstream_release_tag: "v4.2.1"
+    upstream_release_date: "2026-04-27"
+    license_class: open_source_gplv3
+    license_gate: source_compliance_for_images
+    runpod_fit: strong
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "cryodrgn --help"
+    runtime_artifacts: "latent_embeddings/, heterogeneity_report.json"
+    citation_notes: "Record cryoDRGN version, model args, and checkpoints."
+    status: planned
+    notes: "Continuous heterogeneity lane; image builds require GPLv3 source-compliance and dependency review."
+  recovar:
+    role: heterogeneity_analysis
+    image_family: cryo-core
+    install_method: pip_or_source_with_use_context_gate
+    upstream_repo: "https://github.com/ma-gilles/recovar"
+    pypi_package: "recovar==0.4.5"
+    license_class: current_main_pu_rl_v2_academic_noncommercial
+    license_gate: academic_noncommercial_or_commercial_license
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "recovar --help"
+    runtime_artifacts: "recovar_report.json"
+    citation_notes: "Record repo commit and paper citation."
+    status: gated
+    notes: "Current upstream main is academic/noncommercial; older PyPI 0.4.5 was GPLv3. Pin exact source/package and use context."
+  modelangelo:
+    role: atomic_model_building
+    image_family: model-build
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/3dem/model-angelo"
+    upstream_release_tag: "v1.0.18"
+    upstream_release_date: "2026-06-15"
+    license_class: open_source_mit
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "model_angelo --help"
+    runtime_artifacts: "modelangelo_output/, model_build_manifest.json"
+    citation_notes: "Record model weights, version, sequence inputs, and map processing."
+    status: planned
+    notes: "Automatic cryo-EM model building; keep large weights in runtime caches or reviewed image layers with hashes. v1.0.18 changes install-script termination; v1.0.17 includes nucleotide postprocessing alignment fixes relevant to RNA/DNA map-to-model runs."
+  coot:
+    role: model_review_building
+    image_family: model-build
+    install_method: package_or_source
+    upstream_repo: "https://github.com/pemsley/coot"
+    upstream_release_tag: "1.2"
+    upstream_release_date: "2026-04-01"
+    license_class: open_source_gpl
+    license_gate: source_compliance_for_images
+    runpod_fit: possible
+    gpu_class: "CPU or GUI"
+    smoke_command: "coot --version"
+    runtime_artifacts: "coot_session_notes.json"
+    citation_notes: "Record Coot version and manual edits."
+    status: planned
+    notes: "Useful local/GUI model review lane; scripted use should emit edit provenance. Coot development blog reports Coot 1.2 released 2026-04-01, with JSON-RPC/MCP posture worth tracking for agent-guided review."
+  cryosparc:
+    role: cryoem_reconstruction
+    image_family: cryo-core
+    install_method: runtime_installer_with_license_id
+    upstream_docs: "https://guide.cryosparc.com/"
+    upstream_major_release_tag: "v5.0"
+    upstream_major_release_date: "2026-01-27"
+    upstream_patch_release_tag: "v5.0.6"
+    upstream_patch_release_date: "2026-05-05"
+    license_class: noncommercial_academic_or_commercial_license
+    license_gate: required_runtime_license_id
+    runpod_fit: possible
+    gpu_class: "RTX 4090/L40S/A100/H100"
+    smoke_command: "cryosparcm status"
+    runtime_artifacts: "cryosparc_project_manifest.json, cryosparc_versions.json, license-gates.json"
+    citation_notes: "Record CryoSPARC version, job graph, processing parameters, and export ledger."
+    status: gated
+    notes: "No installer, license ID, secrets, project DB dump, or proprietary package in git or public images; runtime access only after operator gate. CryoSPARC public site listed v5.0.6 as latest on 2026-05-05 during the 2026-05-27 audit."
+  cryosparc_tools:
+    role: cryosparc_metadata_export_adapter
+    image_family: metadata
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/cryoem-uoft/cryosparc-tools"
+    upstream_docs: "https://tools.cryosparc.com/"
+    upstream_release_tag: "v5.0.3"
+    upstream_release_date: "2026-05-04"
+    license_class: open_source_bsd_3_clause
+    license_gate: cryosparc_runtime_license_for_project_access
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "python -c 'import cryosparc.tools; print(\"cryosparc-tools ok\")'"
+    runtime_artifacts: "cryosparc_export_manifest.json, metadata_conversion_manifest.json"
+    citation_notes: "Record cryosparc-tools version, CryoSPARC project and job IDs, exported metadata paths, and CryoSPARC license gate."
+    status: planned
+    notes: "BSD adapter for scripting and metadata export. It does not clear CryoSPARC runtime, project DB, license, or secret-handling gates."
+  phenix:
+    role: model_refinement_validation
+    image_family: model-build
+    install_method: runtime_installer_or_existing_license
+    upstream_release_tag: "2.0"
+    upstream_build: "2.0-5936"
+    upstream_release_date: "2026-01"
+    license_class: academic_or_commercial_license
+    license_gate: license_required
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "phenix.version"
+    runtime_artifacts: "phenix_validation_summary.json"
+    citation_notes: "Record Phenix version and module outputs."
+    status: gated
+    notes: "Runtime-gated refinement/validation lane; no license files in repo. Phenix mailing-list announcement reports Phenix 2.0 build 2.0-5936 available in January 2026."
+  servalcat:
+    role: model_refinement_validation
+    image_family: model-build
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/keitaroyam/servalcat"
+    upstream_release_tag: "0.4.131"
+    upstream_release_date: "2026-02-02"
+    license_class: open_source_mpl_2
+    license_gate: refmac_ccp4_gate_for_refmac_modes
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "servalcat --help"
+    runtime_artifacts: "servalcat_refinement_summary.json, model_validation_manifest.json"
+    citation_notes: "Record Servalcat version, Refmac/CCP4 use if any, map/model inputs, and refinement statistics."
+    status: planned
+    notes: "SPA refinement and map/model validation lane. Modes that call Refmac or CCP4 inherit those runtime gates; pure Servalcat use stays open-source."
+  chimerax:
+    role: visualization_figures_model_review
+    image_family: model-build
+    install_method: runtime_installer_or_local_review
+    upstream_release_tag: "1.11"
+    upstream_release_date: "2025-12-16"
+    upstream_docs: "https://www.rbvi.ucsf.edu/chimerax/"
+    license_class: no_cost_noncommercial
+    license_gate: noncommercial_terms
+    runpod_fit: gui_or_scripted
+    gpu_class: "CPU/L4/L40S for offscreen rendering"
+    smoke_command: "ChimeraX --version"
+    runtime_artifacts: "chimerax_session.cxs, chimerax_render_manifest.json, executed_commands.jsonl"
+    citation_notes: "Record ChimeraX version, session, command script, and operator use posture."
+    status: gated
+    notes: "Intentionally duplicated with CryoCore. Do not redistribute binaries or store license acceptance records in git."
+  pymol:
+    role: visualization_figures_model_review
+    image_family: model-build
+    install_method: runtime_installer_or_local_review
+    upstream_release_tag: "v3.1.0"
+    upstream_release_date: "2025-02-01"
+    upstream_repo: "https://github.com/schrodinger/pymol-open-source"
+    license_class: open_source_or_commercial_incentive
+    license_gate: open_source_build_or_incentive_license_review
+    runpod_fit: gui_or_scripted
+    gpu_class: "CPU/L4/L40S for offscreen rendering"
+    smoke_command: "pymol -cq -d 'print(cmd.get_version_message())'"
+    runtime_artifacts: "pymol_session.pse, pymol_render_manifest.json, executed_commands.pml"
+    citation_notes: "Record PyMOL version and build (open-source vs Schrodinger Incentive) and operator use posture."
+    status: watch
+    notes: "Open-source PyMOL build is permissive; the Schrodinger Incentive build is commercial. Do not store commercial license acceptance records in git."
+  agentic_pymol:
+    role: pymol_mcp_bridge_reference
+    image_family: figures
+    install_method: source_after_pymol_license_review
+    upstream_repo: "https://github.com/Arcadia-Science/agentic-pymol"
+    upstream_publication: "https://thestacks.org/publications/resource-agentic-pymol"
+    upstream_release_tag: "v1.0.0"
+    upstream_release_date: "2026-06-03"
+    license_class: open_source_mit_code_plus_pymol_license_review
+    license_gate: pymol_runtime_license_and_session_security_review
+    runpod_fit: possible
+    gpu_class: "CPU/GUI"
+    smoke_command: "python -c 'print(\"Agentic PyMOL MCP placeholder\")'"
+    runtime_artifacts: "agentic_pymol_session_manifest.json, pymol_command_log.jsonl"
+    citation_notes: "Record Agentic PyMOL release, PyMOL build/license posture, session port/security settings, and executed commands."
+    status: watch
+    notes: "MCP bridge for a live PyMOL session with structured readback. Useful as an agent-operated figure/review reference; keep PyMOL licensing and session security separate from the bridge code."
+  ccpem:
+    role: cryoem_model_building_suite
+    image_family: model-build
+    install_method: runtime_installer_or_package_after_component_review
+    upstream_docs: "https://www.ccpem.ac.uk/software/licences/"
+    upstream_downloads: "https://www.ccpem.ac.uk/software/downloads/"
+    upstream_release_tag: "Doppio 1.5.0"
+    upstream_release_date: "2026-02-02"
+    upstream_beta_tag: "Doppio 1.6 beta"
+    upstream_beta_date: "2026-04-23"
+    license_class: suite_license_plus_component_terms
+    license_gate: license_and_component_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending component"
+    smoke_command: "ccpem-python --version || ccpem --help"
+    runtime_artifacts: "ccpem_toolcheck.json, component_license_manifest.json"
+    citation_notes: "Record CCP-EM suite version plus each invoked component and citation."
+    status: gated
+    notes: "Suite license does not clear all included or separately redistributed packages; public images require component-by-component review. CCP-EM downloads list Doppio 1.5.0 as current stable and 1.6 beta as available."
+  kihara_suite:
+    role: map_analysis_model_building_quality
+    image_family: model-build
+    install_method: per_tool_runtime_or_source_after_terms_review
+    upstream_docs: "https://kiharalab.org/emsuites/"
+    license_class: mixed_gplv3_academic_noncommercial_or_commercial_contact
+    license_gate: per_tool_terms_and_use_context_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending tool"
+    smoke_command: "tool-specific --help"
+    runtime_artifacts: "kihara_toolcheck.json, per_tool_license_manifest.json"
+    citation_notes: "Record exact Kihara tool, version/commit, server/local mode, and method citation."
+    status: gated
+    notes: "Mixed posture across Emap2sec, Emap2sec+, DAQ, DeepMainMast, CryoREAD, VESPER, and servers; do not package as one cleared suite."
+  cryoread:
+    role: nucleic_acid_model_building
+    image_family: model-build
+    install_method: source_after_use_context_review
+    upstream_repo: "https://github.com/kiharalab/CryoREAD"
+    license_class: open_source_gplv3_plus_commercial_contact_review
+    license_gate: use_context_model_assets_and_source_compliance_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100; 12 GB+ VRAM"
+    smoke_command: "python -c 'print(\"CryoREAD placeholder\")'"
+    runtime_artifacts: "cryoread_run_manifest.json, nucleic_acid_model.cif, cryoread_validation.json"
+    citation_notes: "Record CryoREAD commit, model assets, map preprocessing, sequence inputs, and Kihara citation."
+    status: gated
+    notes: "Dedicated DNA/RNA model builder. Keep separate from the broader Kihara suite because RNA workflows need exact source, model-asset, and use-context capture."
+  cryolo:
+    role: particle_picking
+    image_family: cryo-core
+    install_method: runtime_download_after_license_gate
+    upstream_docs: "https://cryolo.readthedocs.io/en/stable/"
+    license_class: complimentary_science_noncommercial
+    license_gate: noncommercial_academic_research_terms
+    runpod_fit: possible
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "cryolo_gui.py --help || cryolo_predict.py --help"
+    runtime_artifacts: "cryolo_toolcheck.json, cryolo_weights_manifest.json, particle_pick_manifest.json"
+    citation_notes: "Record crYOLO version, pretrained weight source, and picking parameters."
+    status: gated
+    notes: "License covers software and pretrained weights; no commercial/operational use, copying, or redistribution in public images without separate permission."
+  vmd_namd_mdff:
+    role: molecular_dynamics_flexible_fitting
+    image_family: model-build
+    install_method: runtime_installer_or_existing_local_license
+    upstream_docs: "https://www.ks.uiuc.edu/Research/"
+    license_class: noncommercial_uiuc_license_or_commercial_license
+    license_gate: noncommercial_or_commercial_license_required
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending NAMD build"
+    smoke_command: "vmd -dispdev text -eofexit < /dev/null || namd2 +version"
+    runtime_artifacts: "mdff_run_manifest.json, vmd_namd_license_posture.json"
+    citation_notes: "Record VMD, NAMD, MDFF versions and fitting/restraint parameters."
+    status: gated
+    notes: "MDFF lanes inherit VMD/NAMD license gates; do not redistribute installers, binaries, or signed license records in this repo."
+  nvidia_cuda_images:
+    role: gpu_runtime_base
+    image_family: cryo-core
+    install_method: pinned_base_image_or_host_driver_runtime
+    upstream_docs: "https://gitlab.com/nvidia/container-images/cuda"
+    license_class: nvidia_proprietary_container_eula
+    license_gate: current_eula_and_tag_review
+    runpod_fit: strong
+    gpu_class: "NVIDIA GPU with compatible driver"
+    smoke_command: "nvidia-smi && python -c 'import torch; print(torch.cuda.is_available())'"
+    runtime_artifacts: "cuda_base_image_manifest.json, nvidia_driver_manifest.json"
+    citation_notes: "Record CUDA image tag, digest, driver, CUDA runtime, cuDNN/TensorRT if present."
+    status: watch
+    notes: "CUDA/base images are proprietary runtime artifacts; pin digest and current EULA posture before public image publication."
+  cryoatom_weights:
+    role: atomic_model_building_weights
+    image_family: model-build
+    install_method: runtime_cache_or_reviewed_private_layer
+    upstream_docs: "https://github.com/YangLab-SDU/CryoAtom"
+    license_class: model_parameters_terms_review
+    license_gate: weight_license_and_size_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "test -d ${CRYOATOM_WEIGHTS_DIR:-/nonexistent}"
+    runtime_artifacts: "cryoatom_weights_manifest.json"
+    citation_notes: "Record source URL, checksum, model-parameter version, and CryoAtom citation."
+    status: watch
+    notes: "Code and model parameters are available, but large weights are runtime artifacts; do not commit or publish them without explicit weight terms review."
+  cryofm_weights:
+    role: density_foundation_model_weights
+    image_family: model-build
+    install_method: runtime_cache_or_reviewed_private_layer
+    upstream_repo: "https://github.com/ByteDance-Seed/cryofm"
+    license_class: apache_2_code_weight_terms_review
+    license_gate: weight_license_and_size_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "test -d ${CRYOFM_WEIGHTS_DIR:-/nonexistent}"
+    runtime_artifacts: "cryofm_weights_manifest.json"
+    citation_notes: "Record CryoFM code commit, weight URL/checksum, and model card or release citation."
+    status: watch
+    notes: "Apache-2.0 code does not remove the need to track large weight redistribution and provenance separately."
+  cryo_ief_weights:
+    role: particle_image_foundation_model_weights
+    image_family: cryo-core
+    install_method: runtime_cache_or_reviewed_private_layer
+    upstream_repo: "https://github.com/westlake-repl/Cryo-IEF"
+    license_class: mit_code_weight_terms_review
+    license_gate: weight_license_and_size_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "test -d ${CRYO_IEF_WEIGHTS_DIR:-/nonexistent}"
+    runtime_artifacts: "cryo_ief_weights_manifest.json"
+    citation_notes: "Record Cryo-IEF code commit, model-weight source/checksum, and downstream task citation."
+    status: watch
+    notes: "MIT code status is separate from heavy model-weight packaging; no weights in git, Linear, or public fixtures."
+  cryodeco:
+    role: foundation_model_prior_heterogeneity
+    image_family: cryo-core
+    install_method: source_after_weight_and_cryosparc_review
+    upstream_repo: "https://github.com/yanyang1998/CryoDECO"
+    upstream_preprint: "https://doi.org/10.65215/LTSpreprints.2025.12.30.000075"
+    license_class: open_source_gplv3_plus_weight_terms_review
+    license_gate: source_compliance_cryo_ief_weights_and_cryosparc_inputs_review
+    runpod_fit: possible
+    gpu_class: "A40/L40S/A100/H100; multi-GPU supported through accelerate"
+    smoke_command: "python CryoDECO_run.py --help"
+    runtime_artifacts: "cryodeco_run_manifest.json, latent_features/, clustered_maps/, assignment_tables/"
+    citation_notes: "Record CryoDECO commit, Cryo-IEF weight source and hash, CryoSPARC input job, particle provenance, and run parameters."
+    status: watch
+    notes: "Ab initio heterogeneity method using Cryo-IEF priors. Good Cas9 benchmark comparison candidate after weight terms and CryoSPARC input gates are cleared."
+  cryowizard:
+    role: cryosparc_automation_watch
+    image_family: cryo-core
+    install_method: source_after_cryosparc_and_model_review
+    upstream_repo: "https://github.com/SMART-StructBio-AI/CryoWizard"
+    license_class: mit_code_academic_only_model_posture_review
+    license_gate: cryosparc_license_model_terms_and_secret_handling_review
+    runpod_fit: possible
+    gpu_class: "CryoSPARC-compatible GPU runtime"
+    smoke_command: "python -c 'print(\"CryoWizard placeholder\")'"
+    runtime_artifacts: "cryowizard_run_manifest.json, cryosparc_job_graph.json, automation_decisions.json"
+    citation_notes: "Record CryoWizard commit, CryoSPARC version, model card or weight source, project/job IDs, and automation parameters."
+    status: gated
+    notes: "Automates CryoSPARC SPA processing. Repo is MIT, but README states academic-research-only intent and execution inherits CryoSPARC license and secret gates."
+  cryofsl:
+    role: few_shot_particle_picking
+    image_family: cryo-core
+    install_method: source_after_sam2_weight_review
+    upstream_repo: "https://github.com/biplabpoudel25/CryoFSL"
+    upstream_paper: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12458156/"
+    license_class: open_source_mit_plus_sam2_weight_terms_review
+    license_gate: sam2_checkpoint_and_training_data_review
+    runpod_fit: possible
+    gpu_class: "RTX 4090/L40S/A100"
+    smoke_command: "python -c 'print(\"CryoFSL placeholder\")'"
+    runtime_artifacts: "cryofsl_run_manifest.json, particle_pick_star_files/, annotation_subset_manifest.json"
+    citation_notes: "Record CryoFSL commit, SAM2 checkpoint, annotated micrograph IDs, training split, and output STAR paths."
+    status: watch
+    notes: "Few-shot SAM2-based particle picker. Good small picking run if annotated micrographs and SAM2 checkpoint terms are recorded."
+  parseek:
+    role: synthetic_data_particle_picking_watch
+    image_family: cryo-core
+    install_method: metadata_only_until_code_release
+    upstream_preprint: "https://doi.org/10.64898/2026.05.07.720949"
+    license_class: no_code_found_terms_review
+    license_gate: code_release_and_dataset_terms_required
+    runpod_fit: not_primary
+    gpu_class: "GPU likely; not pinned"
+    smoke_command: "python -c 'print(\"ParSeek metadata-only pointer\")'"
+    runtime_artifacts: "parseek_watch_manifest.json"
+    citation_notes: "Record preprint DOI, code URL if released, training data source, and particle-picking benchmark."
+    status: watch
+    notes: "May 2026 preprint for synthetic-data particle picking. No public code was found in the May 27 scan, so keep as a watch item only."
+  structagent:
+    role: agentic_model_building_orchestration_reference
+    image_family: metadata
+    install_method: source_after_third_party_tool_gate_review
+    upstream_repo: "https://github.com/bhgtiger/StructAgent"
+    upstream_preprint: "https://www.biorxiv.org/content/10.64898/2026.05.18.725842v1"
+    license_class: open_source_apache_2_plus_third_party_tool_terms
+    license_gate: third_party_tool_license_and_private_data_review
+    runpod_fit: not_primary
+    gpu_class: "CPU for orchestration; GPU by linked tools"
+    smoke_command: "python -c 'print(\"StructAgent reference placeholder\")'"
+    runtime_artifacts: "structagent_review_notes.json, orchestration_pattern_manifest.json"
+    citation_notes: "Record StructAgent commit, preprint DOI, invoked third-party tools, and whether only protocol ideas were reused."
+    status: watch
+    notes: "May 2026 public agent system for cryo-EM model building and validation. Track design patterns, but CryoCore workflows should still produce actual maps, models, or validation outputs."
+  gemmi:
+    role: structure_file_processing
+    image_family: model-build
+    install_method: pip_or_package
+    license_class: open_source_mpl_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python -c 'import gemmi; print(gemmi.__version__)'"
+    runtime_artifacts: "structure_parse_report.json"
+    citation_notes: "Record version for parsing/validation."
+    status: planned
+    notes: "Core parser/converter for CIF/PDB/map-adjacent metadata."
+  molstar:
+    role: web_visualization
+    image_family: figures
+    install_method: npm_or_static_bundle
+    license_class: open_source_mit
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/web"
+    smoke_command: "node --version"
+    runtime_artifacts: "molstar_viewer_bundle/"
+    citation_notes: "Record viewer build/version."
+    status: planned
+    notes: "Browser-based public-safe structure viewer lane."
+  blender:
+    role: publication_figures_animation
+    image_family: figures
+    install_method: package_or_binary_after_terms_review
+    license_class: open_source_gpl
+    license_gate: source_compliance_for_images
+    runpod_fit: possible
+    gpu_class: "L4/L40S/A100 optional"
+    smoke_command: "blender --version"
+    runtime_artifacts: "blender_scene.blend, render_manifest.json"
+    citation_notes: "Record version and render script."
+    status: planned
+    notes: "Optional figure/animation lane; keep source-compliance posture for distributed images."
+  cryoatom:
+    role: atomic_model_building
+    image_family: model-build
+    install_method: conda_or_source
+    upstream_repo: "https://github.com/YangLab-SDU/CryoAtom"
+    upstream_release_tag: "v2.1.0"
+    upstream_release_date: "2026-03-17"
+    license_class: open_source_mit
+    license_gate: weight_license_and_size_review
+    runpod_fit: strong
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "cryoatom build -h"
+    runtime_artifacts: "cryoatom_output/, cryoatom_model_build_manifest.json"
+    citation_notes: "Record CryoAtom version, weight hashes, sequence/database inputs, and map preprocessing."
+    status: planned
+    notes: "Useful ModelAngelo complement for protein/RNA/DNA complexes; weights stay in runtime caches or reviewed layers. v2.1.0 adds multi-GPU posture and remains a strong RNA/DNA map-to-model comparison lane."
+  dynamight:
+    role: flexible_refinement_heterogeneity
+    image_family: cryo-core
+    install_method: relion_python_environment_or_source
+    upstream_repo: "https://github.com/3dem/DynaMight"
+    license_class: open_source_bsd_3_clause
+    license_gate: dependency_source_compliance
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "dynamight --help"
+    runtime_artifacts: "dynamight_run_manifest.json, state_maps/, deformation_fields/"
+    citation_notes: "Record RELION/DynaMight versions and flexibility analysis parameters."
+    status: planned
+    notes: "RELION 5 flexibility lane; useful for motion/state evidence but still requires independent validation. Nature Methods and package metadata describe BSD-licensed distribution."
+  cryobench:
+    role: heterogeneity_benchmark_metrics
+    image_family: cryo-core
+    install_method: source_or_metadata_only
+    upstream_repo: "https://github.com/ml-struct-bio/CryoBench"
+    license_class: dataset_code_terms_review
+    license_gate: dataset_download_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending benchmark"
+    smoke_command: "test -d CryoBench || true"
+    runtime_artifacts: "cryobench_metrics.json, heterogeneity_benchmark_report.json"
+    citation_notes: "Record CryoBench dataset, metric version, and challenge citation."
+    status: planned
+    notes: "Use as metrics and benchmark contract; do not vendor benchmark data into git."
+  cryoarc:
+    role: ai_conformational_landscape_reconstruction
+    image_family: cryo-core
+    install_method: source_after_dependency_review
+    upstream_repo: "https://gricad-gitlab.univ-grenoble-alpes.fr/GruLab/cryoarc"
+    upstream_preprint: "https://doi.org/10.64898/2026.05.25.727696"
+    upstream_release_date: "2026-05-26"
+    license_class: open_source_gplv3_plus_external_model_data_review
+    license_gate: source_compliance_alphafold_params_msa_database_review
+    runpod_fit: possible
+    gpu_class: "A100/H100 class preferred"
+    smoke_command: "cryoarc --help || python -m cryoarc --help"
+    runtime_artifacts: "cryoarc_run_manifest.json, conformational_ensemble/, atomic_models/"
+    citation_notes: "Record CryoARC commit, preprint DOI, sequence database or MSA sources, OpenFold/AlphaFold parameter hashes, and particle-stack provenance."
+    status: watch
+    notes: "May 2026 preprint and GPLv3 GitLab repo. Scientific signal is high, but low-cost runs should avoid the full database and parameter path until dependencies and data footprint are pinned."
+  cryohype:
+    role: compositional_heterogeneity_reconstruction_watch
+    image_family: cryo-core
+    install_method: source_after_dataset_review
+    upstream_repo: "https://github.com/ml-struct-bio/cryoHYPE"
+    upstream_docs: "https://cryohype.cs.princeton.edu/"
+    upstream_preprint: "https://arxiv.org/abs/2512.06332"
+    license_class: open_source_gplv3_dataset_terms_review
+    license_gate: source_compliance_dataset_checkpoint_review
+    runpod_fit: possible
+    gpu_class: "2x A100/H100 class for training examples"
+    smoke_command: "python -c 'import cryodrgn; print(\"cryoHYPE source installed\")'"
+    runtime_artifacts: "cryohype_run_manifest.json, rendered_volumes/, fsc_metrics/"
+    citation_notes: "Record CryoHype commit, CryoBench dataset, CTF/pose inputs, checkpoint hashes, and CVPR 2026 citation."
+    status: watch
+    notes: "CVPR 2026 project for large-scale compositional heterogeneity. Repo is GPLv3 with no releases; data link is temporary and should not be a default dependency."
+  cryopanda_dataset:
+    role: particle_dataset_benchmark_watch
+    image_family: metadata
+    install_method: metadata_only_pointer_until_dataset_gate
+    upstream_preprint: "https://www.biorxiv.org/content/10.64898/2026.04.29.720997v1"
+    upstream_release_date: "2026-05-03"
+    license_class: dataset_terms_review
+    license_gate: dataset_download_and_redistribution_review
+    runpod_fit: possible
+    gpu_class: "CPU for metadata; GPU for downstream ML"
+    smoke_command: "python -c 'print(\"cryoPANDA metadata-only pointer\")'"
+    runtime_artifacts: "cryopanda_metadata_ledger.json, dataset_accession_manifest.json"
+    citation_notes: "Record preprint DOI, dataset URL, particle count, experiment count, access terms, and downloaded shard hashes if used."
+    status: watch
+    notes: "May 2026 preprint reports 37M annotated particles from 252 experiments. Too large for git and too broad for a first run; useful as future benchmark metadata."
+  cas9_heterogeneity_benchmark:
+    role: heterogeneity_ground_truth_benchmark
+    image_family: metadata
+    install_method: metadata_and_public_data_after_access_review
+    upstream_preprint: "https://www.biorxiv.org/content/10.64898/2026.05.04.721978v1"
+    related_preprint: "https://www.biorxiv.org/content/10.64898/2026.05.08.722747v1"
+    upstream_release_date: "2026-05-07"
+    license_class: dataset_terms_review
+    license_gate: particle_stack_download_review
+    runpod_fit: strong
+    gpu_class: "L40S/A100/H100 for method runs"
+    smoke_command: "python -c 'print(\"Cas9 heterogeneity benchmark metadata-only pointer\")'"
+    runtime_artifacts: "cas9_benchmark_manifest.json, label_join_report.json, method_accuracy_table.json"
+    citation_notes: "Record benchmark and accuracy preprint DOIs, data URLs, per-particle label provenance, and method versions."
+    status: watch
+    notes: "Best May 2026 benchmark lead if particle stacks and labels are accessible at bounded size. Use for method accuracy, disagreement tables, and state recovery, not as a default download."
+  solvar:
+    role: heterogeneity_analysis_watch
+    image_family: cryo-core
+    install_method: source_after_license_clarification
+    upstream_repo: "https://github.com/RoeyYadgar/SOLVAR"
+    license_class: no_license_detected_review_required
+    license_gate: explicit_license_required
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "solvar --help"
+    runtime_artifacts: "solvar_report.json"
+    citation_notes: "Record arXiv version, repo commit, and covariance/pose-refinement parameters."
+    status: watch
+    notes: "Promising 2026 covariance method; keep watch until license, install, and benchmark behavior are pinned."
+  nextpyp:
+    role: cryoem_cryoet_workflow_platform
+    image_family: cryo-core
+    install_method: apptainer_or_runtime_install_after_dependency_review
+    upstream_docs: "https://nextpyp.app/"
+    license_class: open_source_bsd_3_clause_with_mixed_dependencies
+    license_gate: dependency_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending workflow"
+    smoke_command: "pyp --help || nextpyp --help"
+    runtime_artifacts: "nextpyp_project_manifest.json, dependency_license_manifest.json"
+    citation_notes: "Record nextPYP version and each invoked dependency."
+    status: planned
+    notes: "Useful provider-neutral cryoEM/cryoET workflow platform; dependencies such as IMOD/cisTEM/CTFFIND remain separately gated."
+  scipion_xmipp:
+    role: workflow_provenance_format_conversion
+    image_family: cryo-core
+    install_method: conda_or_source_after_plugin_review
+    upstream_docs: "https://scipion-em.github.io/docs/release-3.0.0/"
+    license_class: mixed_open_source_plugin_terms
+    license_gate: plugin_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending plugin"
+    smoke_command: "scipion3 --help || scipion --help"
+    runtime_artifacts: "scipion_project_manifest.json, plugin_license_manifest.json"
+    citation_notes: "Record Scipion, Xmipp, and plugin versions."
+    status: planned
+    notes: "Good provenance and conversion layer; plugin execution must preserve third-party license posture."
+  eman2:
+    role: cryoem_processing_validation_alternative
+    image_family: cryo-core
+    install_method: conda_or_source
+    upstream_repo: "https://github.com/cryoem/eman2"
+    license_class: mixed_gpl_bsd
+    license_gate: source_compliance_for_images
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending workflow"
+    smoke_command: "e2version.py || e2help.py"
+    runtime_artifacts: "eman2_toolcheck.json, eman2_project_manifest.json"
+    citation_notes: "Record EMAN2/SPHIRE versions and command graph."
+    status: planned
+    notes: "Independent processing and validation cross-check lane; source-compliance review required for images."
+  pyem:
+    role: metadata_conversion
+    image_family: cryo-core
+    install_method: conda_or_pip
+    upstream_repo: "https://github.com/asarnow/pyem"
+    license_class: open_source_gplv3
+    license_gate: source_compliance_for_images
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "csparc2star.py --help"
+    runtime_artifacts: "metadata_conversion_manifest.json"
+    citation_notes: "Record pyem version and source/destination metadata formats."
+    status: planned
+    notes: "High-leverage cryoSPARC-to-RELION metadata conversion helper."
+  cryoet_data_portal:
+    role: public_cryoet_data_metadata_api
+    image_family: metadata
+    install_method: pip_or_http_client
+    upstream_repo: "https://github.com/chanzuckerberg/cryoet-data-portal"
+    upstream_docs: "https://cryoetdataportal.czscience.com/"
+    pypi_package: "cryoet-data-portal==4.8.0"
+    upstream_release_date: "2026-03-20"
+    license_class: open_source_mit_code_public_dataset_terms
+    license_gate: raw_download_operator_gate
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python -c 'import cryoet_data_portal; print(\"cryoet-data-portal ok\")'"
+    runtime_artifacts: "cryoet_portal_metadata.json, dataset_download_manifest.json"
+    citation_notes: "Record portal client version, dataset ID, deposition metadata, downloaded file hashes if any, and annotation sources."
+    status: planned
+    notes: "Default public cryo-ET intake path for metadata, annotations, and bounded examples. Keep raw tomograms and tilt series out of git; store downloads only in ignored or provider storage."
+  popsicle_benchmark:
+    role: cryoet_segmentation_localization_benchmark
+    image_family: metadata
+    install_method: metadata_only_pointer_until_dataset_gate
+    upstream_preprint: "https://arxiv.org/abs/2606.10255"
+    upstream_release_date: "2026-06-08"
+    license_class: arxiv_cc_by_4_dataset_terms_review
+    license_gate: dataset_download_split_and_redistribution_review
+    runpod_fit: possible
+    gpu_class: "CPU for metadata; GPU for benchmark runs"
+    smoke_command: "python -c 'print(\"POPSICLE metadata-only pointer\")'"
+    runtime_artifacts: "popsicle_benchmark_manifest.json, benchmark_split_ledger.json"
+    citation_notes: "Record arXiv version, CryoET Data Portal dataset IDs, splits, labels, and benchmark metrics."
+    status: watch
+    notes: "June 2026 benchmark suite built from CryoET Data Portal for segmentation and localization. Good regression target for public-data agents; do not vendor dataset shards into git."
+  octopi:
+    role: cryoet_particle_picking
+    image_family: cryo-core
+    install_method: pip_or_source_after_dependency_review
+    upstream_repo: "https://github.com/chanzuckerberg/octopi"
+    upstream_docs: "https://chanzuckerberg.github.io/octopi/"
+    upstream_release_tag: "v1.6.0"
+    upstream_release_date: "2026-06-09"
+    license_class: open_source_mit_plus_dependency_terms_review
+    license_gate: model_weights_training_data_dependency_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100; SLURM optional"
+    smoke_command: "octopi --help"
+    runtime_artifacts: "octopi_run_manifest.json, particle_pick_manifest.json, training_split_manifest.json"
+    citation_notes: "Record OCTOPI version, copick project, model config, training split, and inference parameters."
+    status: planned
+    notes: "Copick-native 3D U-Net particle picking with CLI/API and SLURM support. Run a small public CZDP fixture first and record model/training split before larger runs."
+  py2rely:
+    role: relion5_sta_adapter
+    image_family: cryo-core
+    install_method: source_after_relion_and_hpc_review
+    upstream_repo: "https://github.com/chanzuckerberg/py2rely"
+    upstream_release_tag: "v0.1.0"
+    upstream_release_date: "2026-01-11"
+    license_class: open_source_mit_plus_relion_gplv2_and_dependency_review
+    license_gate: relion_runtime_hpc_dependency_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU by RELION job; SLURM expected"
+    smoke_command: "py2rely --help || py2rely"
+    runtime_artifacts: "py2rely_run_manifest.json, relion_sta_job_manifest.json"
+    citation_notes: "Record py2rely version, RELION version, AreTomo inputs, copick coordinates, SLURM profile, and output job graph."
+    status: gated
+    notes: "Adapter from AreTomo and copick metadata into RELION5 subtomogram averaging. Useful for HPC/SLURM examples after RELION and dependency posture are clear."
+  pytom_match_pick:
+    role: cryoet_template_matching_particle_picking
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/SBC-Utrecht/pytom-match-pick"
+    upstream_release_tag: "0.13.2"
+    upstream_release_date: "2026-06-05"
+    license_class: open_source_gplv2
+    license_gate: source_compliance_for_images
+    runpod_fit: strong
+    gpu_class: "CUDA GPU"
+    smoke_command: "pytom_match_template.py --help || pytom_match_template --help"
+    runtime_artifacts: "template_match_manifest.json, particle_pick_manifest.json"
+    citation_notes: "Record pytom-match-pick version, template source, masks, tomogram inputs, and thresholding parameters."
+    status: planned
+    notes: "GPU template-matching baseline for cryo-ET localization. Good non-ML comparison for public tomogram picking tasks."
+  tomodrgn:
+    role: cryoet_subtomogram_heterogeneity
+    image_family: cryo-core
+    install_method: source_after_dataset_and_dependency_review
+    upstream_repo: "https://github.com/bpowell122/tomodrgn"
+    upstream_release_tag: "v1.0.3"
+    upstream_release_date: "2026-05-28"
+    license_class: open_source_gplv3_dataset_terms_review
+    license_gate: source_compliance_dataset_checkpoint_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "tomodrgn --help"
+    runtime_artifacts: "tomodrgn_run_manifest.json, latent_embeddings/, subtomogram_state_maps/"
+    citation_notes: "Record tomoDRGN version, input tilt/subtomogram provenance, training parameters, and output maps."
+    status: watch
+    notes: "Extends cryoDRGN-style continuous heterogeneity analysis to cryo-ET subtomograms. Keep watch until a small public fixture and runtime profile are pinned."
+  aretomo3:
+    role: cryoet_tilt_series_preprocessing
+    image_family: cryo-core
+    install_method: source_build
+    upstream_repo: "https://github.com/czimaginginstitute/AreTomo3"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "AreTomo3 --help"
+    runtime_artifacts: "aretomo3_toolcheck.json, tilt_series_processing_manifest.json"
+    citation_notes: "Record AreTomo3 version and tilt-series preprocessing parameters."
+    status: planned
+    notes: "Core cryoET preprocessing lane. Nature Methods AreTomoLive paper on 2026-05-25 makes AreTomo3 plus DenoisET a strong live-processing path; keep raw tilt data and tomograms out of git."
+  aretomolive:
+    role: cryoet_live_preprocessing_pipeline
+    image_family: cryo-core
+    install_method: compose_aretomo3_denoiset_after_dependency_review
+    upstream_docs: "https://www.nature.com/articles/s41592-026-03093-y"
+    upstream_release_date: "2026-05-25"
+    license_class: mixed_bsd_3_clause_mit_dependency_review
+    license_gate: component_terms_model_weight_and_raw_data_review
+    runpod_fit: strong
+    gpu_class: "RTX A6000/L40S/A100/H100; multi-GPU for live scale"
+    smoke_command: "AreTomo3 --help && (denoiset --help || python -m denoiset --help)"
+    runtime_artifacts: "aretomolive_run_manifest.json, tilt_alignment_qc.json, denoised_tomogram_manifest.json"
+    citation_notes: "Record AreTomo3 commit/version, DenoisET commit/version, model weight hashes, tilt-series metadata, and Nature Methods citation."
+    status: planned
+    notes: "Pipeline pattern for raw tilt movies to corrected, denoised tomograms during collection. Use small public CZDP tilt series first; avoid full live-scale claims unless runtime is measured."
+  denoiset:
+    role: cryoet_tomogram_denoising
+    image_family: cryo-core
+    install_method: source_or_pip_after_weight_review
+    upstream_repo: "https://github.com/apeck12/denoiset"
+    upstream_docs: "https://www.nature.com/articles/s41592-026-03093-y"
+    license_class: open_source_mit_code_weight_terms_review
+    license_gate: model_weight_provenance_review
+    runpod_fit: strong
+    gpu_class: "RTX 4090/L40S/A100/H100"
+    smoke_command: "denoiset --help || python -m denoiset --help"
+    runtime_artifacts: "denoiset_toolcheck.json, denoised_tomogram_manifest.json, model_weight_manifest.json"
+    citation_notes: "Record DenoisET commit, training/inference parameters, source tomograms, and weight hashes."
+    status: planned
+    notes: "MIT code with pretrained models in the repo. Treat denoised tomograms as derived evidence that needs original-map joins and caveats."
+  easymode:
+    role: cryoet_cellular_feature_segmentation
+    image_family: cryo-core
+    install_method: pypi_or_sbgrid_after_weight_review
+    upstream_repo: "https://github.com/mgflast/easymode"
+    upstream_docs: "https://sbgrid.org/software/titles/easymode"
+    upstream_preprint: "https://doi.org/10.64898/2026.05.19.726344"
+    pypi_package: "easymode==0.0.2"
+    pypi_release_date: "2025-09-25"
+    upstream_preprint_date: "2026-05-21"
+    license_class: open_source_gplv3_code_weight_terms_review
+    license_gate: source_compliance_model_weight_review
+    runpod_fit: possible
+    gpu_class: "GPU recommended"
+    smoke_command: "easymode --help"
+    runtime_artifacts: "easymode_toolcheck.json, segmentation_manifest.json, model_weight_manifest.json"
+    citation_notes: "Record Easymode package or SBGrid version, preprint DOI, model names, feature classes, and weight hashes."
+    status: watch
+    notes: "May 2026 cellular cryoET preprint with pretrained networks and a public GitHub install path. PyPI lists GPLv3 and SBGrid lists a 4.9 GB package; model-weight and package posture need review before a default image."
+  copick:
+    role: cryoet_project_api_annotation
+    image_family: metadata
+    install_method: pip_or_source
+    upstream_docs: "https://copick.github.io/copick/"
+    upstream_repo: "https://github.com/copick/copick"
+    upstream_release_tag: "v1.24.1"
+    upstream_release_date: "2026-05-05"
+    license_class: open_source_mit
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU; GPU by linked tools"
+    smoke_command: "python -c 'import copick; print(\"copick ok\")'"
+    runtime_artifacts: "copick_config.json, annotation_manifest.json, ome_zarr_access_manifest.json"
+    citation_notes: "Record copick version, storage backend, CZDP or OME-Zarr source, annotation classes, and linked tool versions."
+    status: planned
+    notes: "Storage-agnostic cryoET project API with CZDP, OME-Zarr, Napari, ChimeraX, and MCP paths. Good default glue for bounded cellular cryoET workflows."
+  copick_mcp:
+    role: cryoet_agent_project_exploration
+    image_family: metadata
+    install_method: pip_or_source_after_agent_tool_review
+    upstream_repo: "https://github.com/copick/copick-mcp"
+    upstream_release_tag: "v0.6.0"
+    upstream_release_date: "2026-06-09"
+    license_class: open_source_mit
+    license_gate: mcp_tool_security_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python -m copick_mcp.main --help || python -c 'print(\"copick-mcp placeholder\")'"
+    runtime_artifacts: "copick_mcp_tool_manifest.json, read_only_project_inventory.json"
+    citation_notes: "Record copick-mcp version, copick project config, MCP client, tools used, and read/write mode."
+    status: planned
+    notes: "MCP server for copick read-only project exploration and CLI introspection. Keep write operations out of public examples unless a task declares expected output files."
+  miss_alignment:
+    role: cryoet_tilt_alignment_refinement
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/warpem/miss-alignment"
+    upstream_preprint: "https://doi.org/10.64898/2026.04.29.721716"
+    upstream_release_tag: "v0.1.6"
+    upstream_release_date: "2026-05-13"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CUDA 12.9, PyTorch 2.8, NVIDIA GPU"
+    smoke_command: "miss-alignment --help"
+    runtime_artifacts: "miss_alignment_run_manifest.json, alignment_delta_report.json"
+    citation_notes: "Record miss-alignment version, input tilt-series alignment source, refined parameters, and quality metrics."
+    status: watch
+    notes: "Promising ML alignment-refinement tool with clear license but young docs and CUDA-specific dependency stack. Use as a comparison lane after AreTomo3 baseline succeeds."
+  micrographcleaner:
+    role: micrograph_contamination_masking
+    image_family: cryo-core
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/rsanchezgarc/micrograph_cleaner_em"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending TensorFlow build"
+    smoke_command: "micrograph_cleaner --help"
+    runtime_artifacts: "micrograph_cleaner_masks/, contamination_mask_manifest.json"
+    citation_notes: "Record model/checkpoint, version, and mask thresholds."
+    status: planned
+    notes: "Useful preprocessing QC helper before picking and classification."
+  emda:
+    role: map_model_validation
+    image_family: model-build
+    install_method: pip_or_source
+    upstream_docs: "https://emda.readthedocs.io/en/latest/index.html"
+    license_class: open_source_mpl_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "emda --help"
+    runtime_artifacts: "emda_map_model_fsc.tsv, emda_local_correlation_manifest.json"
+    citation_notes: "Record EMDA version and validation commands."
+    status: planned
+    notes: "Useful local map/model FSC and local correlation validation lane."
+  threed_strudel:
+    role: local_map_model_validation
+    image_family: model-build
+    install_method: pypi_or_ccpem_runtime
+    upstream_docs: "https://www.ebi.ac.uk/emdb/strudel"
+    license_class: open_source_apache_2
+    license_gate: motif_library_and_chimerax_plugin_review
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "threed_strudel --help || strudel_score --help"
+    runtime_artifacts: "strudel_scores.csv, strudel_outliers.json"
+    citation_notes: "Record 3D-Strudel version, motif library version/hash, and map/model inputs."
+    status: planned
+    notes: "Core local fit/outlier metric for 2-4 A map/model review packets."
+  mapq_qscore:
+    role: qscore_validation
+    image_family: model-build
+    install_method: parse_public_reports_or_runtime_plugin
+    upstream_repo: "https://github.com/gregdp/mapq"
+    license_class: open_source_mit_plus_chimera_runtime_gate
+    license_gate: chimerax_or_chimera_runtime_for_recompute
+    runpod_fit: possible
+    gpu_class: "CPU/GUI"
+    smoke_command: "python -c 'print(\"mapq report parser placeholder\")'"
+    runtime_artifacts: "qscore_summary.json, qscore_per_residue.csv"
+    citation_notes: "Record whether Q-scores were parsed from public validation reports or recomputed locally."
+    status: planned
+    notes: "Prefer public validation-report parsing first; local recompute inherits Chimera/ChimeraX runtime gates."
+  wwpdb_validation_reports:
+    role: public_map_model_validation_reports
+    image_family: metadata
+    install_method: http_client
+    upstream_docs: "https://www.wwpdb.org/validation/validation-reports"
+    license_class: public_archive_api_terms
+    license_gate: private_upload_review_for_unreleased_structures
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python scripts/cryocore/fetch_public_accession_metadata.py --help"
+    runtime_artifacts: "wwpdb_validation_report.xml, wwpdb_validation_summary.json"
+    citation_notes: "Record PDB ID, report URL, XML/PDF hashes, validation date, and parsed metric fields."
+    status: planned
+    notes: "Use public released validation reports before local recompute. Upload or validation of private structures is a separate gate."
+  emready2:
+    role: deep_map_enhancement_watch
+    image_family: model-build
+    install_method: source_or_runtime_after_weight_review
+    upstream_docs: "https://www.nature.com/articles/s41467-026-71794-1"
+    upstream_release_date: "2026-05-16"
+    license_class: code_and_weight_terms_review
+    license_gate: model_weight_and_derived_map_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100"
+    smoke_command: "emready2 --help || python -c 'print(\"EMReady2 placeholder\")'"
+    runtime_artifacts: "emready2_run_manifest.json, enhanced_map_manifest.json, model_weight_manifest.json"
+    citation_notes: "Record EMReady2 code source, model weights, input maps, parameters, and Nature Communications citation."
+    status: watch
+    notes: "May 2026 map-enhancement method for cryoEM and cryoET. Enhanced maps are derived evidence only and must not replace original map/model validation."
+  phenixcraft:
+    role: alphafold_assisted_phenix_model_building_watch
+    image_family: model-build
+    install_method: method_pattern_or_runtime_after_phenix_gate
+    upstream_preprint: "https://arxiv.org/abs/2605.05259"
+    upstream_release_date: "2026-05-06"
+    license_class: phenix_and_alphafold_dependency_review
+    license_gate: phenix_license_required_plus_model_source_review
+    runpod_fit: possible
+    gpu_class: "CPU for Phenix; GPU optional for model prediction"
+    smoke_command: "phenix.version && python -c 'print(\"PhenixCraft method pattern\")'"
+    runtime_artifacts: "phenixcraft_method_manifest.json, model_build_comparison.json"
+    citation_notes: "Record arXiv version, Phenix version, predicted-model source, map segmentation parameters, and validation metrics."
+    status: watch
+    notes: "May 2026 arXiv method pattern that integrates AlphaFold predictions with Phenix model building. Execution inherits Phenix and predicted-model gates; no runnable code found in the May 27 scan."
+  cryonet_refine:
+    role: diffusion_model_map_model_refinement_watch
+    image_family: model-build
+    install_method: source_after_checkpoint_review
+    upstream_repo: "https://github.com/kuixu/cryonet.refine"
+    upstream_preprint: "https://arxiv.org/abs/2602.22263"
+    upstream_release_date: "2026-05-20"
+    license_class: open_source_mit_checkpoint_terms_review
+    license_gate: checkpoint_and_validation_dependency_review
+    runpod_fit: possible
+    gpu_class: "L40S/A100/H100; about 14 GB VRAM reported"
+    smoke_command: "python -c 'print(\"CryoNet.Refine placeholder\")'"
+    runtime_artifacts: "cryonet_refine_manifest.json, refined_model.cif, refinement_validation.json"
+    citation_notes: "Record CryoNet.Refine commit, checkpoint hash, input map/model hashes, and validation tools used."
+    status: watch
+    notes: "Potential stretch lane for refining ModelAngelo or CryoAtom outputs. Keep watch until local reproducibility and validation behavior are tested."
+  webcalem:
+    role: cryoem_pixel_size_calibration
+    image_family: metadata
+    install_method: browser_or_metadata_pointer
+    upstream_preprint: "https://doi.org/10.64898/2026.05.26.726020"
+    upstream_release_date: "2026-05-26"
+    license_class: web_tool_terms_review
+    license_gate: server_terms_and_upload_review
+    runpod_fit: not_primary
+    gpu_class: "CPU/browser"
+    smoke_command: "python -c 'print(\"WebCalEM metadata-only pointer\")'"
+    runtime_artifacts: "pixel_calibration_manifest.json"
+    citation_notes: "Record WebCalEM URL, preprint DOI, calibration inputs, output pixel size, and whether any files were uploaded."
+    status: watch
+    notes: "Useful calibration workflow signal. Do not upload private micrographs or calibration images to hosted services without explicit review."
+  pp7_cryoet_standard:
+    role: cryoet_benchmark_specimen_watch
+    image_family: metadata
+    install_method: metadata_only_pointer_until_data_gate
+    upstream_preprint: "https://doi.org/10.64898/2026.05.20.726049"
+    upstream_release_date: "2026-05-22"
+    license_class: dataset_terms_review
+    license_gate: raw_tilt_series_download_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending processing"
+    smoke_command: "python -c 'print(\"PP7 cryoET standard metadata-only pointer\")'"
+    runtime_artifacts: "pp7_standard_manifest.json, cryoet_benchmark_qc.json"
+    citation_notes: "Record preprint DOI, specimen details, dataset URLs, tilt-series count, and QC metrics."
+    status: watch
+    notes: "Potential cryoET standard analogous to apoferritin for SPA. Track data availability before using as a live benchmark."
+  molviewspec:
+    role: reproducible_web_scene_spec
+    image_family: figures
+    install_method: python_or_npm_package
+    upstream_docs: "https://molstar.org/mol-view-spec/"
+    license_class: open_source_mit
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/web"
+    smoke_command: "python -c 'import molviewspec; print(\"molviewspec ok\")'"
+    runtime_artifacts: "scene.mvsj, molstar_scene_manifest.json"
+    citation_notes: "Record MolViewSpec and Mol* versions."
+    status: planned
+    notes: "Declarative scene state for reproducible web review packets."
+  py3dmol_3dmoljs:
+    role: lightweight_web_visualization
+    image_family: figures
+    install_method: pip_or_npm
+    upstream_docs: "https://3dmol.org/"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/web"
+    smoke_command: "python -c 'import py3Dmol; print(\"py3Dmol ok\")'"
+    runtime_artifacts: "interactive_structure.html, py3dmol_manifest.json"
+    citation_notes: "Record 3Dmol.js/py3Dmol versions and viewer parameters."
+    status: planned
+    notes: "Good lightweight notebook/static HTML viewer for public-safe review packets."
+  nextflow:
+    role: workflow_orchestration
+    image_family: provider-neutral
+    install_method: package_or_bootstrap
+    upstream_repo: "https://github.com/nextflow-io/nextflow"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/GPU by task"
+    smoke_command: "nextflow -version"
+    runtime_artifacts: "nextflow_trace.txt, workflow-run-summary.json"
+    citation_notes: "Record Nextflow version, workflow ref, executor, and profile."
+    status: planned
+    notes: "Canonical candidate for provider-neutral workflow profiles after current manifest contracts stabilize."
+  nf_prov:
+    role: nextflow_provenance_plugin
+    image_family: provider-neutral
+    install_method: nextflow_plugin
+    upstream_repo: "https://github.com/nextflow-io/nf-prov"
+    upstream_registry: "https://registry.nextflow.io/plugins/nf-prov%401.7.0"
+    upstream_release_tag: "1.7.0"
+    upstream_release_date: "2026-01-05"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "nextflow plugin list | grep nf-prov"
+    runtime_artifacts: "workflow-run-crate/, biocompute-object.json, nextflow_provenance_manifest.json"
+    citation_notes: "Record nf-prov version, Nextflow version, executor, workflow ref, and generated provenance formats."
+    status: planned
+    notes: "Nextflow plugin that emits BioCompute Object and Workflow Run RO-Crate outputs. Good first adapter for workflow provenance once a Nextflow lane is active."
+  snakemake:
+    role: workflow_orchestration
+    image_family: provider-neutral
+    install_method: conda_or_pip
+    upstream_repo: "https://github.com/snakemake/snakemake"
+    license_class: open_source_mit
+    license_gate: none
+    runpod_fit: possible
+    gpu_class: "CPU/GPU by rule"
+    smoke_command: "snakemake --version"
+    runtime_artifacts: "snakemake_summary.json, workflow-run-summary.json"
+    citation_notes: "Record Snakemake version, profile, executor, and rule graph."
+    status: planned
+    notes: "Python-native secondary workflow lane for local/HPC fixtures."
+  apptainer:
+    role: hpc_container_runtime
+    image_family: provider-neutral
+    install_method: system_package_or_hpc_module
+    upstream_repo: "https://github.com/apptainer/apptainer"
+    upstream_release_tag: "v1.5.1"
+    upstream_release_date: "2026-06-04"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: not_primary
+    gpu_class: "CPU/GPU passthrough"
+    smoke_command: "apptainer --version"
+    runtime_artifacts: "sif_manifest.json, container-provenance.json"
+    citation_notes: "Record Apptainer version and SIF hash."
+    status: planned
+    notes: "Primary HPC container runtime posture for non-Docker clusters. v1.5.x adds reproducible SIF build posture when SOURCE_DATE_EPOCH or the build flag is used."
+  ro_crate:
+    role: provenance_packaging
+    image_family: provider-neutral
+    install_method: metadata_template_or_python_tool
+    upstream_docs: "https://www.researchobject.org/ro-crate/"
+    license_class: open_spec_apache_2_cc0_contexts
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "test -f ro-crate-metadata.json"
+    runtime_artifacts: "ro-crate-metadata.json"
+    citation_notes: "Record RO-Crate context/version and generated entity list."
+    status: planned
+    notes: "Lightweight evidence bundle provenance that complements artifact indexes."
+  workflow_run_crate:
+    role: workflow_run_provenance_profile
+    image_family: provider-neutral
+    install_method: metadata_profile
+    upstream_docs: "https://www.researchobject.org/workflow-run-crate/profiles/provenance_run_crate/"
+    upstream_repo: "https://github.com/ResearchObject/workflow-run-crate"
+    upstream_release_tag: "0.5.0"
+    upstream_release_date: "2026-06-19"
+    license_class: open_spec_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "test -f ro-crate-metadata.json"
+    runtime_artifacts: "ro-crate-metadata.json, workflow-run-crate-profile.json"
+    citation_notes: "Record Workflow Run Crate profile version, step graph, resource usage, intermediate outputs, and linked artifacts."
+    status: planned
+    notes: "Profile layer for workflow runs, step execution records, resources, and intermediate outputs. Good target format for agent-produced run packets."
+  rocrate_validator:
+    role: ro_crate_validation
+    image_family: provider-neutral
+    install_method: pip_or_source
+    upstream_repo: "https://github.com/crs4/rocrate-validator"
+    upstream_docs: "https://rocrate-validator.readthedocs.io/en/stable/"
+    upstream_release_tag: "0.10.0"
+    upstream_release_date: "2026-06-01"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "rocrate-validator --help || python -m rocrate_validator --help"
+    runtime_artifacts: "rocrate_validation_report.json"
+    citation_notes: "Record rocrate-validator version, profile target, command args, and validation report path."
+    status: planned
+    notes: "Validator for generated RO-Crates. Use in release or run-closeout checks when a crate is produced."
+  bagit:
+    role: fixity_packaging
+    image_family: provider-neutral
+    install_method: metadata_template_or_python_tool
+    upstream_docs: "https://www.rfc-editor.org/rfc/rfc8493.html"
+    upstream_repo: "https://github.com/LibraryOfCongress/bagit-python"
+    python_package: "bagit==1.9.0"
+    upstream_release_date: "2025-06-13"
+    license_class: ietf_rfc_terms_plus_bagit_python_cc0
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "test -f bagit.txt || test -f bag-info.txt"
+    runtime_artifacts: "bagit.txt, bag-info.txt, manifest-sha256.txt"
+    citation_notes: "Record BagIt profile and checksum algorithm."
+    status: planned
+    notes: "Good transfer/fixity pattern for derived evidence bundles. bagit-python supplies a small CLI/library implementation for creating and validating bags."
+  syft:
+    role: sbom_generation
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/anchore/syft"
+    upstream_release_tag: "v1.45.1"
+    upstream_release_date: "2026-06-05"
+    license_class: open_source_apache_2
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "syft version"
+    runtime_artifacts: "sbom.spdx.json, sbom.cyclonedx.json, syft_manifest.json"
+    citation_notes: "Record Syft version, scan target digest/path, output formats, and generated SBOM hashes."
+    status: planned
+    notes: "SBOM generator for container images and filesystems. Useful for public image review and provider-run artifact ledgers."
+  cosign:
+    role: container_signature_verification
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/sigstore/cosign"
+    license_class: open_source_apache_2
+    license_gate: key_and_identity_policy_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "cosign version"
+    runtime_artifacts: "cosign_verify.json, signature_policy_manifest.json"
+    citation_notes: "Record Cosign version, image digest, certificate identity or key posture, Rekor inclusion if used, and verify output."
+    status: planned
+    notes: "Signature verification helper for containers and binary artifacts. Prefer immutable digests and record verification outputs."
+  slsa_verifier:
+    role: provenance_attestation_verification
+    image_family: provider-neutral
+    install_method: package_or_release_binary
+    upstream_repo: "https://github.com/slsa-framework/slsa-verifier"
+    upstream_release_tag: "v2.7.1"
+    upstream_release_date: "2025-06-27"
+    license_class: open_source_apache_2
+    license_gate: builder_identity_policy_review
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "slsa-verifier version"
+    runtime_artifacts: "slsa_verify.json, provenance_attestation_manifest.json"
+    citation_notes: "Record SLSA verifier version, artifact digest, expected builder/source identity, and verification result."
+    status: planned
+    notes: "Verifies provenance from SLSA-compliant builders. Use immutable artifact references so verification and execution refer to the same digest."
+  empiar_api:
+    role: public_accession_metadata
+    image_family: metadata
+    install_method: http_client
+    upstream_docs: "https://www.ebi.ac.uk/empiar/api/documentation/schema"
+    license_class: public_archive_api_terms
+    license_gate: raw_download_operator_gate
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python scripts/cryocore/fetch_public_accession_metadata.py --help"
+    runtime_artifacts: "public_accession_metadata.json"
+    citation_notes: "Record EMPIAR accession, endpoints, response hashes, and linked EMDB IDs."
+    status: planned
+    notes: "Metadata-only default; EMPIAR raw data remains outside git and behind execution issues."
+  emdb_api:
+    role: public_map_metadata
+    image_family: metadata
+    install_method: http_client
+    upstream_docs: "https://www.ebi.ac.uk/emdb/api/schema"
+    license_class: public_archive_api_terms
+    license_gate: map_download_operator_gate
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python scripts/cryocore/fetch_public_accession_metadata.py --help"
+    runtime_artifacts: "public_accession_metadata.json"
+    citation_notes: "Record EMDB accession, fitted PDBs, validation analysis links, and response hashes."
+    status: planned
+    notes: "Metadata-only map and fitted-model discovery; no map downloads by default."
+  rcsb_pdb_api:
+    role: public_structure_metadata
+    image_family: metadata
+    install_method: http_client
+    upstream_docs: "https://data.rcsb.org/"
+    license_class: public_archive_api_terms
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "CPU"
+    smoke_command: "python scripts/cryocore/fetch_public_accession_metadata.py --help"
+    runtime_artifacts: "public_accession_metadata.json"
+    citation_notes: "Record PDB ID, REST/GraphQL endpoint, validation report URLs, and response hashes."
+    status: planned
+    notes: "Use for review metadata and validation report joins; archive files are not committed unless tiny public-safe summaries."
+  perc_empiarreader:
+    role: public_data_lazy_loading_research_helper
+    image_family: metadata
+    install_method: pip_or_source_optional
+    upstream_docs: "https://arxiv.org/abs/2503.13329"
+    license_class: mixed_bsd_mit_package_family
+    license_gate: raw_data_access_operator_gate
+    runpod_fit: possible
+    gpu_class: "CPU/GPU by downstream use"
+    smoke_command: "python -c 'print(\"PERC optional helper\")'"
+    runtime_artifacts: "perc_data_access_manifest.json"
+    citation_notes: "Record PERC package, version, accession set, and raw-data access policy."
+    status: watch
+    notes: "Optional research/ML helper family; do not make it a core CryoCore dependency until a campaign needs lazy raw-image access."

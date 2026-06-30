@@ -40,13 +40,16 @@ make release-check
 For targeted scans:
 
 ```bash
-python3 scripts/cryocore/public_snapshot_check.py --repo-root . --profile public --json
-python3 scripts/cryocore/public_release_report.py --repo-root . --json
+python3 scripts/cryocore/public_snapshot_check.py --repo-root <cryocore-repo> --profile public --json
+python3 scripts/cryocore/public_release_report.py --repo-root <cryocore-repo> --json
 ```
+
+When this skill is installed outside the CryoCore repo, resolve the bundled
+`scripts/cryocore/*.py` paths relative to this skill folder and keep
+`--repo-root` pointed at the CryoCore checkout being reviewed.
 
 ## Output
 
 Return findings first, ordered by severity, with file paths and line numbers.
 If there are no findings, say that and list residual risks such as unpinned
 provider images or operator-owned launch gates.
-
