@@ -5,16 +5,15 @@ description: Use when researching, triaging, or updating BioSymphony CryoCore to
 
 # CryoCore Toolwatch
 
-Use this skill in the current `cryocore` checkout when a task
-asks for new cryo-EM tools, repos, preprints, public data sources, validation
-services, workflow engines, or repo skills.
+Use this skill when a task asks for new cryo-EM tools, repos, preprints, public
+data sources, validation services, workflow engines, or repo skills.
 
 ## Read First
 
-- `AGENTS.md`
-- `README.md`
-- `docs/tooling-and-licensing.md`
-- `docs/toolwatch-2026-05-15.md` or a dated successor if the audit is new
+- `references/AGENTS.md`
+- `references/README.md`
+- `references/tooling-and-licensing.md`
+- `references/toolwatch-2026-06-21.md`
 - `references/software-registry.yaml`
 - `references/validation-gates.md`
 
@@ -45,9 +44,9 @@ Classify each candidate as:
 
 When updating the repo:
 
-1. Update `docs/toolwatch-YYYY-MM-DD.md` or create a dated successor.
-2. Update `references/software-registry.yaml` only for candidates with enough
+1. Update or create the dated toolwatch doc in the full CryoCore checkout.
+2. Update the software registry only for candidates with enough
    source-backed posture to be useful to future runs.
-3. Update `docs/tooling-and-licensing.md` for durable license policy.
-4. Update `references/validation-gates.md` when a tool changes evidence gates.
+3. Update the tooling and licensing doc for durable license policy.
+4. Update the validation gates doc when a tool changes evidence gates.
 5. Run `make preflight`, `make registry-check`, `make public-release-report`, and targeted tests.

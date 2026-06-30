@@ -10,10 +10,10 @@ other figure and web-viewer outputs.
 
 ## Read First
 
-- `campaigns/publishable-figure-dossier/README.md`
+- `references/publishable-figure-dossier.md`
 - `references/validation-gates.md`
-- `docs/chimerax-shared-posture.md`
-- `docs/tooling-and-licensing.md`
+- `references/chimerax-shared-posture.md`
+- `references/tooling-and-licensing.md`
 
 ## Rules
 

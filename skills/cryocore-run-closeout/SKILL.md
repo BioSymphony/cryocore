@@ -13,9 +13,9 @@ processing.
 
 ## Read First
 
-- `docs/no-false-success-hardening.md`
+- `references/no-false-success-hardening.md`
 - `references/validation-gates.md`
-- `modules/artifact-contracts/structure-dossier.v1.json`
+- `references/structure-dossier.v1.json`
 - the launch manifest
 - the stage contract
 

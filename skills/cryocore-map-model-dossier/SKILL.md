@@ -10,10 +10,10 @@ claim ledgers, and Structure Factory handoff bundles.
 
 ## Read First
 
-- `modules/artifact-contracts/structure-dossier.v1.json`
+- `references/structure-dossier.v1.json`
 - `references/artifact-contract.md`
 - `references/validation-gates.md`
-- `docs/data-policy.md`
+- `references/data-policy.md`
 
 ## Rules
 

@@ -5,8 +5,9 @@ description: Use when planning or executing BioSymphony CryoCore campaigns for c
 
 # CryoCore
 
-Use this repo-local skill for CryoCore work in the current
-`cryocore` checkout.
+Use this skill for CryoCore work. In a full CryoCore checkout, run repository
+commands from the repo root. In a standalone skill install, read the bundled
+files under `references/`.
 
 ## Local Memory
 
@@ -22,27 +23,27 @@ the audit trail for any specific run.
 
 When you encounter something the next agent should know, append a note at
 `.cryocore-memory/YYYY-MM-DD-<slug>.md` using the shape in
-`skills/cryocore/references/memory-note-template.md`. Never put secrets,
+`references/memory-note-template.md`. Never put secrets,
 private paths, campaign-specific data, raw sequences, provider identifiers,
 signed URLs, or large outputs into a memory note.
 
 ## Always Read
 
-- `AGENTS.md`
-- `README.md`
-- `docs/public-quickstart.md`
-- `docs/goal-orchestration.md`
-- `docs/claim-levels.md`
-- `docs/split-evaluation.md`
-- `docs/tooling-and-licensing.md`
+- `references/AGENTS.md`
+- `references/README.md`
+- `references/public-quickstart.md`
+- `references/goal-orchestration.md`
+- `references/claim-levels.md`
+- `references/split-evaluation.md`
+- `references/tooling-and-licensing.md`
 
 ## Freshness Check
 
-Before relying on `docs/tooling-and-licensing.md`, `references/software-registry.yaml`,
+Before relying on `references/tooling-and-licensing.md`, `references/software-registry.yaml`,
 or any other posture record, check the dates. Policy docs carry `Last reviewed:`
-lines; the current source-backed audit lives at `docs/toolwatch-YYYY-MM-DD.md`.
-Run `make tooling-freshness-check` to confirm both are within the configured
-window (default 120 days). If either is stale, refresh through the
+lines; the bundled source-backed audit is `references/toolwatch-2026-06-21.md`.
+In a full CryoCore checkout, run `make tooling-freshness-check` to confirm both
+are within the configured window (default 120 days). If either is stale, refresh through the
 `cryocore-toolwatch` skill before treating posture as current. Posture records
 age silently; tool versions, license terms, and upstream APIs do not.
 
@@ -55,23 +56,23 @@ age silently; tool versions, license terms, and upstream APIs do not.
 
 ## Specialized Repo Skills
 
-- `skills/cryocore-toolwatch/SKILL.md`: tool, preprint, API, workflow, and license audits.
-- `skills/cryocore-public-safety/SKILL.md`: public release, privacy, and security review.
-- `skills/cryocore-run-closeout/SKILL.md`: provider/run closeout and no-false-success checks.
-- `skills/cryocore-map-model-dossier/SKILL.md`: public-safe EMDB/PDB map-model dossiers.
-- `skills/cryocore-heterogeneity-jury/SKILL.md`: state/ensemble/heterogeneity planning and review.
-- `skills/cryocore-figure-dossier/SKILL.md`: reproducible figure and renderer dossiers.
+- `cryocore-toolwatch`: tool, preprint, API, workflow, and license audits.
+- `cryocore-public-safety`: public release, privacy, and security review.
+- `cryocore-run-closeout`: provider/run closeout and no-false-success checks.
+- `cryocore-map-model-dossier`: public-safe EMDB/PDB map-model dossiers.
+- `cryocore-heterogeneity-jury`: state/ensemble/heterogeneity planning and review.
+- `cryocore-figure-dossier`: reproducible figure and renderer dossiers.
 
 ## Request Routing
 
 | User asks for | Read next |
 | --- | --- |
-| Public release readiness, privacy, secrets, or security | `skills/cryocore-public-safety/SKILL.md` |
-| RunPod closeout, provider artifacts, cost, cleanup, or false success | `skills/cryocore-run-closeout/SKILL.md` |
-| EMDB/PDB map-model evidence, validation, or dossier planning | `skills/cryocore-map-model-dossier/SKILL.md` |
-| Tool, license, version, or literature watch | `skills/cryocore-toolwatch/SKILL.md` |
-| Figure manifest, visual evidence, or renderer route | `skills/cryocore-figure-dossier/SKILL.md` |
-| Heterogeneity, state assignment, ensembles, or conformational jury | `skills/cryocore-heterogeneity-jury/SKILL.md` |
+| Public release readiness, privacy, secrets, or security | `cryocore-public-safety` |
+| RunPod closeout, provider artifacts, cost, cleanup, or false success | `cryocore-run-closeout` |
+| EMDB/PDB map-model evidence, validation, or dossier planning | `cryocore-map-model-dossier` |
+| Tool, license, version, or literature watch | `cryocore-toolwatch` |
+| Figure manifest, visual evidence, or renderer route | `cryocore-figure-dossier` |
+| Heterogeneity, state assignment, ensembles, or conformational jury | `cryocore-heterogeneity-jury` |
 
 ## Hard Rules
 
@@ -82,6 +83,8 @@ age silently; tool versions, license terms, and upstream APIs do not.
 - Missing optional renderers should block only renderer lanes.
 
 ## Local Checks
+
+In a full CryoCore checkout:
 
 ```bash
 make preflight

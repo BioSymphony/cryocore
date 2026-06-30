@@ -28,6 +28,11 @@ def resolve(path: Path) -> Path:
     return path if path.is_absolute() else REPO_ROOT / path
 
 
+def resolves_from(base: Path, path: str) -> Path:
+    candidate = Path(path)
+    return candidate if candidate.is_absolute() else base / candidate
+
+
 def load_json_compatible_yaml(path: Path) -> Any:
     return json.loads(path.read_text())
 
@@ -118,13 +123,18 @@ def check_skill_pack(index_path: Path) -> dict[str, Any]:
                 errors.append(f"{skill_id}: metadata missing keys: {', '.join(missing)}")
             if metadata.get("id") != skill_id:
                 errors.append(f"{skill_id}: metadata id mismatch: {metadata.get('id')!r}")
-            if metadata.get("entrypoint") != path_value:
-                errors.append(f"{skill_id}: metadata entrypoint must match index path")
+            entrypoint = metadata.get("entrypoint")
+            if not isinstance(entrypoint, str) or resolves_from(skill_path.parent, entrypoint).resolve() != skill_path.resolve():
+                errors.append(f"{skill_id}: metadata entrypoint must resolve to index path")
             for list_key in ["read_first", "validators", "forbidden_actions"]:
                 if not isinstance(metadata.get(list_key), list) or not metadata.get(list_key):
                     errors.append(f"{skill_id}: metadata {list_key} must be a non-empty list")
             for doc in metadata.get("read_first", []) if isinstance(metadata.get("read_first"), list) else []:
-                if isinstance(doc, str) and not resolve(Path(doc)).exists():
+                if not isinstance(doc, str):
+                    continue
+                repo_candidate = resolve(Path(doc))
+                skill_candidate = resolves_from(skill_path.parent, doc)
+                if not repo_candidate.exists() and not skill_candidate.exists():
                     errors.append(f"{skill_id}: read_first path missing: {doc}")
         checked.append(entry)
 
@@ -166,4 +176,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

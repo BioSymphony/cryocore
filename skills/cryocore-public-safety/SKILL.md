@@ -9,12 +9,12 @@ Use this skill before publishing, accepting PRs, or sharing generated outputs.
 
 ## Read First
 
-- `PUBLIC_RELEASE.md`
-- `SECURITY.md`
-- `docs/data-policy.md`
-- `docs/privacy-threat-model.md`
-- `docs/public-repo-and-private-image-policy.md`
-- `docs/claim-levels.md`
+- `references/PUBLIC_RELEASE.md`
+- `references/SECURITY.md`
+- `references/data-policy.md`
+- `references/privacy-threat-model.md`
+- `references/public-repo-and-private-image-policy.md`
+- `references/claim-levels.md`
 
 ## Review Checklist
 
@@ -37,7 +37,8 @@ make public-release-report
 make release-check
 ```
 
-For targeted scans:
+Use those Make targets in a full CryoCore checkout. For targeted scans from a
+standalone skill install:
 
 ```bash
 python3 scripts/cryocore/public_snapshot_check.py --repo-root <cryocore-repo> --profile public --json

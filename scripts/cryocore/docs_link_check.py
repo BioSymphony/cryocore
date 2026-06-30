@@ -102,14 +102,38 @@ def looks_like_local_path(target: str) -> bool:
     return target.startswith(LOCAL_PATH_PREFIXES)
 
 
+def skill_bundle_dir(root: Path, path: Path) -> Path | None:
+    try:
+        parts = path.resolve().relative_to(root.resolve()).parts
+    except ValueError:
+        return None
+    if len(parts) >= 3 and parts[0] == "skills":
+        return root / "skills" / parts[1]
+    return None
+
+
+def is_bundled_skill_reference(root: Path, path: Path) -> bool:
+    try:
+        parts = path.resolve().relative_to(root.resolve()).parts
+    except ValueError:
+        return False
+    return len(parts) >= 4 and parts[0] == "skills" and parts[2] == "references"
+
+
 def target_errors(root: Path, path: Path, raw_target: str, label: str) -> list[str]:
     errors: list[str] = []
     target = normalize_target(raw_target)
     if is_external_or_anchor(target):
         return errors
-    candidate = (path.parent / target).resolve()
-    if path.parent == root or target.startswith(LOCAL_PATH_PREFIXES) or target in ROOT_FILE_NAMES:
+
+    skill_dir = skill_bundle_dir(root, path)
+    if path.name == "SKILL.md" and skill_dir and target.startswith(("assets/", "references/", "scripts/")):
+        candidate = (skill_dir / target).resolve()
+    elif path.parent == root or target.startswith(LOCAL_PATH_PREFIXES) or target in ROOT_FILE_NAMES:
         candidate = (root / target).resolve()
+    else:
+        candidate = (path.parent / target).resolve()
+
     try:
         candidate.relative_to(root.resolve())
     except ValueError:
@@ -122,6 +146,8 @@ def target_errors(root: Path, path: Path, raw_target: str, label: str) -> list[s
 
 def check_file(root: Path, path: Path) -> list[str]:
     errors: list[str] = []
+    if is_bundled_skill_reference(root, path):
+        return errors
     text = strip_code_fences(path.read_text(errors="ignore"))
     for match in MARKDOWN_LINK_RE.finditer(text):
         errors.extend(target_errors(root, path, match.group(2), "local link"))

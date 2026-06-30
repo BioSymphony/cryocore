@@ -8,6 +8,12 @@ description: Use when planning or reviewing cryoDRGN, RECOVAR, DynaMight, CryoSP
 Use this skill when work involves continuous heterogeneity, discrete states,
 latent spaces, particle subsets, flexible fitting, or ensemble claims.
 
+## Read First
+
+- `references/claim-levels.md`
+- `references/validation-gates.md`
+- `references/tooling-and-licensing.md`
+
 ## Tool Posture
 
 - cryoDRGN and DynaMight are planned open lanes with source-compliance tracking.
