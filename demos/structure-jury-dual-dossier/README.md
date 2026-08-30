@@ -1,15 +1,16 @@
 # Dual Structure Comparison Demo
 
-Small, real, no-license CryoCore campaign that runs two public
-deposited-structure lanes and joins them into one review package:
+CryoCore comparison example that joins two public deposited-structure lanes
+into one review package:
 
 - T2R14 receptor complex: `PDB 9W0Q`, `EMD-65512`
 - Pol theta helicase map/model: `PDB 9ASJ`, `EMD-43816`
 
-The campaign downloads only public deposited coordinates, public EMDB map/model
-files and wwPDB reports for the pol theta lane, and public RCSB metadata. Raw
-movies, particle stacks, private data, and license-gated tools stay outside the
-campaign.
+An operator-authorized run downloads public deposited coordinates, the public
+EMDB map and wwPDB reports for the Pol Theta lane, and public RCSB metadata into
+ignored runtime storage. The preparation check below performs no map download.
+Raw movies, particle stacks, private data, and license-gated tools stay outside
+the campaign.
 
 Prepare the RunPod bridge packet without launching:
 
@@ -17,9 +18,8 @@ Prepare the RunPod bridge packet without launching:
 make demo-structure-jury-prep-check
 ```
 
-Real RunPod launch is operator-owned and sits outside the public release
-gate. The block below is pseudocode for an external launcher to illustrate
-what a paid run would look like:
+A live RunPod launch is operator-owned and is outside the public release gate.
+The following pseudocode shows the external launcher interface:
 
 ```text
 operator-owned-provider-launch \
@@ -29,4 +29,5 @@ operator-owned-provider-launch \
   --timeout-seconds 7200
 ```
 
-Closeout passes when the artifacts are fetched and hashed, the pod cleanup is verified, and the closeout package joins everything back to the declared inputs.
+Closeout passes only after the artifacts are fetched and hashed, cleanup is
+verified, and the closeout package links all outputs to the declared inputs.

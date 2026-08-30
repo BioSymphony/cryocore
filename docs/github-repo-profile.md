@@ -50,7 +50,7 @@ The first screen should show:
 - overview image
 - five-minute start
 - copy-paste agent prompt
-- core superpowers
+- core capabilities
 
 ## Initial Announcement
 

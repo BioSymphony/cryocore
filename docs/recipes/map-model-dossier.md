@@ -1,8 +1,9 @@
 # Recipe: Map/Model Review
 
-Build a claim-bounded map/model review for a public EMDB and PDB pair. Reuses the
-same script the [Pol Theta demo](../../demos/poltheta-map-model-dossier/)
-runs and produces the same review shape.
+Build a claim-bounded map/model review for a public EMDB and PDB pair. This
+recipe uses the script from the
+[Pol Theta demo](../../demos/poltheta-map-model-dossier/) and produces the same
+artifact set.
 
 ## When to use it
 
@@ -12,11 +13,16 @@ runs and produces the same review shape.
 
 ## Inputs
 
-- A public EMDB ID (e.g. `EMD-43816`).
-- A public PDB ID (e.g. `9ASJ`).
+- A public EMDB ID, for example `EMD-43816`.
+- A public PDB ID, for example `9ASJ`.
 - Optional deposited map and model artifacts fetched into ignored runtime storage.
 
 ## Commands
+
+The command below downloads a deposited EMDB map, PDB coordinates, and
+validation reports into ignored runtime storage. Run it only under an
+explicitly authorized issue scope. Use the preparation check when you need
+only the contract shape.
 
 ```bash
 python3 scripts/cryocore/poltheta_map_model_dossier.py \
@@ -24,15 +30,15 @@ python3 scripts/cryocore/poltheta_map_model_dossier.py \
   --json
 ```
 
-Swap the script for another map+model review builder when you target a
-different deposit. The same artifact contract under
+For a different deposit, use the applicable map-and-model review builder. The
+artifact contract in
 [modules/artifact-contracts/structure-dossier.v1.json](../../modules/artifact-contracts/structure-dossier.v1.json)
 applies.
 
 ## Files Produced
 
 - `artifacts/report.md`: human-readable review.
-- `artifacts/report.html`: same review in HTML, with figures embedded.
+- `artifacts/report.html`: HTML review with embedded figures.
 - `artifacts/claim_ledger.md`: claim boundaries and caveats.
 - `artifacts/provenance.md`: input audit, methods, and pointers to source accessions.
 - `artifacts/figures/*.svg`: SVG figures rendered from the map and model.
@@ -40,9 +46,10 @@ applies.
 
 ## Claim Ceiling
 
-Start at `processed` or `candidate`. The ceiling rises only when expert review
-and stronger validation artifacts (wwPDB validation outputs, density-support
-checks, cross-correlation results) support a higher level.
+Start at `processed` or `candidate`. Increase the ceiling only when expert
+review and stronger validation artifacts support a higher level. These
+artifacts can include wwPDB validation outputs, density-support checks, and
+cross-correlation results.
 
 ## Validation
 

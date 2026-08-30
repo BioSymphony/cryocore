@@ -1,13 +1,16 @@
 # T2R14 Open Dossier Demo
 
-Small, real, no-license CryoCore demo using public RCSB/EMDB metadata:
+Small local CryoCore demo using public RCSB/EMDB metadata and PDB coordinates:
 
 - PDB: `9W0Q`
 - EMDB: `EMD-65512`
 - target: bitter taste receptor T2R14 ligand/G-protein cryo-EM complex
-- runtime: CPU-only, intended under one hour on RunPod
+- runtime: CPU-only, about one minute on a typical laptop
 
-The demo downloads only public mmCIF and RCSB metadata, computes chain and ligand-neighborhood summaries, emits SVG figures, and writes a dossier packet with provenance and explicit claim limits.
+The demo downloads public RCSB metadata and the PDB mmCIF coordinate file. It
+does not download the EMDB map. It computes chain and ligand-neighborhood
+summaries, emits SVG figures, and writes a review package with provenance and
+explicit claim limits.
 
 Run locally:
 
@@ -23,9 +26,9 @@ Prepare the RunPod bridge packet:
 make demo-t2r14-check
 ```
 
-`demo-t2r14-check` requires the optional operator-owned provider bridge CLI,
-defaulting to `symphony-neocloud-bridge`. If that CLI is not installed, the
-local dossier run above is still the recommended first success path.
+`demo-t2r14-check` requires an optional operator-owned provider bridge CLI. The
+default command is `symphony-neocloud-bridge`. If the CLI is not installed, run
+the local dossier command instead.
 
 Expected local output shape:
 
@@ -41,7 +44,7 @@ Expected local output shape:
     runpod-execution.tar.gz
 ```
 
-Or run the bridge steps directly:
+To run the bridge steps directly, use:
 
 ```bash
 python3 scripts/cryocore/build_t2r14_bridge_manifest.py
@@ -54,9 +57,8 @@ symphony-neocloud-bridge prepare \
   --json
 ```
 
-Real RunPod launch is operator-owned and sits outside the public release
-gate. The block below is pseudocode for an external launcher to illustrate
-what a paid run would look like:
+A live RunPod launch is operator-owned and is outside the public release gate.
+The following pseudocode shows the external launcher interface:
 
 ```text
 operator-owned-provider-launch \
@@ -65,4 +67,6 @@ operator-owned-provider-launch \
   --max-spend-usd 1
 ```
 
-The demo uses only Python stdlib and public RCSB/EMDB metadata APIs. Tools like CryoSPARC, Phenix, ChimeraX, MotionCor, Rosetta, and AlphaFold 3, along with raw movies, private data, and persistent storage, live in lanes outside this demo.
+The demo uses the Python standard library and public RCSB and EMDB metadata
+APIs. It does not use CryoSPARC, Phenix, ChimeraX, MotionCor, Rosetta, AlphaFold
+3, raw movies, private data, or persistent storage.

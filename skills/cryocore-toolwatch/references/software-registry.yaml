@@ -1,7 +1,9 @@
 # BioSymphony CryoCore software registry.
 # Each entry must be checked from primary sources before status moves to ready.
 # Human-readable posture: docs/tooling-and-licensing.md
-# Last source-backed audit: 2026-06-21 for targeted June toolwatch updates;
+# Last source-backed audit: 2026-08-30 for focused release, security, and cryo-ET updates;
+# 2026-07-05 for Computational-CryoEM / cryoDRGN toolwatch additions;
+# 2026-06-21 for targeted June toolwatch updates;
 # 2026-05-27 for broad high-impact cryo-core lanes.
 
 software:
@@ -72,6 +74,23 @@ software:
     citation_notes: "Record model/checkpoint and training/inference parameters."
     status: planned
     notes: "Open particle picking lane; keep source-compliance metadata with images. PyPI release history lists topaz-em 0.3.20 as the latest release on 2026-05-11."
+  miffi:
+    role: micrograph_quality_filtering
+    image_family: cryo-core
+    install_method: pip_or_source_after_model_review
+    upstream_repo: "https://github.com/ando-lab/miffi"
+    pypi_package: "miffi==1.0.1"
+    upstream_release_tag: "1.0.1"
+    upstream_release_date: "2024-03-04"
+    license_class: open_source_gplv3_model_terms_review
+    license_gate: source_compliance_model_and_training_data_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU with PyTorch"
+    smoke_command: "miffi --help"
+    runtime_artifacts: "miffi_qc_manifest.json, micrograph_filter_scores.csv, power_spectrum_pngs/"
+    citation_notes: "Record Miffi commit, model/checkpoint source, micrograph IDs, score threshold, and filtering decision policy."
+    status: watch
+    notes: "Micrograph filtering using Fourier-space information. PyPI publishes 1.0.1, while full models and state dictionaries are separate artifacts. Keep model, training-data, serialized-output, and source-compliance review in place."
   ctffind:
     role: ctf_estimation
     image_family: cryo-core
@@ -85,6 +104,21 @@ software:
     citation_notes: "Record CTFFIND version and microscope metadata."
     status: watch
     notes: "Useful CTF lane; confirm CTFFIND major version and Janelia/binary/source redistribution terms before image inclusion."
+  gctffind:
+    role: gpu_ctf_estimation_cryoem_cryoet
+    image_family: cryo-core
+    install_method: source_build
+    upstream_repo: "https://github.com/czimaginginstitute/GCtfFind"
+    upstream_release_tag: "v1.0.0"
+    license_class: open_source_bsd_3_clause
+    license_gate: none
+    runpod_fit: strong
+    gpu_class: "NVIDIA GPU"
+    smoke_command: "GCtfFind --help"
+    runtime_artifacts: "gctffind_toolcheck.json, ctf_estimation_manifest.json"
+    citation_notes: "Record GCtfFind version, CUDA and GPU details, input magnification, search parameters, and CTF outputs."
+    status: planned
+    notes: "GPU CTF estimation for cryo-EM micrographs and cryo-ET tilt series. Add a small public fixture and record CUDA compatibility before making it a default lane."
   cistem:
     role: cryoem_processing_pipeline
     image_family: cryo-core
@@ -99,22 +133,72 @@ software:
     citation_notes: "Record cisTEM version and cite cisTEM/eLife methods paper."
     status: watch
     notes: "Do not treat Janelia-licensed binaries as generic redistributable open source until exact version terms are reviewed."
+  insilicotem:
+    role: synthetic_tem_image_simulation_watch
+    image_family: metadata
+    install_method: matlab_source_after_terms_review
+    upstream_repo: "https://github.com/M4I-nanoscopy/InSilicoTEM"
+    upstream_release_tag: "v2.1.0"
+    upstream_release_date: "2021-12-13"
+    license_class: no_license_detected_matlab_dependency_review
+    license_gate: explicit_license_and_matlab_dipimage_terms_required
+    runpod_fit: not_primary
+    gpu_class: "CPU/MATLAB environment"
+    smoke_command: "test -f InSilicoTEM.m"
+    runtime_artifacts: "insilicotem_fixture_manifest.json, synthetic_micrograph_parameters.json"
+    citation_notes: "Record InSilicoTEM release, MATLAB/DIPimage environment, simulation parameters, and source publication."
+    status: watch
+    notes: "Biological-specimen TEM simulator from the Computational-CryoEM list. Keep metadata-only until explicit license and MATLAB/DIPimage runtime posture are reviewed."
   cryodrgn:
     role: heterogeneity_analysis
     image_family: cryo-core
     install_method: pip_or_source
     upstream_repo: "https://github.com/ml-struct-bio/cryodrgn"
-    upstream_release_tag: "v4.2.1"
-    upstream_release_date: "2026-04-27"
+    upstream_release_tag: "4.3.1"
+    upstream_release_date: "2026-08-04"
     license_class: open_source_gplv3
     license_gate: source_compliance_for_images
     runpod_fit: strong
     gpu_class: "L40S/A100/H100"
     smoke_command: "cryodrgn --help"
-    runtime_artifacts: "latent_embeddings/, heterogeneity_report.json"
-    citation_notes: "Record cryoDRGN version, model args, and checkpoints."
+    runtime_artifacts: "latent_embeddings/, state_maps/, heterogeneity_report.json, dashboard_review_notes.json"
+    citation_notes: "Record cryoDRGN version, model args, checkpoints, abinit/analyze/dashboard commands, and pickle artifact hashes."
     status: planned
-    notes: "Continuous heterogeneity lane; image builds require GPLv3 source-compliance and dependency review."
+    notes: "Continuous heterogeneity lane; 4.3.1 adds an in-browser volume view and WarpTools parsing on top of the 4.3 dashboard and command builder. Image builds require GPLv3 source-compliance and dependency review; the dashboard must stay localhost/private because it can read and write server-side paths."
+  aspire_python:
+    role: simulation_benchmark_covariance
+    image_family: cryo-core
+    install_method: pip_or_source_after_fixture_review
+    upstream_repo: "https://github.com/ComputationalCryoEM/ASPIRE-Python"
+    upstream_docs: "https://computationalcryoem.github.io/ASPIRE-Python/"
+    pypi_package: "aspire==0.14.3"
+    upstream_release_tag: "v0.14.3"
+    upstream_release_date: "2026-04-27"
+    license_class: open_source_gplv3
+    license_gate: source_compliance_for_images
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending workflow"
+    smoke_command: "python -c 'import aspire; print(\"ASPIRE ok\")'"
+    runtime_artifacts: "aspire_fixture_manifest.json, synthetic_particle_stack_manifest.json, covariance_baseline_report.json"
+    citation_notes: "Record ASPIRE version, simulator/random seed, ground-truth volume source, and benchmark metric definitions."
+    status: watch
+    notes: "Useful for known-answer synthetic data, covariance/denoising baselines, and regression fixtures. Add a lane only after a tiny public fixture, dependency footprint, and GPL source-compliance posture are pinned."
+  maven_protocol:
+    role: cryodrgn_ensemble_analysis_protocol
+    image_family: cryo-core
+    install_method: source_after_cryodrgn_output_review
+    upstream_repo: "https://github.com/lkinman/MAVEn"
+    upstream_release_tag: "v1.0"
+    upstream_release_date: "2023-04-18"
+    license_class: open_source_gplv3
+    license_gate: source_compliance_for_images
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending ensemble size"
+    smoke_command: "python gen_mrcs.py --help && python gen_masks.py --help && python calc_occupancy.py --help"
+    runtime_artifacts: "maven_ensemble_manifest.json, ensemble_feature_table.csv, state_interpretation_notes.json"
+    citation_notes: "Record MAVEn version, cryoDRGN output source, volume sample count, model sources, and ensemble interpretation caveats."
+    status: watch
+    notes: "Downstream protocol for cryoDRGN volume ensembles. Upstream documents compatibility with cryoDRGN 0.3.2 and dependencies on RELION, Chimera, and ChimeraX. Keep it at watch until compatibility with the current cryoDRGN lane, inherited tool gates, a bounded example, and an output contract are tested."
   recovar:
     role: heterogeneity_analysis
     image_family: cryo-core
@@ -169,8 +253,8 @@ software:
     upstream_docs: "https://guide.cryosparc.com/"
     upstream_major_release_tag: "v5.0"
     upstream_major_release_date: "2026-01-27"
-    upstream_patch_release_tag: "v5.0.6"
-    upstream_patch_release_date: "2026-05-05"
+    upstream_patch_release_tag: "v5.0.7"
+    upstream_patch_release_date: "2026-08-14"
     license_class: noncommercial_academic_or_commercial_license
     license_gate: required_runtime_license_id
     runpod_fit: possible
@@ -179,7 +263,7 @@ software:
     runtime_artifacts: "cryosparc_project_manifest.json, cryosparc_versions.json, license-gates.json"
     citation_notes: "Record CryoSPARC version, job graph, processing parameters, and export ledger."
     status: gated
-    notes: "No installer, license ID, secrets, project DB dump, or proprietary package in git or public images; runtime access only after operator gate. CryoSPARC public site listed v5.0.6 as latest on 2026-05-05 during the 2026-05-27 audit."
+    notes: "No installer, license ID, secrets, project DB dump, or proprietary package in git or public images; runtime access only after operator gate. The public release record listed v5.0.7 during the 2026-08-30 audit."
   cryosparc_tools:
     role: cryosparc_metadata_export_adapter
     image_family: metadata
@@ -218,8 +302,8 @@ software:
     image_family: model-build
     install_method: pip_or_source
     upstream_repo: "https://github.com/keitaroyam/servalcat"
-    upstream_release_tag: "0.4.131"
-    upstream_release_date: "2026-02-02"
+    upstream_release_tag: "0.4.142"
+    upstream_release_date: "2026-06-21"
     license_class: open_source_mpl_2
     license_gate: refmac_ccp4_gate_for_refmac_modes
     runpod_fit: strong
@@ -661,6 +745,10 @@ software:
     image_family: cryo-core
     install_method: conda_or_source_after_plugin_review
     upstream_docs: "https://scipion-em.github.io/docs/release-3.0.0/"
+    pypi_package: "scipion-em==3.11.0"
+    pypi_release_date: "2026-03-20"
+    xmipp_pypi_package: "scipion-em-xmipp==29.0.1"
+    xmipp_pypi_release_date: "2026-07-03"
     license_class: mixed_open_source_plugin_terms
     license_gate: plugin_terms_review
     runpod_fit: possible
@@ -669,7 +757,7 @@ software:
     runtime_artifacts: "scipion_project_manifest.json, plugin_license_manifest.json"
     citation_notes: "Record Scipion, Xmipp, and plugin versions."
     status: planned
-    notes: "Good provenance and conversion layer; plugin execution must preserve third-party license posture."
+    notes: "Good provenance and conversion layer; current package pins make the core and Xmipp plugin versions explicit. Plugin execution must preserve each invoked tool's license posture."
   eman2:
     role: cryoem_processing_validation_alternative
     image_family: cryo-core
@@ -684,6 +772,21 @@ software:
     citation_notes: "Record EMAN2/SPHIRE versions and command graph."
     status: planned
     notes: "Independent processing and validation cross-check lane; source-compliance review required for images."
+  eman2_e2gmm:
+    role: heterogeneity_second_opinion
+    image_family: cryo-core
+    install_method: eman2_runtime_after_subtool_review
+    upstream_repo: "https://github.com/cryoem/eman2"
+    upstream_docs: "https://blake.bcm.edu/emanwiki/EMAN2/e2gmm"
+    license_class: mixed_gpl_bsd
+    license_gate: source_compliance_and_subtool_dependency_review
+    runpod_fit: possible
+    gpu_class: "CPU/GPU depending EMAN2 build"
+    smoke_command: "e2gmm.py --help || e2help.py e2gmm"
+    runtime_artifacts: "e2gmm_run_manifest.json, heterogeneity_comparison_report.json"
+    citation_notes: "Record EMAN2 commit/version, e2gmm parameters, input particle/map provenance, and comparison target such as cryoDRGN or RECOVAR."
+    status: watch
+    notes: "EMAN2 mixed-dimensional Gaussian mixture heterogeneity method. Useful as an independent state/motion comparison, but inherits EMAN2 source-compliance and runtime/dependency posture."
   pyem:
     role: metadata_conversion
     image_family: cryo-core
@@ -734,8 +837,8 @@ software:
     role: cryoet_particle_picking
     image_family: cryo-core
     install_method: pip_or_source_after_dependency_review
-    upstream_repo: "https://github.com/chanzuckerberg/octopi"
-    upstream_docs: "https://chanzuckerberg.github.io/octopi/"
+    upstream_repo: "https://github.com/biohub/octopi"
+    upstream_docs: "https://biohub.github.io/octopi/"
     upstream_release_tag: "v1.6.0"
     upstream_release_date: "2026-06-09"
     license_class: open_source_mit_plus_dependency_terms_review
@@ -768,8 +871,8 @@ software:
     image_family: cryo-core
     install_method: pip_or_source
     upstream_repo: "https://github.com/SBC-Utrecht/pytom-match-pick"
-    upstream_release_tag: "0.13.2"
-    upstream_release_date: "2026-06-05"
+    upstream_release_tag: "0.14.0"
+    upstream_release_date: "2026-08-04"
     license_class: open_source_gplv2
     license_gate: source_compliance_for_images
     runpod_fit: strong
@@ -778,14 +881,14 @@ software:
     runtime_artifacts: "template_match_manifest.json, particle_pick_manifest.json"
     citation_notes: "Record pytom-match-pick version, template source, masks, tomogram inputs, and thresholding parameters."
     status: planned
-    notes: "GPU template-matching baseline for cryo-ET localization. Good non-ML comparison for public tomogram picking tasks."
+    notes: "GPU template-matching baseline for cryo-ET localization. Version 0.14.0 adds WarpTools metadata improvements, 3D CTF compatibility, whitening, and phase-randomization changes. Keep those parameters in run manifests."
   tomodrgn:
     role: cryoet_subtomogram_heterogeneity
     image_family: cryo-core
     install_method: source_after_dataset_and_dependency_review
     upstream_repo: "https://github.com/bpowell122/tomodrgn"
-    upstream_release_tag: "v1.0.3"
-    upstream_release_date: "2026-05-28"
+    upstream_release_tag: "v1.0.4"
+    upstream_release_date: "2026-07-13"
     license_class: open_source_gplv3_dataset_terms_review
     license_gate: source_compliance_dataset_checkpoint_review
     runpod_fit: possible
@@ -794,12 +897,14 @@ software:
     runtime_artifacts: "tomodrgn_run_manifest.json, latent_embeddings/, subtomogram_state_maps/"
     citation_notes: "Record tomoDRGN version, input tilt/subtomogram provenance, training parameters, and output maps."
     status: watch
-    notes: "Extends cryoDRGN-style continuous heterogeneity analysis to cryo-ET subtomograms. Keep watch until a small public fixture and runtime profile are pinned."
+    notes: "Extends cryoDRGN-style continuous heterogeneity analysis to cryo-ET subtomograms. Upstream requires raw, non-CTF-premultiplied particle series. Keep watch until that input contract, a small public fixture, and a runtime profile are pinned."
   aretomo3:
     role: cryoet_tilt_series_preprocessing
     image_family: cryo-core
     install_method: source_build
     upstream_repo: "https://github.com/czimaginginstitute/AreTomo3"
+    upstream_release_tag: "v2.2.2"
+    upstream_release_date: "2026-07-16"
     license_class: open_source_bsd_3_clause
     license_gate: none
     runpod_fit: possible
@@ -808,7 +913,22 @@ software:
     runtime_artifacts: "aretomo3_toolcheck.json, tilt_series_processing_manifest.json"
     citation_notes: "Record AreTomo3 version and tilt-series preprocessing parameters."
     status: planned
-    notes: "Core cryoET preprocessing lane. Nature Methods AreTomoLive paper on 2026-05-25 makes AreTomo3 plus DenoisET a strong live-processing path; keep raw tilt data and tomograms out of git."
+    notes: "Core cryo-ET preprocessing lane. Version 2.2.2 includes CTF and tilt-axis refinement changes. Record the relevant controls and keep raw tilt data and tomograms out of git."
+  flytomo:
+    role: live_cryoet_processing_and_diagnosis
+    image_family: cryo-core
+    install_method: runtime_binary_after_terms_review
+    upstream_repo: "https://github.com/SaiLi-Lab/FlyTomo"
+    upstream_paper: "https://www.nature.com/articles/s41467-026-75998-3"
+    license_class: academic_noncommercial_all_rights_reserved
+    license_gate: explicit_noncommercial_use_and_no_redistribution_review
+    runpod_fit: possible
+    gpu_class: "GPU runtime; exact requirements need review"
+    smoke_command: "test -x ./FlyTomo || test -x ./flyTomo"
+    runtime_artifacts: "flytomo_run_manifest.json, live_processing_diagnostics.json"
+    citation_notes: "Record FlyTomo binary version and checksum, use context, all invoked dependencies, input tilt-series provenance, configuration, and diagnostic outputs."
+    status: gated
+    notes: "On-the-fly cryo-ET processing and diagnosis platform. Upstream limits use to academic and noncommercial research and prohibits binary redistribution or modification without permission. Keep binaries, raw data, and runtime configuration outside public images and git."
   aretomolive:
     role: cryoet_live_preprocessing_pipeline
     image_family: cryo-core
@@ -864,8 +984,10 @@ software:
     install_method: pip_or_source
     upstream_docs: "https://copick.github.io/copick/"
     upstream_repo: "https://github.com/copick/copick"
-    upstream_release_tag: "v1.24.1"
-    upstream_release_date: "2026-05-05"
+    upstream_release_tag: "v1.27.0"
+    upstream_release_date: "2026-08-18"
+    pypi_package: "copick==1.26.1"
+    pypi_release_date: "2026-07-08"
     license_class: open_source_mit
     license_gate: none
     runpod_fit: strong
@@ -874,23 +996,23 @@ software:
     runtime_artifacts: "copick_config.json, annotation_manifest.json, ome_zarr_access_manifest.json"
     citation_notes: "Record copick version, storage backend, CZDP or OME-Zarr source, annotation classes, and linked tool versions."
     status: planned
-    notes: "Storage-agnostic cryoET project API with CZDP, OME-Zarr, Napari, ChimeraX, and MCP paths. Good default glue for bounded cellular cryoET workflows."
+    notes: "Storage-agnostic cryo-ET project API with CZDP, OME-Zarr, Napari, ChimeraX, and MCP paths. The upstream release is 1.27.0; PyPI remained at 1.26.1 during this audit. Pin the selected source and default to scoped writes."
   copick_mcp:
     role: cryoet_agent_project_exploration
     image_family: metadata
     install_method: pip_or_source_after_agent_tool_review
     upstream_repo: "https://github.com/copick/copick-mcp"
-    upstream_release_tag: "v0.6.0"
-    upstream_release_date: "2026-06-09"
+    upstream_release_tag: "v0.6.1"
+    upstream_release_date: "2026-06-29"
     license_class: open_source_mit
     license_gate: mcp_tool_security_review
     runpod_fit: strong
     gpu_class: "CPU"
-    smoke_command: "python -m copick_mcp.main --help || python -c 'print(\"copick-mcp placeholder\")'"
+    smoke_command: "python -m copick_mcp.main --help"
     runtime_artifacts: "copick_mcp_tool_manifest.json, read_only_project_inventory.json"
     citation_notes: "Record copick-mcp version, copick project config, MCP client, tools used, and read/write mode."
     status: planned
-    notes: "MCP server for copick read-only project exploration and CLI introspection. Keep write operations out of public examples unless a task declares expected output files."
+    notes: "Alpha MCP server for copick project exploration and CLI introspection. Default to read-only use; require an MCP security review and explicitly declared outputs before enabling writes."
   miss_alignment:
     role: cryoet_tilt_alignment_refinement
     image_family: cryo-core
@@ -936,6 +1058,51 @@ software:
     citation_notes: "Record EMDA version and validation commands."
     status: planned
     notes: "Useful local map/model FSC and local correlation validation lane."
+  resmap:
+    role: local_resolution_validation_watch
+    image_family: model-build
+    install_method: source_or_sbgrid_after_terms_review
+    upstream_docs: "https://resmap.sourceforge.net/"
+    upstream_repo: "https://github.com/akucukelbir/resmap"
+    license_class: cc_by_nc_nd_noncommercial_no_derivatives
+    license_gate: noncommercial_no_derivatives_terms_review
+    runpod_fit: not_primary
+    gpu_class: "CPU; legacy Python 2.7 environment"
+    smoke_command: "ResMap.py --help || python ResMap.py --help"
+    runtime_artifacts: "resmap_local_resolution.mrc, resmap_run_manifest.json"
+    citation_notes: "Record ResMap source/version, map input hashes, voxel size, mask policy, and local-resolution citation."
+    status: gated
+    notes: "Legacy Python 2.7 local-resolution tool with a noncommercial/no-derivatives license notice. It is not a primary provider lane; use only as a gated comparator after exact terms, environment isolation, and redistribution posture are reviewed."
+  monores_monodir:
+    role: local_and_directional_resolution_validation
+    image_family: model-build
+    install_method: scipion_xmipp_after_plugin_review
+    upstream_docs: "https://scipion-em.github.io/docs/release-3.0.0/docs/user/tutorials/modelBuilding/a102-localMonoRes.html"
+    upstream_paper: "https://www.nature.com/articles/s41467-019-13742-w"
+    license_class: mixed_scipion_xmipp_plugin_terms
+    license_gate: plugin_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "scipion3 --help || xmipp --help"
+    runtime_artifacts: "monores_resolution_map.mrc, monodir_directional_resolution_report.json"
+    citation_notes: "Record Scipion/Xmipp versions, MonoRes/MonoDir protocol settings, input maps, masks, and visualization outputs."
+    status: watch
+    notes: "MonoRes estimates local resolution and MonoDir decomposes local directional resolution/anisotropy. Prefer through Scipion/Xmipp after plugin license and artifact contracts are pinned."
+  fsc_q:
+    role: local_map_model_fit_validation
+    image_family: model-build
+    install_method: scipion_xmipp_after_plugin_review
+    upstream_repo: "https://github.com/I2PC/scipion-em-xmipp"
+    upstream_paper: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7782520/"
+    license_class: open_source_gplv3_plus_plugin_terms_review
+    license_gate: source_compliance_plugin_terms_review
+    runpod_fit: possible
+    gpu_class: "CPU"
+    smoke_command: "scipion3 --help || xmipp --help"
+    runtime_artifacts: "fsc_q_scores.csv, map_model_local_fit_report.json"
+    citation_notes: "Record Scipion/Xmipp version, map/model/half-map inputs, mask policy, and FSC-Q citation."
+    status: watch
+    notes: "FSC-Q gives local map-to-model support and overfitting signals. Useful in dossiers after Scipion/Xmipp plugin behavior is validated against small map/model fixtures."
   threed_strudel:
     role: local_map_model_validation
     image_family: model-build
@@ -1101,7 +1268,7 @@ software:
     image_family: provider-neutral
     install_method: nextflow_plugin
     upstream_repo: "https://github.com/nextflow-io/nf-prov"
-    upstream_registry: "https://registry.nextflow.io/plugins/nf-prov%401.7.0"
+    upstream_registry: "https://registry.nextflow.io/plugins/nf-prov@1.7.0"
     upstream_release_tag: "1.7.0"
     upstream_release_date: "2026-01-05"
     license_class: open_source_apache_2
@@ -1132,8 +1299,8 @@ software:
     image_family: provider-neutral
     install_method: system_package_or_hpc_module
     upstream_repo: "https://github.com/apptainer/apptainer"
-    upstream_release_tag: "v1.5.1"
-    upstream_release_date: "2026-06-04"
+    upstream_release_tag: "v1.5.3"
+    upstream_release_date: "2026-07-21"
     license_class: open_source_bsd_3_clause
     license_gate: none
     runpod_fit: not_primary
@@ -1180,8 +1347,8 @@ software:
     install_method: pip_or_source
     upstream_repo: "https://github.com/crs4/rocrate-validator"
     upstream_docs: "https://rocrate-validator.readthedocs.io/en/stable/"
-    upstream_release_tag: "0.10.0"
-    upstream_release_date: "2026-06-01"
+    upstream_release_tag: "0.11.3"
+    upstream_release_date: "2026-07-28"
     license_class: open_source_apache_2
     license_gate: none
     runpod_fit: strong
@@ -1213,8 +1380,8 @@ software:
     image_family: provider-neutral
     install_method: package_or_release_binary
     upstream_repo: "https://github.com/anchore/syft"
-    upstream_release_tag: "v1.45.1"
-    upstream_release_date: "2026-06-05"
+    upstream_release_tag: "v1.51.1"
+    upstream_release_date: "2026-08-27"
     license_class: open_source_apache_2
     license_gate: none
     runpod_fit: strong
@@ -1229,6 +1396,8 @@ software:
     image_family: provider-neutral
     install_method: package_or_release_binary
     upstream_repo: "https://github.com/sigstore/cosign"
+    upstream_release_tag: "v3.1.3"
+    upstream_release_date: "2026-08-06"
     license_class: open_source_apache_2
     license_gate: key_and_identity_policy_review
     runpod_fit: strong
@@ -1237,7 +1406,7 @@ software:
     runtime_artifacts: "cosign_verify.json, signature_policy_manifest.json"
     citation_notes: "Record Cosign version, image digest, certificate identity or key posture, Rekor inclusion if used, and verify output."
     status: planned
-    notes: "Signature verification helper for containers and binary artifacts. Prefer immutable digests and record verification outputs."
+    notes: "Signature verification helper for containers and binary artifacts. Version 3.1.3 includes a verification-bypass security fix; use a current patched release, prefer immutable digests, and record verification outputs."
   slsa_verifier:
     role: provenance_attestation_verification
     image_family: provider-neutral

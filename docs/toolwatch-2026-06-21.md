@@ -16,15 +16,15 @@ runnable path, a bounded public benchmark, or a source-backed license posture.
 
 ## Registry Updates
 
-| Area | Candidate | Posture | Useful update | CryoCore use |
+| Area | Candidate | Posture | Audited change | CryoCore use |
 | --- | --- | --- | --- | --- |
-| Map/model build | ModelAngelo `v1.0.18` | planned | June release updates install-script termination; `v1.0.17` nucleotide fixes remain relevant. | First-pass model building with version and weight hashes recorded. |
-| Map/model refine | Servalcat `0.4.131` | planned | MPL-2.0 refinement and map/model scoring tool for SPA. | Lightweight refinement and reporting lane; Refmac/CCP4 calls remain gated. |
+| Map/model build | ModelAngelo `v1.0.18` | planned | The June release updates install-script termination. Version `1.0.17` contains the preceding nucleotide fixes. | First-pass model building with version and weight hashes recorded. |
+| Map/model refine | Servalcat `0.4.131` | planned | MPL-2.0 refinement and map/model scoring tool for SPA. | Refinement and reporting lane. Refmac and CCP4 calls remain gated. |
 | Figures/review | Agentic PyMOL `v1.0.0` | watch | MIT MCP bridge for a live PyMOL session with structured readback. | Reference pattern for agent-operated figure and structure review tasks. |
 | Cryo-ET intake | CryoET Data Portal client `4.8.0` | planned | Public Python client with PyPI hashes and provenance metadata. | Default public cryo-ET metadata and bounded dataset discovery path. |
-| Cryo-ET project API | copick `v1.24.1` | planned | Registry now points to the current `copick/copick` repo. | Project and annotation glue for public CZDP or OME-Zarr examples. |
+| Cryo-ET project API | copick `v1.24.1` | planned | The registry points to the `copick/copick` repository. | Project and annotation layer for public CZDP or OME-Zarr examples. |
 | Cryo-ET agent API | copick-MCP `v0.6.0` | planned | MCP server for read-only project exploration and CLI introspection. | Lets an agent inspect copick projects and discover commands before running tools. |
-| Cryo-ET benchmark | POPSICLE | watch | June arXiv benchmark built from CryoET Data Portal datasets. | Regression fixture for segmentation and localization skills; data stays outside git. |
+| Cryo-ET benchmark | POPSICLE | watch | June arXiv benchmark built from CryoET Data Portal datasets. | Regression fixture for segmentation and localization skills. Keep data outside git. |
 | Cryo-ET picking | OCTOPI `v1.6.0` | planned | MIT copick-native 3D particle-picking package from CZI. | Public-data particle-picking lane after a small fixture is pinned. |
 | Cryo-ET STA | py2rely `v0.1.0` | gated | MIT adapter from AreTomo and copick metadata into RELION5 STA. | HPC/SLURM adapter when RELION and dependency posture are already clear. |
 | Cryo-ET picking | pytom-match-pick `0.13.2` | planned | GPL-2 GPU template matching package. | Non-ML particle-localization baseline for tomogram tasks. |
@@ -41,22 +41,22 @@ runnable path, a bounded public benchmark, or a source-backed license posture.
 
 ## Watch Notes
 
-These were useful to know about and stayed out of the registry in this pass:
+These candidates were reviewed but not added to the registry:
 
-| Candidate | Current posture | Reason |
+| Candidate | Posture | Reason |
 | --- | --- | --- |
-| CryoDiff | watch | June map-enhancement preprint; no public code found in this scan. |
-| 3dcon | watch | June tomogram denoising preprint; wait for source, terms, and fixture. |
-| DMcloud | watch | Local map-fitting preprint; no runnable package found in this scan. |
-| Multiscale conformations from cryo-EM images | watch | June arXiv method; research signal with no tool lane yet. |
-| CryoDRGN-AI / `drgnai` | watch | Useful ab initio reconstruction direction; needs runtime and dependency review before a public lane. |
-| AR-Decon | watch | Promising non-ML deconvolution path; add after release and fixture posture are clearer. |
+| CryoDiff | watch | June map-enhancement preprint. No public code was found in this audit. |
+| 3dcon | watch | June tomogram denoising preprint. Source, terms, and a fixture are not available. |
+| DMcloud | watch | Local map-fitting preprint. No runnable package was found in this audit. |
+| Multiscale conformations from cryo-EM images | watch | June arXiv method with no tool lane. |
+| CryoDRGN-AI / `drgnai` | watch | Ab initio reconstruction method that needs runtime and dependency review before a public lane. |
+| AR-Decon | watch | Non-ML deconvolution method that needs a release record and fixture. |
 | CryoFM / CryoLVM / CryoNet.Refine | watch | Already tracked as map-enhancement/refinement directions where weights and downstream checks matter. |
-| SABER, TopCUP, TomoSwin3D, MemBrain | watch | Relevant cryo-ET segmentation/picking tools, but less useful than copick, OCTOPI, and pytom-match-pick for a first public agent lane. |
-| cryoAgent and CryoWizard | watch/gated | Agentic cryo-EM automation references; execution inherits third-party tool and license gates. |
-| ChimeraX MCP server | watch | Useful bridge idea, but young and still inherits ChimeraX terms. |
-| Snakemake RO-Crate report plugin | watch | Interesting provenance adapter; upstream production posture is not ready. |
-| PROV-AGENT and schema-gated scientific-agent preprints | docs watch | Good concepts for agent ledgers; no runtime dependency needed. |
+| SABER, TopCUP, TomoSwin3D, MemBrain | watch | Cryo-ET segmentation and picking tools. Copick, OCTOPI, and pytom-match-pick have higher priority for the first public agent lane. |
+| cryoAgent and CryoWizard | watch/gated | Cryo-EM automation references. Execution inherits third-party tool and license gates. |
+| ChimeraX MCP server | watch | Agent bridge that inherits ChimeraX terms and needs a stable interface. |
+| Snakemake RO-Crate report plugin | watch | Provenance adapter without a production-ready upstream posture. |
+| PROV-AGENT and schema-gated scientific-agent preprints | docs watch | Design references for agent ledgers. No runtime dependency is needed. |
 
 ## Sources Checked
 
@@ -70,14 +70,14 @@ These were useful to know about and stayed out of the registry in this pass:
 - copick: https://github.com/copick/copick
 - copick-MCP: https://github.com/copick/copick-mcp
 - POPSICLE: https://arxiv.org/abs/2606.10255
-- OCTOPI: https://github.com/chanzuckerberg/octopi
+- OCTOPI: https://github.com/biohub/octopi
 - py2rely: https://github.com/chanzuckerberg/py2rely
 - pytom-match-pick: https://github.com/SBC-Utrecht/pytom-match-pick
 - tomoDRGN: https://github.com/bpowell122/tomodrgn
 - Workflow Run RO-Crate profile: https://www.researchobject.org/workflow-run-crate/profiles/provenance_run_crate/
 - Workflow Run RO-Crate releases: https://github.com/ResearchObject/workflow-run-crate/releases
 - nf-prov: https://github.com/nextflow-io/nf-prov
-- nf-prov registry: https://registry.nextflow.io/plugins/nf-prov%401.7.0
+- nf-prov registry: https://registry.nextflow.io/plugins/nf-prov@1.7.0
 - rocrate-validator: https://github.com/crs4/rocrate-validator
 - bagit-python: https://github.com/LibraryOfCongress/bagit-python
 - Apptainer releases: https://github.com/apptainer/apptainer/releases

@@ -73,9 +73,9 @@ reconstruction.
 particle stack. They drive the resolution estimate, local resolution maps,
 and sharpening or post-processing parameters.
 
-`FSC`: Fourier Shell Correlation. The resolution metric derived from
-half-maps. The 0.143 threshold is standard for reporting "gold-standard"
-resolution.
+`FSC`: Fourier Shell Correlation. A resolution metric derived from half-maps. A
+0.143 cutoff is commonly used for half-map gold-standard resolution. The
+estimate depends on masking and processing choices.
 
 `resolution`: The smallest spatial feature resolved in a map, reported in
 ångströms. Lower numbers are better.
@@ -87,8 +87,8 @@ sharpening the reconstruction. They are different quantities used in
 different contexts and reported separately.
 
 `heterogeneity`: The structural variability inside a particle stack. Multiple
-conformational or compositional states can coexist and are separated by 3D
-classification.
+conformational or compositional states may coexist. Classification and
+continuous-heterogeneity methods can investigate them.
 
 `map / model fit`: The agreement between an atomic model and the underlying
 density map. Metrics include cross-correlation, Q-score, and per-residue
@@ -109,10 +109,10 @@ One-liners for tools referenced in this repo. Full posture lives in
 ### Reconstruction and processing
 
 `RELION`: Single-particle reconstruction pipeline covering particle picking,
-2D and 3D classification, and refinement. Widely used; open source.
+2D and 3D classification, and refinement. It is open-source software.
 
-`CryoSPARC`: Reconstruction pipeline with strong heterogeneity handling
-(3D variability, 3D flex). Commercial license with an academic free tier.
+`CryoSPARC`: Reconstruction pipeline with 3D variability and 3D flex
+workflows. Commercial license with an academic free tier.
 
 `MotionCor3`: GPU-accelerated frame alignment for cryo-EM movies.
 
@@ -139,7 +139,7 @@ for cryo-EM model refinement and validation utilities used during deposition.
 density inspection, and publication-quality images.
 
 Several adjacent tools are common in modern cryo-EM model work but outside the
-current CryoCore lane coverage: `ISOLDE` (interactive model building inside
+CryoCore lanes: `ISOLDE` (interactive model building inside
 ChimeraX), `Servalcat` (refinement and map calculation for cryo-EM in CCP-EM
 and Phenix workflows), and CCP-EM components such as `Buccaneer`. Add a
 posture entry for any of these when a campaign needs them.

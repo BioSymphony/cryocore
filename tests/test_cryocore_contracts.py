@@ -46,6 +46,40 @@ def test_shared_tooling_doc_keeps_cryo_model_building_in_cryocore() -> None:
     assert "belongs in CryoCore" in tooling
 
 
+def test_bundled_public_policy_matches_canonical_files() -> None:
+    mirrors = {
+        "README.md": [
+            "skills/cryocore/references/README.md",
+            "skills/cryocore-toolwatch/references/README.md",
+        ],
+        "references/software-registry.yaml": [
+            "skills/cryocore/references/software-registry.yaml",
+            "skills/cryocore-toolwatch/references/software-registry.yaml",
+        ],
+        "docs/tooling-and-licensing.md": [
+            "skills/cryocore/references/tooling-and-licensing.md",
+            "skills/cryocore-toolwatch/references/tooling-and-licensing.md",
+            "skills/cryocore-heterogeneity-jury/references/tooling-and-licensing.md",
+            "skills/cryocore-figure-dossier/references/tooling-and-licensing.md",
+        ],
+        "docs/toolwatch-2026-08-30.md": [
+            "skills/cryocore/references/toolwatch-2026-08-30.md",
+            "skills/cryocore-toolwatch/references/toolwatch-2026-08-30.md",
+        ],
+        "PUBLIC_RELEASE.md": [
+            "skills/cryocore-public-safety/references/PUBLIC_RELEASE.md",
+        ],
+    }
+    drift = []
+    for canonical, copies in mirrors.items():
+        expected = (ROOT / canonical).read_text()
+        for copy in copies:
+            path = ROOT / copy
+            if not path.exists() or path.read_text() != expected:
+                drift.append(f"{copy} != {canonical}")
+    assert drift == []
+
+
 def test_motioncor3_is_open_toolcheck() -> None:
     lane = json.loads((ROOT / "modules/lane-modules/motioncor3.toolcheck.v1.json").read_text())
     assert lane["mode"] == "toolcheck"

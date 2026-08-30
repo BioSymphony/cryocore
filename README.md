@@ -2,81 +2,56 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
-[![Release gate](https://img.shields.io/badge/release%20gate-make%20release--check-brightgreen.svg)](#five-minute-start)
+[![Release check](https://img.shields.io/badge/release%20check-make%20release--check-informational.svg)](#five-minute-start)
 [![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-orange.svg)](#status)
 
-**A cryo-EM skill pack for agents that need to plan, run, and review long-horizon structural work.**
+**A cryo-EM skill pack for agents that plan, validate, and review structural workflows.**
 
 ![BioSymphony CryoCore banner](docs/assets/cryocore-banner.jpg)
 
-CryoCore gives coding agents a practical operating layer for cryo-EM work. An
-agent can read the skills, choose the right workflow, keep inputs and outputs
-organized, prepare figures, compare structures, and set up local or cloud runs
-without inventing a process from scratch.
+CryoCore gives coding agents a control layer for cryo-EM work. An
+agent can choose a workflow, organize declared inputs and outputs, prepare
+figures, compare structures, and assemble local or operator-gated provider
+packets.
 
-The repo supplies skill instructions, prompt fixtures, JSON Schema contracts,
-tool-lane records, provider launch templates, and local checkers your agents can
-read directly and act on. The same workflow shape runs on a laptop with public
-accessions or on RunPod, AWS Batch, SSH/HPC, neocloud VMs, and other providers
-you already use. The contracts keep long-running agent work legible across
-handoffs.
+The repository supplies skill instructions, prompt fixtures, JSON Schema
+contracts, tool-posture records, provider templates, and local validators.
+Public checks validate contracts. They do not launch providers or package
+gated tools. Keep raw data, maps, private structures, model weights, license
+files, credentials, and heavy outputs outside this repository.
 
 ![CryoCore at a glance: inputs become contracts, pass execution gates, and end as bounded review outputs](docs/assets/cryocore-overview.svg)
 
-## How You Use It
+## How It Works
 
-Point your agent at this repo and hand it a cryo-EM goal. The agent reads
+Point your agent at this repository and give it a cryo-EM goal. The agent reads
 [AGENTS.md](AGENTS.md), the relevant skill under [skills/](skills/), and the
 schemas under [modules/schemas/](modules/schemas/). It can fetch
 public-accession metadata when the workflow calls for it, inspect map/model
-inputs, draft figure plans, compare states, prepare provider lanes, and return a
-clear work package with methods, provenance, artifacts, caveats, and next steps.
+inputs, draft figure plans, compare states, prepare provider packets, and return
+a review package with methods, provenance, artifacts, caveats, and next steps.
 
-You stay the principal. You set the goal, you open gates that need human
-authorization (paid GPU time, license acceptance, raw-data access, claim
-escalation), and you review what your agent produces. The commands throughout
-this README are what your agent runs on your behalf. You can run them yourself
-when you want to verify a step or explore the repo directly.
+You remain responsible for the goal, approvals, and output review. Human
+authorization is required for paid GPU time, license acceptance, raw-data
+access, and claim escalation. Provider execution remains operator-owned.
 
-## What Your Agent Can Do
+## Capabilities
 
-The pieces an agent reads and acts on while doing real cryo-EM work:
-
-- **Map/model review** starts from public EMDB/PDB accessions or operator-declared inputs and asks what the density, model, fit metrics, and caveats support.
-- **Figure and state workflows** route ChimeraX, Mol*, Coot, PyMOL, Blender, heterogeneity, and comparison work into reproducible figure or comparison outputs.
-- **Cryo-EM lane modules** describe real stages: raw movies, corrected micrographs, particles, maps, models, figures, and state-review artifacts. See `modules/lane-modules/raw-to-map.v1.json`, `map-to-model.v1.json`, and `figure-dossier.v1.json`.
-- **Tool posture docs** name which cryo-EM tools fit which lane and under what license terms (RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, and more in `references/software-registry.yaml`). The agent picks tools from this catalog rather than guessing.
-- **Provider profiles** for RunPod, AWS Batch, AWS EC2, SSH/HPC Slurm, neocloud GPU pod (e.g. Lambda), generic cloud GPU VM, and local workstation give the agent a shape for launching those tools on real GPUs, with budget and cleanup gates baked in. Users with custom compute can author their own profile against the same schema. See [Compute Backends](docs/compute-backends.md#custom-providers).
-- **Schemas, ledgers, and checkers** type the intermediate outputs and check artifacts, hashes, cost records, cleanup proof, and claim boundaries so a follow-on agent or reviewer can pick up the work without re-deriving context.
-
-The review outputs, figure manifests, provider plans, and issue waves under [Use Cases](docs/use-cases.md) show how those pieces come together for real goals.
-
-## Core Capabilities
-
-| Capability | What it gives your agents |
+| Capability | Output |
 | --- | --- |
-| Map/model and density review | Hand an agent EMDB/PDB IDs or operator-declared inputs and get back summaries of maps, models, density support, fit metrics, caveats, and follow-up work. |
+| Map/model and density review | Give an agent public accession IDs or operator-declared artifacts and receive summaries of the available maps, models, fit metrics, caveats, and follow-up work. Missing artifacts remain explicit in the claim ledger. |
 | Figure and state workflows | Prepare reproducible structural figures, renderer routes, comparison axes, and heterogeneity or conformational-state review plans. |
-| Real cryo-EM tool routing | RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, Mol*, PyMOL, and related tools stay mapped to lanes, licenses, and runtime boundaries. |
-| Local or cloud, same shape | RunPod, AWS Batch, SSH/HPC, neocloud, generic cloud VM, or laptop CPU. Provider profiles, stage contracts, launch prep, and budget/cleanup gates stay uniform across them. |
-| Works with the harness you already use | Symphony, Linear with Claude or Codex workers, Claude Code, Codex CLI, or your own orchestration. The skill pack, schemas, and validators are harness-agnostic. |
+| Cryo-EM tool routing | RELION, MotionCor3, Warp/M, Topaz, cryoDRGN, ModelAngelo, Coot, Phenix, ChimeraX, Mol*, PyMOL, and related tools stay mapped to lanes, licenses, and runtime boundaries. |
+| Provider-neutral preparation | RunPod, AWS Batch, SSH/HPC, neocloud, generic cloud VM, and local workstation profiles use the same stage contracts, launch preparation, and budget and cleanup gates. |
+| Works with different agent harnesses | Single-agent terminals, tracker-driven workers, and custom orchestration can use the same skills, schemas, and validators. |
 | Handoff layer for agent work | Artifacts, hashes, checker outputs, cost records, cleanup proof, provenance, and claim boundaries are recorded before a result is treated as complete. |
 
-Every tool the agent picks routes through one of three license lanes:
+Lane modules describe stages from raw movies through figures and state review.
+Schemas, ledgers, and validators preserve inputs, artifacts, hashes,
+provenance, cost records, cleanup proof, and claim boundaries for handoff.
+Every tool routes through one of three license lanes:
 
 ![Tool lane routing: open, watch, and runtime-gated lanes by license posture](docs/assets/tool-lane-routing.svg)
-
-## What You Can Do With It
-
-| Use case | What CryoCore gives you |
-| --- | --- |
-| Point an agent at a cryo-EM repo | Skills, prompts, docs, schemas, and check commands that turn loose requests into executable structural workflows. |
-| Review EMDB/PDB accessions | Input audits, map/model summaries, density-support checks, figures, provenance, caveats, and bounded claims. |
-| Prepare figure or state work | Renderer routes, figure manifests, methods/provenance text, heterogeneity comparison axes, and reproducibility notes. |
-| Prepare cloud or HPC execution lanes | Provider profiles, stage contracts, launch-request prep, budget gates, cleanup requirements, and artifact expectations. |
-| Run agent issue waves | Tracker-ready templates, labels, DAGs, worker outcome blocks, and reference checks. |
-| Review a provider run | Checks artifacts, hashes, cost records, cleanup proof, and allowed claims before a stage is treated as complete. |
-| Track cryo-EM tool posture | Open/watch/gated registry records with license and image-packaging boundaries. |
 
 See [Workflow Blueprints](docs/workflows.md) for how to choose a path,
 [Goal Orchestration](docs/goal-orchestration.md) for `/goal`-style agent setup,
@@ -114,9 +89,7 @@ The `Claim ceiling` column uses CryoCore's claim ladder. See
 
 ## Five-Minute Start
 
-These commands set up the toolkit and run the first demo. Your agent will
-execute them once it is pointed at the repo. You can also run them yourself
-to confirm the demo works on your machine before handing the keys to an agent.
+Install the development requirements, then run the local demo:
 
 ```bash
 python3 -m pip install -r requirements-dev.txt
@@ -142,7 +115,7 @@ What the first run gives you:
 | `dossier_manifest.json` | Machine-readable inputs, artifacts, provenance, and review state. |
 | `runpod-execution.tar.gz` | Portable artifact bundle shape used later by provider review. |
 
-No run yet? Inspect the static sample shape in
+To inspect an example without running the demo, open
 [T2R14 Open Dossier Preview](examples/t2r14-open-dossier-preview/).
 
 ![T2R14 dossier shape: input audit, then dossier artifacts, then claim boundary](docs/assets/demo-gallery/t2r14-preview.svg)
@@ -171,17 +144,18 @@ python3 -m json.tool .runtime/t2r14-open-dossier/status.json
 
 ## Agent Prompt
 
-Paste this into your coding agent from the repo root. This is the canonical
-prompt; [docs/agent-quickstart.md](docs/agent-quickstart.md) uses the same one.
+Paste this into your coding agent from the repository root. This is the
+canonical prompt. [docs/agent-quickstart.md](docs/agent-quickstart.md) uses the
+same prompt.
 
 ```text
 Use the CryoCore skill pack in this repo. Stay local. Read AGENTS.md,
 README.md, docs/goal-orchestration.md, docs/workflows.md, docs/use-cases.md,
-and the relevant skill under skills/. Build a useful cryo-EM map/model review,
+and the relevant skill under skills/. Build a claim-bounded cryo-EM map/model review,
 figure workflow, state comparison, provider plan, or artifact package. Keep
 private data, secrets, raw or heavy artifacts, provider logs, model weights,
 and license files out of git and public outputs. Run the smallest relevant
-checks first, then `make release-check` when the task is release-readiness.
+checks first, then `make release-check` for release-readiness tasks.
 Report exact artifacts, claim levels, check results, and remaining issues.
 ```
 
@@ -194,20 +168,21 @@ Copying this into another repo? Start with [Adoption Guide](docs/adoption-guide.
 
 ![Harness compatibility](docs/assets/harness-patterns.svg)
 
-CryoCore is built so any agent stack can drive it. A few patterns teams already use:
+CryoCore is designed so different agent stacks can drive the same public
+contracts. Example integration patterns:
 
 | Pattern | How it runs | Where to start |
 | --- | --- | --- |
-| Symphony with Codex workers | Symphony dispatches autonomous Codex (gpt-5.x) workers against Linear issues; each worker reads the relevant CryoCore skill and reports an outcome block. | [templates/symphony-cryocore.WORKFLOW.md](templates/symphony-cryocore.WORKFLOW.md), [docs/linear-orchestration.md](docs/linear-orchestration.md) |
-| Linear with Claude workers | Linear holds the campaign DAG and labels; Claude Code or Claude API agents pick up issues, read the skill pack, and produce review-ready artifacts. | [templates/linear-issue.md](templates/linear-issue.md), [docs/agent-quickstart.md](docs/agent-quickstart.md) |
-| Claude Code or Codex CLI in your terminal | One agent reads `AGENTS.md`, the chosen skill, and the relevant validators, then drives a single mission end to end. | [Agent Prompt](#agent-prompt), [skills/](skills/) |
+| Symphony with agent workers | Symphony dispatches bounded workers against tracker issues. Each worker reads the relevant CryoCore skill and reports an outcome block. | [templates/symphony-cryocore.WORKFLOW.md](templates/symphony-cryocore.WORKFLOW.md), [docs/linear-orchestration.md](docs/linear-orchestration.md) |
+| Tracker-managed workers | A tracker holds the campaign graph and labels while compatible workers read the skill pack and produce review-ready artifacts. | [templates/linear-issue.md](templates/linear-issue.md), [docs/agent-quickstart.md](docs/agent-quickstart.md) |
+| Terminal agent | One agent reads `AGENTS.md`, the chosen skill, and the relevant validators, then drives a bounded mission. | [Agent Prompt](#agent-prompt), [skills/](skills/) |
 | Your own orchestration | Every contract is plain JSON Schema or Markdown. Wire CryoCore into the orchestration you already run. | [docs/agent-skill-guide.md](docs/agent-skill-guide.md), [modules/schemas/](modules/schemas/) |
 
-The same skill pack supports a single-agent session on a laptop, a multi-day
-campaign with dozens of issues running in parallel, and a cloud or HPC
-dispatch with provider-neutral launch contracts and artifact proof.
+The skill pack supports a bounded local task, a staged multi-issue
+campaign, and operator-gated cloud or HPC work with provider-neutral contracts
+and artifact evidence.
 
-Local or cloud, the contracts stay the same:
+Local and remote workflows use the same contracts:
 
 ![Local or cloud, same shape](docs/assets/local-or-cloud-topology.svg)
 
@@ -224,8 +199,8 @@ package is on the roadmap.
 
 ## Core Workflow
 
-The shape a mission follows from starting goal to useful structural output.
-Your agent carries each step. You step in at the gates.
+Each mission follows these steps. The agent performs the work, and the operator
+approves gated actions.
 
 ![Mission arc: user goal, goal brief, wave plan, execution, review output, with the human and agent roles at each step](docs/assets/mission-arc.svg)
 
@@ -255,12 +230,11 @@ screening stacks.
 
 ## Handoff Layer
 
-CryoCore keeps the working record explicit so an agent can carry work across
-days or weeks and hand it to a human reviewer with nothing missing:
+CryoCore records the following information for multi-day work and human review:
 
 - the public accession, operator dataset, or derived artifact used as input
 - the tool lane that was planned, gated, or executed
-- the stage that actually completed
+- the completed stage
 - the artifacts that were produced and hashed
 - the licenses or use-context approvals required
 - the claims or next steps supported by the artifacts
@@ -309,7 +283,7 @@ The shape of one mission, at a glance:
    +-------------------------------------------+
 ```
 
-## Repo Layout
+## Repository Layout
 
 ![Repo layout](docs/assets/repo-layout-tree.svg)
 
@@ -332,7 +306,7 @@ tests/            Lightweight validator tests
 
 </details>
 
-## High-ROI Assets
+## Key Assets
 
 - `modules/lane-modules/raw-to-map.v1.json`, `map-to-model.v1.json`, and `figure-dossier.v1.json`: scientific lane shapes for processing, model review, and figures.
 - `scripts/cryocore/t2r14_open_dossier.py`, `poltheta_map_model_dossier.py`, and `structure_jury_dossier.py`: runnable public-accession review demos.
@@ -343,7 +317,7 @@ tests/            Lightweight validator tests
 - `scripts/cryocore/contract_self_check.py`: checks that real provider results are backed by real artifacts rather than mocks, fixtures, planned-only entries, or fallbacks.
 - `scripts/cryocore/public_snapshot_check.py`: scans a public snapshot for secrets, heavy cryo-EM artifacts, local paths, and private execution markers.
 - `scripts/cryocore/runpod_scope_check.py`: scans public bridge manifests, inline source bundles, public service scope, and prep-only gates.
-- `scripts/cryocore/runpod_reference_check.py`: confirms public entrypoints are present and resume commands are current.
+- `scripts/cryocore/runpod_reference_check.py`: confirms that public entrypoints exist and resume commands match the checked-in files.
 - `docs/agent-skill-guide.md` and `docs/prompt-library.md`: agent workflows and reusable prompt patterns.
 - `docs/workflows.md`: workflow selector for public accessions, agents, cloud resources, Linear issue waves, and provider review.
 - `skills/cryocore-public-safety/SKILL.md`: public-release review for privacy, secrets, provider risk, and claims.
@@ -372,7 +346,9 @@ See [Split Evaluation](docs/split-evaluation.md) and
 - [Pol Theta Map/Model Dossier](demos/poltheta-map-model-dossier/): public EMDB/PDB/wwPDB validation review shape for a map/model lane.
 - [Dual Structure Comparison](demos/structure-jury-dual-dossier/): joins two public deposited-structure lanes into one review package.
 
-Demo launch manifests are public scaffolds for the prep stage. Paid provider execution is operator-initiated, uses current credentials kept outside the repo, and is reviewed against fetched, hashed artifacts.
+Demo launch manifests are public scaffolds for the prep stage. An operator must
+initiate paid provider execution and keep credentials outside the repository.
+Review provider results against fetched and hashed artifacts.
 
 ## Quickstart
 
@@ -381,11 +357,10 @@ agent-first path is [Agent Quickstart](docs/agent-quickstart.md).
 
 ## Current Toolwatch
 
-See [Toolwatch 2026-06-21](docs/toolwatch-2026-06-21.md) for the
-source-backed June update: cryo-ET public-data tooling, agent-facing project
-APIs, workflow provenance helpers, and a small set of map/model review tools.
-[Toolwatch 2026-05-27](docs/toolwatch-2026-05-27.md) and
-[Toolwatch 2026-05-15](docs/toolwatch-2026-05-15.md) remain as history. See
+See [Toolwatch 2026-08-30](docs/toolwatch-2026-08-30.md) for the latest
+source-backed tool and repository audit. The [July](docs/toolwatch-2026-07-05.md),
+[June](docs/toolwatch-2026-06-21.md), and [May](docs/toolwatch-2026-05-27.md)
+notes remain as historical context. See
 [Workflow Orchestration Provenance](docs/workflow-orchestration-provenance.md)
 and [Public Accession APIs](docs/public-accession-apis.md) for the recommended
 provenance and metadata-helper direction.
@@ -422,21 +397,21 @@ make release-check
 
 ## Status
 
-Pre-alpha public release. CryoCore currently supports agent-guided map/model
+Pre-alpha public release. CryoCore supports agent-guided map/model
 review on public accessions, figure and state workflow planning, provider
 preflight, contract validation, provider-run review templates and fixtures,
 Linear-style campaign planning, tool and license posture tracking, and
 claim-bounded structural evidence packets. The CPU-only T2R14 demo runs end to
-end on a laptop; paid provider lanes ship as prep-mode contracts that an
-operator executes outside the public repo. The rigor in the contracts is what
-lets agents move quickly on workflows that later touch expensive GPU compute,
-gated scientific tools, and heavy artifacts.
+end on a laptop. Paid provider lanes ship as prep-mode contracts that an
+operator executes outside the public repository. The contracts preserve the
+approvals and evidence required for workflows that use paid GPU compute, gated
+scientific tools, or heavy artifacts.
 
 ## Documentation Map
 
 - [Tour](docs/tour.md): fifteen-minute guided walk through the repo, with a paste-into-agent prompt at the end.
 - [Public Quickstart](docs/public-quickstart.md): first commands and demo outputs.
-- [Demos](demos/README.md): three runnable public demos indexed by complexity and time.
+- [Demos](demos/README.md): one local public demo plus two operator-owned workflow preparations.
 - [Mission Catalog](docs/mission-catalog.md): menu of seed missions an agent can take on, sorted from smallest to largest.
 - [Pol Theta Walkthrough](docs/missions/pol-theta-walkthrough.md): narrative end-to-end mission from broad goal to map/model review.
 - [Agent Quickstart](docs/agent-quickstart.md): copy-paste agent prompt and routing.
@@ -459,7 +434,7 @@ gated scientific tools, and heavy artifacts.
 - [Privacy Threat Model](docs/privacy-threat-model.md): privacy and release-risk controls.
 - [Troubleshooting](docs/troubleshooting.md): common validation failures.
 - [Public Switch Checklist](docs/public-switch-checklist.md): local-to-public publishing checklist.
-- [Glossary](docs/glossary.md): public terms and internal orchestration vocabulary.
+- [Glossary](docs/glossary.md): cryo-EM and CryoCore terminology.
 - [FAQ](FAQ.md) and [Roadmap](ROADMAP.md): community orientation and next milestones.
 - [Governance](GOVERNANCE.md) and [Maintainers](MAINTAINERS.md): review and release ownership.
 - [Agent Task Prompts](examples/agent-tasks/README.md): prompt fixtures for agents.

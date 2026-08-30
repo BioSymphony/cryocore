@@ -1,6 +1,6 @@
 # Workflow Blueprints
 
-CryoCore's superpowers are reusable scientific workflows with a contract-backed
+CryoCore provides reusable scientific workflows with a contract-backed
 trust layer: declared inputs, map/model review steps, figure and state outputs,
 allowed compute, expected artifacts, validation commands, claim ceilings, and
 provider evidence. Use this page to choose the right workflow before asking an
@@ -31,8 +31,9 @@ python3 -m pip install -r requirements-dev.txt
 make demo-local
 ```
 
-This fetches only public coordinate metadata used by the demo and writes ignored
-output under `.runtime/`. The useful lesson is the shape of the review:
+This fetches public RCSB metadata and a PDB mmCIF coordinate file. It does not
+download the EMDB map. The command writes output under ignored `.runtime/`.
+The demo shows the review structure:
 inputs, generated report, figures, claim boundaries, provenance, and validation
 status.
 
@@ -59,9 +60,9 @@ weights, or license files. Return the workflow plan, artifacts, validation
 results, claim ceiling, blockers, and residual risk.
 ```
 
-Good agent tasks are specific. Ask for "public accession map/model review for
-EMDB/PDB IDs" or "provider run review for these fetched artifacts", not "run
-cryo-EM".
+Write a specific agent task. For example, request a "public accession map/model
+review for these EMDB/PDB IDs" or a "provider run review for these fetched
+artifacts." Do not use a broad request such as "run cryo-EM."
 
 Minimum validation:
 
@@ -75,8 +76,8 @@ make public-snapshot-check
 ## 3. Public Accession Review
 
 Use this when the inputs are public accession IDs or small public metadata
-fixtures. This is the best public-facing scientific demo because it produces a
-useful, inspectable map/model review from released accessions.
+fixtures. The workflow produces an inspectable map/model review from released
+accessions.
 
 Start from:
 
@@ -122,7 +123,7 @@ make launch-preflight-prep
 ```
 
 `make launch-preflight-real` is stricter and is expected to fail for the public
-prep manifests until a real operator supplies a digest-pinned image, 40-character
+prep manifests until an operator supplies a digest-pinned image, 40-character
 public commit SHA, runtime credentials outside git, and launch authorization.
 
 For RunPod-style prep, a worker can generate a local launch request:
@@ -154,7 +155,7 @@ Start from:
 - `templates/linear-issue.md`
 - `templates/symphony-cryocore.WORKFLOW.md`
 
-Practical wave order:
+Wave order:
 
 1. Keep future and cost-bearing work in `Backlog`.
 2. Move only the first local/prep wave to `Todo`.
@@ -198,7 +199,7 @@ Local fixture check:
 make provider-closeout-check
 ```
 
-Real provider review should use the same contract shape against fetched
-artifacts, then report blockers first. Missing artifacts, hash mismatches,
+For provider review, apply the contract to fetched artifacts and report
+blockers first. Missing artifacts, hash mismatches,
 absent cost reports, or missing cleanup proof force the result to `blocked`,
 `partial`, `degraded`, or `failed`.

@@ -1,26 +1,27 @@
 # Demos
 
-Three runnable public demos. Each one shows a different cryo-EM workflow your
-agent can run with public-accession inputs and no credentials.
+Three public workflow examples. T2R14 runs locally without credentials. The Pol
+Theta and Dual Structure examples provide local preparation checks and optional
+operator-owned execution.
 
-Pick a demo by what you want your agent (or you) to see first.
+Select an example by its output and execution requirements.
 
 | Demo | Runtime | Complexity | What it shows you |
 | --- | --- | --- | --- |
-| [T2R14 Open Dossier](t2r14-open-dossier/) | ~1 minute, CPU-only | Beginner | The review shape end to end: declared inputs, chain and ligand summaries, SVG figures, provenance, claim boundaries, and a manifest. Best first run. |
-| [Pol Theta Map/Model Dossier](poltheta-map-model-dossier/) | Prep check ~1 minute; real run is operator-owned | Intermediate | A full map and model lane with EMDB map headers, deposited PDB model, AMP-PNP ligand neighborhood, wwPDB report intake, and density-support checks. |
-| [Dual Structure Comparison](structure-jury-dual-dossier/) | Prep check ~1 minute; real run is operator-owned | Intermediate | Two public deposited-structure lanes joined into one review. Useful for comparing two structural interpretations with the same workflow shape. |
+| [T2R14 Open Dossier](t2r14-open-dossier/) | ~1 minute, CPU-only | Beginner | Declared inputs, chain and ligand summaries, SVG figures, provenance, claim boundaries, and a manifest. |
+| [Pol Theta Map/Model Dossier](poltheta-map-model-dossier/) | Prep check ~1 minute. Execution is operator-owned. | Intermediate | EMDB map headers, a deposited PDB model, an AMP-PNP ligand neighborhood, wwPDB report intake, and density-support checks. |
+| [Dual Structure Comparison](structure-jury-dual-dossier/) | Prep check ~1 minute. Execution is operator-owned. | Intermediate | Two public deposited-structure lanes joined into one review package for consistent comparison. |
 
 ## How to start
 
-The fastest first command from a fresh checkout:
+From a fresh checkout, run:
 
 ```bash
 make demo-local
 ```
 
-That runs the T2R14 demo. Output lands under `.runtime/t2r14-open-dossier/`,
-which is gitignored. The headline artifacts are:
+This command runs the T2R14 demo. It writes output to the ignored
+`.runtime/t2r14-open-dossier/` directory. The primary artifacts are:
 
 - `artifacts/report.html`: human-readable review with inputs, figures, and methods
 - `artifacts/claim_ledger.md`: claim boundaries and caveats
@@ -37,8 +38,8 @@ make demo-structure-jury-prep-check
 These two targets validate the bridge manifests with the operator-owned
 provider bridge CLI, defaulting to `symphony-neocloud-bridge`. If you do not
 have that CLI installed, the targets will print a clear message and exit. The
-bridge-manifest JSON files themselves are in
-[runpod/bridge-manifests/](../runpod/bridge-manifests/) and can be inspected
+bridge-manifest JSON files are in
+[runpod/bridge-manifests/](../runpod/bridge-manifests/). You can inspect them
 directly.
 
 ## Pointing your agent at the demos
@@ -48,10 +49,10 @@ itself, paste the [Agent Prompt](../README.md#agent-prompt) from the repo
 README and ask the agent to start with one of the demos by name. The agent
 will read the relevant README, run the prep check, and report what it found.
 
-## Where the demos live in the bigger picture
+## How the examples scale
 
-The demos are the smallest end-to-end exercises of CryoCore's contracts. The
-same shape scales to:
+The examples are the smallest end-to-end exercises of CryoCore's contracts.
+The contract pattern also applies to:
 
 - [Campaign contracts](../campaigns/) for multi-stage missions
 - [Provider profiles](../modules/provider-profiles/) for RunPod, AWS Batch, SSH/HPC, and other lanes

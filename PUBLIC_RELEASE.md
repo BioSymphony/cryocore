@@ -1,11 +1,10 @@
 # Public Release Readiness
 
-Last reviewed: 2026-05-23
+Last reviewed: 2026-08-30
 
-This repository is ready to publish when it is a clean-history public control
-plane for BioSymphony CryoCore: useful for external cryo-EM users and agents,
-with no private history, credentials, heavy artifacts, license files, provider
-logs, or unsupported biological claims.
+Publish this repository only from a clean public history. The repository must
+contain no private history, credentials, heavy artifacts, license files,
+provider logs, or unsupported biological claims.
 
 ## Release Positioning
 
@@ -65,7 +64,7 @@ Expected release state:
 - `make release-check` passes.
 - No `.runtime`, `artifacts`, `outputs`, raw data, maps, model weights, provider logs, or cache directories are tracked.
 - No private workstation paths, private image namespaces, private clone markers, credentials, signed URLs, or license files appear.
-- RunPod manifests use public placeholders or digest-pinned public images; real execution still requires operator gates.
+- RunPod manifests use public placeholders or digest-pinned public images. Provider execution still requires operator approval.
 - Claim levels stay on the schema ladder: `candidate`, `processed`, `validated`, `publishable`, `insufficient_evidence`, or `blocked`, with supporting artifacts attached at each level. A `publishable` claim still requires expert scientific review before public biological conclusions.
 - Git history is created only after the release safety checks pass.
 
@@ -79,7 +78,7 @@ Expected release state:
 
 ## Known Status
 
-This is a pre-alpha public harness. It is strongest as a skill pack, contract
-set, and orchestration layer for agents. Real cryo-EM processing still depends
-on current tool terms, GPU/runtime compatibility, external heavy storage, and
-expert scientific review.
+This is a pre-alpha public harness. Its current scope is a skill pack, contract
+set, and orchestration layer for agents. Cryo-EM processing depends on current
+tool terms, GPU and runtime compatibility, external heavy storage, and expert
+scientific review.

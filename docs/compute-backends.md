@@ -1,9 +1,9 @@
 # Compute Backends
 
 CryoCore treats compute backends as execution planes. Durable contracts, stage
-ledgers, artifact hashes, and claim ledgers live in this repo or in fetched
-closeout artifacts, so scientific truth stays inspectable wherever the
-execution happened.
+ledgers, artifact hashes, and claim ledgers live in this repository or in
+fetched closeout artifacts. This keeps run evidence inspectable across
+execution environments.
 
 ![Local or cloud, same shape](assets/local-or-cloud-topology.svg)
 
@@ -12,7 +12,7 @@ execution happened.
 | Provider | Role | Default posture |
 | --- | --- | --- |
 | local | Prep, validators, tiny public-safe demos, GUI review. | No paid mutation. |
-| RunPod | Blessed first paid pod provider for no-download and map/model demos. | Requires operator gate, digest-pinned image or approved bootstrap, artifact fetch/hash, cost report, and cleanup proof. |
+| RunPod | Reference paid pod provider for no-download and map/model demos. | Requires operator gate, digest-pinned image or approved bootstrap, artifact fetch/hash, cost report, and cleanup proof. |
 | AWS Batch | Future scale-out backend after provider adapter parity. | Contract-only until explicit implementation issue. |
 | SSH/HPC | Institutional or Slurm execution route. | Requires site-specific data, license, and storage review. |
 | generic cloud VM | Portable cloud fallback pattern. | Contract-only until an adapter issue owns the route. |
@@ -22,11 +22,11 @@ execution happened.
 
 | If you need... | Choose | Why |
 | --- | --- | --- |
-| A first safe run | `local` | No paid mutation, no provider credentials, fastest validation loop. |
+| A first safe run | `local` | No paid mutation or provider credentials. |
 | A public pod demo or GPU smoke | `RunPod` | Reference pod-style path with public manifests and stage contracts. |
-| Repeated cloud fanout later | `AWS Batch` | Best fit for queue-based scale once adapter parity exists. |
+| Repeated cloud fanout later | `AWS Batch` | Queue-based scale after adapter parity exists. |
 | Institutional compute | `SSH/HPC` | Fits site-managed Slurm, storage, and license controls. |
-| Provider portability | `generic cloud VM` or `neocloud` (e.g. Lambda) | Useful as adapter contracts after the RunPod path is proven. |
+| Provider portability | `generic cloud VM` or `neocloud` (e.g. Lambda) | Adapter contracts for environments outside the reference RunPod path. |
 
 Use [Workflow Blueprints](workflows.md#4-provider-prep-and-cloud-launch-request)
 and [Provider Readiness](provider-readiness.md) before asking an agent to
@@ -38,7 +38,7 @@ Every provider route must record:
 
 - provider profile and execution profile
 - operator gate and budget for paid or mutating work
-- exact repo ref and image digest or bootstrap provenance
+- exact repository revision and image digest or bootstrap provenance
 - stage-progress ledger
 - provider run record with actual runtime status
 - artifact pull report and hash ledger
@@ -51,9 +51,9 @@ provider allocation record, status, and command exit.
 
 ## Custom Providers
 
-The provider profiles in `modules/provider-profiles/` are example shapes. A
-user with a different compute environment can author a custom profile against
-the same schema. The repo does not lock the agent to a fixed provider list.
+The provider profiles in `modules/provider-profiles/` are examples. For a
+different compute environment, create a custom profile against the same schema.
+The repository does not limit the agent to a fixed provider list.
 
 A custom profile is a JSON file with the fields listed in the Backend Contract
 section above: `provider`, `provider_class`, `profile_id`, `workspace_root`,
@@ -73,7 +73,7 @@ Once a custom profile exists, the rest of the doctrine applies unchanged:
   treat any provider's "running" state as intent until artifacts and closeout
   join the run.
 
-Examples of custom shapes a user might author:
+Example custom profiles:
 
 - An on-prem GPU server with bespoke storage layout.
 - A university SLURM allocation with site-specific module load commands.
@@ -81,9 +81,9 @@ Examples of custom shapes a user might author:
 - A hybrid pattern where prep runs locally and one stage offloads to a
   short-lived GPU pod.
 
-Keep the custom profile out of git if it contains private hostnames,
-credentials, project IDs, or any other operator-private content. Public-safe
-profiles can live in a fork or downstream repo.
+Do not commit a custom profile that contains private hostnames, credentials,
+project IDs, or other operator-private content. Public-safe profiles can live
+in a fork or downstream repository.
 
 ## Cloud Resource Workflow
 
@@ -93,7 +93,7 @@ profiles can live in a fork or downstream repo.
 4. Run local contract validation.
 5. Generate only a prep-mode launch request unless an operator explicitly gates
    paid or mutating provider work.
-6. Fetch artifacts after execution and treat them as the source of truth for what ran.
+6. Fetch artifacts after execution and use them as evidence of what ran.
 7. Run closeout checks and downgrade the claim if any evidence is missing.
 
 Local prep commands:
@@ -105,9 +105,9 @@ make runpod-scope-check
 make launch-preflight-prep
 ```
 
-Use `make launch-preflight-real` only when an operator is intentionally checking
-execution-ready state. It is expected to fail for public prep manifests until
-the repo ref is a 40-character commit SHA, the image is digest-pinned or the
+Use `make launch-preflight-real` only when an operator checks execution-ready
+state. It is expected to fail for public prep manifests until the repository
+revision is a 40-character commit SHA, the image is digest-pinned or the
 bootstrap is audited, credentials are provided outside git, and launch
 authorization is set.
 

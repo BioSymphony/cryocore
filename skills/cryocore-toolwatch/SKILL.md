@@ -13,7 +13,7 @@ data sources, validation services, workflow engines, or repo skills.
 - `references/AGENTS.md`
 - `references/README.md`
 - `references/tooling-and-licensing.md`
-- `references/toolwatch-2026-06-21.md`
+- `references/toolwatch-2026-08-30.md`
 - `references/software-registry.yaml`
 - `references/validation-gates.md`
 
@@ -23,8 +23,9 @@ Classify each candidate as:
 
 - `planned`: source/terms are clear enough for public-safe docs, manifests, or
   adapters after normal review.
-- `gated`: useful, but execution, upload, packaging, model weights, or binaries
-  require explicit operator/license approval.
+- `gated`: the tool has a defined CryoCore role, but execution, upload,
+  packaging, model weights, or binaries require explicit operator or license
+  approval.
 - `watch`: scientifically relevant, but not yet a dependable evidence-production
   dependency.
 
@@ -45,8 +46,8 @@ Classify each candidate as:
 When updating the repo:
 
 1. Update or create the dated toolwatch doc in the full CryoCore checkout.
-2. Update the software registry only for candidates with enough
-   source-backed posture to be useful to future runs.
+2. Update the software registry only when primary sources define a role,
+   version or revision, license posture, and execution boundary.
 3. Update the tooling and licensing doc for durable license policy.
 4. Update the validation gates doc when a tool changes evidence gates.
 5. Run `make preflight`, `make registry-check`, `make public-release-report`, and targeted tests.
