@@ -9,12 +9,18 @@ CryoCore is a toolkit for AI agents working with cryo-electron microscopy
 (cryo-EM) data. Use it to plan processing jobs, review how atomic models fit
 experimental maps, compare conformational states, and prepare structural figures.
 
-The repository supplies agent skills, workflow templates, and validation
-scripts. Start with a CPU-only demo that turns public structure records into
+Start with a CPU-only demo that turns public structure records into
 an HTML review report. Full cryo-EM processing requires separately installed
 scientific software.
 
 ![BioSymphony CryoCore banner](docs/assets/cryocore-banner.jpg)
+
+## What Is Included
+
+CryoCore supplies agent skills, workflow templates, tool and license records,
+and validators for four kinds of work:
+
+![Four workflows: plan processing, review structures, compare states, and prepare figures.](docs/assets/cryocore-capabilities.svg)
 
 ## Quickstart
 
@@ -59,6 +65,37 @@ checks and side effects.
 | Reuse contracts or skills | [Adoption guide](docs/adoption-guide.md), [skill installation](docs/skill-installation.md) | Source-checkout or standalone skill setup |
 | Prepare a release | [Public release](PUBLIC_RELEASE.md) | Content checks and remaining release blockers |
 
+## Evidence And Execution
+
+Follow four steps: choose inputs, plan the work, run the selected tools, and
+review the evidence. CryoCore supplies the plans and checks; scientific software
+runs in your local, cloud, or HPC environment.
+
+![Workflow: choose approved inputs, plan tools and checks, run installed software, then review artifacts and evidence.](docs/assets/cryocore-overview.svg)
+
+The [claim ledger](docs/claim-levels.md) records which conclusions the evidence
+supports, from candidates through validated results and expert publication
+review. Missing inputs or validation keep a claim at a lower level.
+
+| Check | Required record |
+| --- | --- |
+| Input audit | Accessions or authorized input references, checksums, and data policy |
+| Runtime preparation | Tool versions, licenses, environment, and resource budget |
+| Execution | Commands, stage outcomes, and artifact paths |
+| Scientific review | Map/model fit, geometry, independent validation, and limitations |
+| Provider run review | Fetched artifacts, matching hashes, cost report, and cleanup proof |
+
+Validate AI-enhanced maps and AI-built models against the original experimental
+evidence before interpreting added detail. See the
+[validation gates](references/validation-gates.md).
+
+Keep raw data, maps, model weights, credentials, and heavy outputs in external
+storage or ignored runtime directories.
+
+Paid provider execution, license acceptance, and raw-data transfer require
+operator authorization. Public launch examples remain preparation contracts.
+A provider status alone cannot establish scientific success.
+
 ## Agent Prompt
 
 Paste this prompt into your coding agent from the repository root. The
@@ -81,35 +118,6 @@ claim levels, check results, and remaining issues.
 work with a terminal agent, tracker-managed workers, or custom orchestration.
 See the [agent skill guide](docs/agent-skill-guide.md) for integration details.
 
-## Evidence And Execution
-
-A CryoCore workflow declares inputs, selects tools, records execution, and
-checks the resulting artifacts. The [claim ledger](docs/claim-levels.md)
-distinguishes candidates, processed outputs, validated evidence, and material
-ready for expert publication review. Missing inputs or validation keep the
-claim at a lower level.
-
-![CryoCore workflow](docs/assets/cryocore-overview.svg)
-
-| Check | Required record |
-| --- | --- |
-| Input audit | Accessions or authorized input references, checksums, and data policy |
-| Runtime preparation | Tool versions, licenses, environment, and resource budget |
-| Execution | Commands, stage outcomes, and artifact paths |
-| Scientific review | Map/model fit, geometry, independent validation, and limitations |
-| Provider run review | Fetched artifacts, matching hashes, cost report, and cleanup proof |
-
-Validate AI-enhanced maps and AI-built models against the original experimental
-evidence before interpreting added detail. See the
-[validation gates](references/validation-gates.md).
-
-Keep raw data, maps, model weights, credentials, and heavy outputs in external
-storage or ignored runtime directories.
-
-Paid provider execution, license acceptance, and raw-data transfer require
-operator authorization. Public launch examples remain preparation contracts.
-A provider status alone cannot establish scientific success.
-
 ## Current Toolwatch
 
 The [September 22 toolwatch](docs/toolwatch-2026-09-22.md) covers recent AI
@@ -125,11 +133,11 @@ and [May](docs/toolwatch-2026-05-27.md).
 
 ## Public Demos
 
-| Demo | Scope |
-| --- | --- |
-| [T2R14](demos/t2r14-open-dossier/) | Runnable CPU-only review of public coordinates and metadata |
-| [Pol Theta](demos/poltheta-map-model-dossier/) | Map/model workflow preparation with public validation records |
-| [Dual structure comparison](demos/structure-jury-dual-dossier/) | Preparation for joining two deposited-structure reviews |
+| Demo | Available locally | Full run needs |
+| --- | --- | --- |
+| [T2R14](demos/t2r14-open-dossier/) | Complete CPU-only review report | Python and public RCSB access |
+| [Pol Theta](demos/poltheta-map-model-dossier/) | Workflow and manifest preparation | Provider bridge, authorized launch, and public map download |
+| [Dual structure comparison](demos/structure-jury-dual-dossier/) | Comparison workflow and manifest preparation | Provider bridge and an authorized run of both structure reviews |
 
 The [demo gallery](docs/demo-gallery.md) lists outputs and limitations.
 
