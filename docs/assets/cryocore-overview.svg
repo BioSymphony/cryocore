@@ -1,45 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="616" viewBox="0 0 720 616" role="img" aria-labelledby="title description">
-  <title id="title">A CryoCore workflow</title>
-  <desc id="description">Choose public accessions or approved data. Plan the tools, outputs, licenses, checks and budget. Run installed scientific software in a local, cloud or HPC environment. Review the artifacts, scientific evidence, figures and limitations.</desc>
+  <title id="title">Agent-driven tool calling and chaining</title>
+  <desc id="description">The agent selects a tool using the knowledge base, calls a CLI, API or script, checks the output, and passes valid results to the next tool. Repeat this loop for subsequent analysis or rendering. Execution uses the agent's available tools and installed scientific software.</desc>
   <rect width="720" height="616" rx="18" fill="#f3f7fb"/>
   <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="#507189" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
   <g fill="none" stroke="#507189" stroke-width="2.5" marker-end="url(#arrow)">
     <path d="M 64 148 V 168"/>
     <path d="M 64 296 V 316"/>
     <path d="M 64 444 V 464"/>
+    <path d="M 660 530 H 682 Q 696 530 696 516 V 98 Q 696 84 682 84 H 664"/>
   </g>
   <g font-family="Arial, Helvetica, sans-serif">
-    <g id="inputs">
-      <rect x="24" y="24" width="672" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
+    <g id="choose">
+      <rect x="24" y="24" width="636" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
       <circle cx="64" cy="64" r="22" fill="#123b56"/>
       <text x="64" y="72" font-size="23" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
-      <text x="106" y="66" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Choose inputs</text>
-      <text x="106" y="100" font-size="24" fill="#334e63" text-anchor="start">Public accessions or approved data</text>
-      <text x="106" y="130" font-size="24" fill="#334e63" text-anchor="start">Record sources and permitted uses</text>
+      <text x="106" y="66" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Choose the tool</text>
+      <text x="106" y="100" font-size="24" fill="#334e63" text-anchor="start">Read roles, versions and requirements</text>
+      <text x="106" y="130" font-size="24" fill="#334e63" text-anchor="start">Match the tool to your task</text>
     </g>
-    <g id="plan">
-      <rect x="24" y="172" width="672" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
+    <g id="call">
+      <rect x="24" y="172" width="636" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
       <circle cx="64" cy="212" r="22" fill="#123b56"/>
       <text x="64" y="220" font-size="23" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
-      <text x="106" y="214" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Plan the work</text>
-      <text x="106" y="248" font-size="24" fill="#334e63" text-anchor="start">Select tools, inputs and outputs</text>
-      <text x="106" y="278" font-size="24" fill="#334e63" text-anchor="start">Record licenses, checks and budget</text>
+      <text x="106" y="214" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Make the tool call</text>
+      <text x="106" y="248" font-size="24" fill="#334e63" text-anchor="start">Agent runs a CLI, API or script</text>
+      <text x="106" y="278" font-size="24" fill="#334e63" text-anchor="start">Use the declared inputs</text>
     </g>
-    <g id="execution">
-      <rect x="24" y="320" width="672" height="124" rx="12" fill="#e8f3fc" stroke="#87b5d5"/>
+    <g id="check">
+      <rect x="24" y="320" width="636" height="124" rx="12" fill="#e8f3fc" stroke="#87b5d5"/>
       <circle cx="64" cy="360" r="22" fill="#123b56"/>
       <text x="64" y="368" font-size="23" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
-      <text x="106" y="362" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Run in your environment</text>
-      <text x="106" y="396" font-size="24" fill="#334e63" text-anchor="start">Use installed scientific software</text>
-      <text x="106" y="426" font-size="24" fill="#334e63" text-anchor="start">Local computer, cloud or HPC</text>
+      <text x="106" y="362" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Check the output</text>
+      <text x="106" y="396" font-size="24" fill="#334e63" text-anchor="start">Verify files, hashes and scientific fit</text>
+      <text x="106" y="426" font-size="24" fill="#334e63" text-anchor="start">Resolve failed checks before handoff</text>
     </g>
-    <g id="review">
-      <rect x="24" y="468" width="672" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
+    <g id="chain">
+      <rect x="24" y="468" width="636" height="124" rx="12" fill="#ffffff" stroke="#cbd9e5"/>
       <circle cx="64" cy="508" r="22" fill="#123b56"/>
       <text x="64" y="516" font-size="23" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
-      <text x="106" y="510" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Review the evidence</text>
-      <text x="106" y="544" font-size="24" fill="#334e63" text-anchor="start">Check artifacts and scientific results</text>
-      <text x="106" y="574" font-size="24" fill="#334e63" text-anchor="start">Report figures, findings and limits</text>
+      <text x="106" y="510" font-size="28" font-weight="700" fill="#102c42" text-anchor="start">Chain the next call</text>
+      <text x="106" y="544" font-size="24" fill="#334e63" text-anchor="start">Checked outputs become new inputs</text>
+      <text x="106" y="574" font-size="24" fill="#334e63" text-anchor="start">Continue analysis or rendering</text>
     </g>
   </g>
 </svg>

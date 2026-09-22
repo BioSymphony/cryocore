@@ -1,11 +1,22 @@
 {
   "schema_version": 1,
   "id": "cryocore",
-  "title": "CryoCore Router",
-  "description": "Route cryo-EM evidence, validation, and provider-prep tasks to the right public-safe skill.",
+  "title": "CryoCore Tools",
+  "description": "Choose, call, and chain cryo-EM tools using source-backed records, task skills, callable helpers, and output checks.",
   "entrypoint": "SKILL.md",
-  "read_first": ["references/AGENTS.md", "references/README.md", "references/public-quickstart.md", "references/claim-levels.md"],
-  "validators": ["make release-check"],
-  "forbidden_actions": ["commit private data", "launch paid providers by default", "treat provider state as scientific success"],
-  "output_contract": "Mode, data tier, claim ceiling, files touched, validation commands, and next gate."
+  "read_first": [
+    "references/AGENTS.md",
+    "references/README.md",
+    "references/tool-use-and-chaining.md",
+    "references/tooling-and-licensing.md"
+  ],
+  "validators": [
+    "make release-check"
+  ],
+  "forbidden_actions": [
+    "commit private data",
+    "launch paid providers by default",
+    "treat provider state as scientific success"
+  ],
+  "output_contract": "Selected tools, calls and parameters, input/output handoffs, check results, scientific limits, and blockers."
 }

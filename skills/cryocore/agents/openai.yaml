@@ -1,4 +1,4 @@
 interface:
   display_name: "BioSymphony CryoCore"
-  short_description: "Cryo-EM workflow routing help"
-  default_prompt: "Use $cryocore to route a public-safe cryo-EM workflow."
+  short_description: "Choose, call, and chain cryo-EM tools"
+  default_prompt: "Use $cryocore to choose tools for my cryo-EM task, run supported calls within my authorized scope, and check outputs before chaining the next step."

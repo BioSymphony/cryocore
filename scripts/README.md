@@ -1,29 +1,30 @@
-# Scripts
+# Callable Scripts
 
-Scripts are Python standard-library utilities unless noted otherwise.
+Use these helpers through your agent's terminal. The
+[tool-use guide](../docs/tool-use-and-chaining.md) explains how to connect calls
+and check their outputs. Most helpers use Python's standard library; renderers
+and plotting tools have the dependencies listed below.
 
-High-use commands:
+## Data, Analysis, And Rendering
 
-- `public_release_report.py`: read-only public readiness report.
-- `public_snapshot_check.py`: secret, heavy-artifact, and private-marker scan.
-- `docs_link_check.py`: local Markdown link and image target validation.
-- `provider_closeout_check.py`: provider/run closeout validator.
-- `provider_runner.py`: local no-download provider lane runner.
-- `contract_self_check.py`: joins manifests, artifacts, and claim levels.
-- `schema_check.py`: local JSON Schema subset validator.
-- `module_manifest_check.py`: module and campaign contract validator.
-- `runpod_manifest_check.py`: launch manifest validator.
-- `runpod_scope_check.py`: RunPod bridge boundary validator.
-- `bridge_manifest_check.py`: generated bridge manifest freshness validator.
-- `runpod_reference_check.py`: stale resume-command and entrypoint reference validator.
-- `tooling_freshness_check.py`: license/tool review freshness validator.
-- `skill_pack_check.py`: public skill-pack index and agent metadata validator.
-- `goal_brief_check.py`: lightweight `/goal` brief validator.
-- `issue_check.py`: tracker issue-pack validator.
-- `render/`: optional PyMOL, ChimeraX, FSC, and HTML helpers for figure lanes.
+| Helper | What it does | Runtime |
+| --- | --- | --- |
+| [Public metadata](cryocore/fetch_public_accession_metadata.py) | Prepare accession links or fetch metadata with `--fetch` | Python; network access for fetching |
+| [Coordinate analysis](cryocore/t2r14_open_dossier.py) | Compute chain contacts and ligand neighborhoods; create SVG figures | Python and public RCSB access |
+| [PyMOL rendering](cryocore/render/pymol_render.py) | Render maps, models, selections, and turntables | PyMOL; ffmpeg for movies |
+| [ChimeraX rendering](cryocore/render/chimerax_render.py) | Prepare scene commands; run with `--execute` when authorized | Python for preparation; ChimeraX and a supported graphics context for execution |
+| [FSC plotting](cryocore/render/fsc_plot.py) | Plot supplied FSC curves | Python and matplotlib |
 
-Run the aggregate gate:
+## Checks And Execution Preparation
 
-```bash
-make release-check
-```
+| Need | Helpers |
+| --- | --- |
+| Validate tool outputs | [Schemas](cryocore/schema_check.py), [figures](cryocore/figure_manifest_check.py), [input/output joins](cryocore/contract_self_check.py) |
+| Check runtime availability | [Tool checks](cryocore/toolcheck_runner.py), [tool-record freshness](cryocore/tooling_freshness_check.py) |
+| Compose workflow modules | [Module checks](cryocore/module_manifest_check.py), [provider profiles](cryocore/provider_profile_check.py) |
+| Prepare provider work | [Launch preflight](cryocore/runpod_launch_preflight.py), [local preparation runner](cryocore/provider_runner.py) |
+| Review a completed run | [Run checks](cryocore/provider_closeout_check.py) |
+| Maintain the public toolkit | [Public content](cryocore/public_snapshot_check.py), [documentation links](cryocore/docs_link_check.py), [skill index](cryocore/skill_pack_check.py) |
+
+Use [the validation command matrix](../docs/validation-command-matrix.md) to
+choose a check and review its side effects.

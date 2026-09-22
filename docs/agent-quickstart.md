@@ -1,12 +1,9 @@
 # Agent Quickstart
 
-Give your coding agent a cryo-EM task and the relevant CryoCore skill. The
-agent uses templates and validators to produce a review, processing plan,
-figure workflow, or run report with traceable inputs and evidence limits.
-
-![CryoCore agent loop](assets/agent-loop.svg)
-
-![Harness compatibility](assets/harness-patterns.svg)
+Give your agent a task and `skills/cryocore/SKILL.md`. CryoCore supplies tool
+knowledge, callable helpers, and rules for passing checked outputs between
+tools. Start with the [tool-use guide](tool-use-and-chaining.md) for concrete
+calls and runtime requirements.
 
 ## Best First Prompt
 
@@ -14,15 +11,15 @@ This is the canonical CryoCore agent prompt. The README's
 [Agent Prompt](../README.md#agent-prompt) section uses the same text.
 
 ```text
-Use the CryoCore skill pack in this repo. Stay local. Read AGENTS.md,
-README.md, docs/goal-orchestration.md, docs/workflows.md, docs/use-cases.md,
-and the relevant skill under skills/. Prepare a cryo-EM map/model review,
-figure workflow, state comparison, provider plan, or artifact package.
-State which conclusions the available evidence supports. Keep private data,
-secrets, raw or heavy artifacts, provider logs, model weights, and license
-files out of git and public outputs. Run the smallest relevant checks first,
-then `make release-check` for release-readiness tasks. Report exact artifacts,
-claim levels, check results, and remaining issues.
+Use CryoCore for [my task]. Read AGENTS.md, skills/cryocore/SKILL.md,
+docs/tool-use-and-chaining.md, and the relevant software registry records.
+Choose tools and explain why they fit. Build a sequence of calls with explicit
+inputs and outputs. Run supported calls within my authorized scope, and check
+each output before passing it to the next tool. If a tool is unavailable,
+identify the missing requirement and continue independent steps.
+Use paid compute, raw downloads, and gated tools only with explicit authorization.
+Keep private data, secrets, logs, heavy data, weights, and license files out of
+git and public outputs. Report the calls made, results, checks, and limitations.
 ```
 
 ## What The Agent Should Read
@@ -39,13 +36,10 @@ claim levels, check results, and remaining issues.
 
 ## What The Agent Should Produce
 
-- Input identifiers, permitted data sources, and storage locations.
-- A goal brief when the request is broad enough to need orchestration.
-- The strongest conclusion supported by the evidence, using `docs/claim-levels.md`.
-- Artifacts or templates in the directories specified by the task.
-- Check commands and results.
-- Data, license, and provider notes.
-- A final outcome block shaped like `templates/final-outcome-block.md`.
+- Tool choices and the reason for each choice.
+- Calls with explicit inputs, outputs, parameters, and runtime requirements.
+- Results and checks for each handoff, including failures or substitutions.
+- The next usable outputs and the conclusions supported by the evidence.
 
 ## Minimum Acceptable Agent Run
 
@@ -82,7 +76,6 @@ Use fixtures under `examples/agent-tasks/`:
 - `public-safety-review.prompt.md`
 - `map-model-dossier.prompt.md`
 - `cloud-provider-prep.prompt.md`
-- `linear-wave-planning.prompt.md`
 - `goal-to-campaign.prompt.md`
 
 ## Local Validation Ladder

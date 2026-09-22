@@ -1,11 +1,11 @@
 ---
 name: cryocore
-description: Use when planning or executing BioSymphony CryoCore campaigns for cryo-EM raw processing, map/model validation, heterogeneity review, structural rendering, and provider-neutral cryo workflows.
+description: Use when selecting, calling, or chaining cryo-EM tools for processing, map/model analysis, conformational comparisons, and structural rendering. Includes tool knowledge, callable helpers, and input/output validation.
 ---
 
 # CryoCore
 
-Use this skill for CryoCore work. In a full CryoCore checkout, run repository
+Use this skill to select, call, and chain cryo-EM tools. In a full CryoCore checkout, run repository
 commands from the repo root. In a standalone skill install, read the bundled
 files under `references/`.
 
@@ -18,15 +18,22 @@ contain dataset, provider, credential, identity, or path-specific material.
 Per-run evidence belongs in the claim ledger, provenance, and closeout
 artifacts.
 
-## Always Read
+## Read First
 
 - `references/AGENTS.md`
 - `references/README.md`
-- `references/public-quickstart.md`
-- `references/goal-orchestration.md`
-- `references/claim-levels.md`
-- `references/split-evaluation.md`
+- `references/tool-use-and-chaining.md`
 - `references/tooling-and-licensing.md`
+
+Read the relevant registry records and specialized skill for the task. Use
+these additional references when needed:
+
+| Need | Reference |
+| --- | --- |
+| Setup or the local demo | `references/public-quickstart.md` |
+| Scientific conclusions | `references/claim-levels.md` |
+| Multi-stage campaign planning | `references/goal-orchestration.md` |
+| Cross-repository ownership | `references/split-evaluation.md` |
 
 ## Freshness Check
 
@@ -37,6 +44,23 @@ In a full CryoCore checkout, run `make tooling-freshness-check` to confirm both
 are within the configured window (default 120 days). If either is stale, refresh through the
 `cryocore-toolwatch` skill before treating posture as current. Posture records
 age silently. Tool versions, license terms, and upstream APIs do not.
+
+## Tool Selection And Calls
+
+1. Search `references/software-registry.yaml` for the task's tool roles. Read
+   the relevant sources, versions, runtime requirements, terms, and status.
+2. Select a helper or compose a command for the installed tool version. Smoke
+   commands check availability; processing calls need task-specific inputs.
+3. Declare each call's inputs, outputs, parameters, and required checks. Match
+   file formats, units, coordinate frames, and entity identifiers at handoffs.
+4. Execute supported calls through the agent's available terminal or API tools
+   within the operator's authorized scope. Record commands and tool versions.
+5. Check outputs before another tool consumes them. Correct failed calls or
+   select an alternative; continue independent steps with valid inputs.
+6. Report the calls made, usable results, failed checks, and scientific limits.
+
+The registry is tool knowledge. It does not install tools or dispatch arbitrary
+records. See `references/tool-use-and-chaining.md` for executable examples.
 
 ## Mode Routing
 
@@ -50,9 +74,9 @@ age silently. Tool versions, license terms, and upstream APIs do not.
 - `cryocore-toolwatch`: tool, preprint, API, workflow, and license audits.
 - `cryocore-public-safety`: public release, privacy, and security review.
 - `cryocore-run-closeout`: provider/run closeout and no-false-success checks.
-- `cryocore-map-model-dossier`: public-safe EMDB/PDB map-model dossiers.
+- `cryocore-map-model-dossier`: public EMDB/PDB map/model analysis.
 - `cryocore-heterogeneity-jury`: state/ensemble/heterogeneity planning and review.
-- `cryocore-figure-dossier`: reproducible figure and renderer dossiers.
+- `cryocore-figure-dossier`: reproducible figures and renderer calls.
 
 ## Request Routing
 
@@ -60,10 +84,10 @@ age silently. Tool versions, license terms, and upstream APIs do not.
 | --- | --- |
 | Public release readiness, privacy, secrets, or security | `cryocore-public-safety` |
 | RunPod closeout, provider artifacts, cost, cleanup, or false success | `cryocore-run-closeout` |
-| EMDB/PDB map-model evidence, validation, or dossier planning | `cryocore-map-model-dossier` |
+| EMDB/PDB map-model evidence, validation, or analysis planning | `cryocore-map-model-dossier` |
 | Tool, license, version, or literature watch | `cryocore-toolwatch` |
 | Figure manifest, visual evidence, or renderer route | `cryocore-figure-dossier` |
-| Heterogeneity, state assignment, ensembles, or conformational jury | `cryocore-heterogeneity-jury` |
+| Heterogeneity, state assignment, ensembles, or conformational comparisons | `cryocore-heterogeneity-jury` |
 
 ## Hard Rules
 
