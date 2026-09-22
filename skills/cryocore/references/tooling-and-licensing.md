@@ -2,10 +2,14 @@
 
 Last reviewed: 2026-05-27
 
-Latest focused tool audit: 2026-08-30
+Latest focused tool audit: 2026-09-22
 
 This document defines the public tool posture for BioSymphony CryoCore. The
 machine-readable record is `references/software-registry.yaml`.
+
+The [September review](toolwatch-2026-09-22.md) checks selected releases and AI
+candidates. Per-entry `source_checked` dates identify those checks; the broad
+license review date above remains unchanged.
 
 ![Tool lane routing](assets/tool-lane-routing.svg)
 
@@ -18,7 +22,8 @@ record the required notices and citations, review dependencies, and confirm
 source compliance.
 
 - RELION, audited against version 5.0.1.
-- Warp/M/WarpTools, audited against version 2.0.0dev39. This development lane requires CUDA 12.9 and .NET 10. Upstream declares compatibility with RELION 5.
+- Warp/M/WarpTools, release 2.0.0dev41. Review the selected build's CUDA, .NET,
+  and RELION requirements before execution; the release adds Linux ARM64 support.
 - MotionCor3 from the CZI BSD-3-Clause source repository.
 - Topaz, with GPL/source-compliance handling.
 - CryoSPARC Tools for metadata export only when the underlying CryoSPARC access is already cleared.
@@ -30,6 +35,11 @@ source compliance.
 - Servalcat 0.4.142 for open-source refinement and validation modes. Refmac or CCP4-backed modes inherit their separate gates.
 - Coot open-source builds, gemmi, mrcfile, starfile, pyem, NumPy/SciPy/Pandas.
 - Mol*, Blender, and open-source PyMOL builds for public-safe visualization where terms permit.
+
+Apptainer 1.5.4 fixes a high-severity local privilege escalation affecting
+`apptainer-suid` 1.5.0 through 1.5.3. Use a patched runtime for that mode and
+record its version with the SIF hash. See the
+[upstream advisory](https://github.com/apptainer/apptainer/security/advisories/GHSA-4wg8-vhjg-jq8p).
 
 Policy snippet for open/planned tools:
 

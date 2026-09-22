@@ -60,6 +60,22 @@ Mock and dry-run artifacts must carry `mock_tools`, `mock_gpu`, or `dry_run` mar
 - `validation/map_model_fit.json` should join geometry validation, global FSC, model-map FSC, local correlation or SMOC-like scores, Q-score or Strudel-style local scores when available, deposition report identifiers, source hashes, caveats, and claim level.
 - Foundation-model map enhancement, inpainting, denoising, or style transfer is derived evidence only. It must record original maps, weights, parameters, hashes, and independent validation before it can support a stronger claim.
 
+For AI methods, also record:
+
+- The original particle or half-map split. Record which inputs the method used
+  for training, fitting, selection, and validation; reused inputs cannot provide
+  an independent test.
+- Checkpoint source, hash, terms, and known overlap between training data and
+  the evaluation target. Mark undisclosed training data as unknown.
+- A conventional baseline on the same inputs, with comparison criteria fixed
+  before selecting the preferred output. Retain failures and disagreements.
+- Fit against unmodified experimental maps, local geometry, and unsupported
+  regions for generated models. Enhanced-map agreement alone cannot validate
+  a model built from that map.
+- Stability across seeds or resampling when claiming heterogeneity or states.
+  A latent cluster or generated intermediate alone does not establish a
+  biological state, population, or transition pathway.
+
 ## Gate 5: Figure Dossier
 
 - Figures are nonblank, labeled, reproducible, and backed by scripts or sessions.

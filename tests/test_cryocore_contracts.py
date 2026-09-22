@@ -62,9 +62,16 @@ def test_bundled_public_policy_matches_canonical_files() -> None:
             "skills/cryocore-heterogeneity-jury/references/tooling-and-licensing.md",
             "skills/cryocore-figure-dossier/references/tooling-and-licensing.md",
         ],
-        "docs/toolwatch-2026-08-30.md": [
-            "skills/cryocore/references/toolwatch-2026-08-30.md",
-            "skills/cryocore-toolwatch/references/toolwatch-2026-08-30.md",
+        "docs/toolwatch-2026-09-22.md": [
+            "skills/cryocore/references/toolwatch-2026-09-22.md",
+            "skills/cryocore-toolwatch/references/toolwatch-2026-09-22.md",
+        ],
+        "references/validation-gates.md": [
+            "skills/cryocore-figure-dossier/references/validation-gates.md",
+            "skills/cryocore-heterogeneity-jury/references/validation-gates.md",
+            "skills/cryocore-map-model-dossier/references/validation-gates.md",
+            "skills/cryocore-run-closeout/references/validation-gates.md",
+            "skills/cryocore-toolwatch/references/validation-gates.md",
         ],
         "PUBLIC_RELEASE.md": [
             "skills/cryocore-public-safety/references/PUBLIC_RELEASE.md",

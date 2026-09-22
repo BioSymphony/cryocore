@@ -32,7 +32,7 @@ artifacts.
 
 Before relying on `references/tooling-and-licensing.md`, `references/software-registry.yaml`,
 or any other posture record, check the dates. Policy docs carry `Last reviewed:`
-lines. The bundled source-backed audit is `references/toolwatch-2026-08-30.md`.
+lines. The bundled source-backed audit is `references/toolwatch-2026-09-22.md`.
 In a full CryoCore checkout, run `make tooling-freshness-check` to confirm both
 are within the configured window (default 120 days). If either is stale, refresh through the
 `cryocore-toolwatch` skill before treating posture as current. Posture records

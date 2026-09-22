@@ -1,9 +1,8 @@
 # Agent Quickstart
 
-This repo is designed to be pointed at by a coding agent. The agent should use
-the skills, docs, schemas, and validators to turn open-ended cryo-EM requests
-into concrete map/model reviews, figure workflows, state-comparison plans,
-provider plans, run reviews, and tracker-ready issue waves.
+Give your coding agent a cryo-EM task and the relevant CryoCore skill. The
+agent uses templates and validators to produce a review, processing plan,
+figure workflow, or run report with traceable inputs and evidence limits.
 
 ![CryoCore agent loop](assets/agent-loop.svg)
 
@@ -17,12 +16,13 @@ This is the canonical CryoCore agent prompt. The README's
 ```text
 Use the CryoCore skill pack in this repo. Stay local. Read AGENTS.md,
 README.md, docs/goal-orchestration.md, docs/workflows.md, docs/use-cases.md,
-and the relevant skill under skills/. Build a useful cryo-EM map/model review,
-figure workflow, state comparison, provider plan, or artifact package. Keep
-private data, secrets, raw or heavy artifacts, provider logs, model weights,
-and license files out of git and public outputs. Run the smallest relevant
-checks first, then `make release-check` when the task is release-readiness.
-Report exact artifacts, claim levels, check results, and remaining issues.
+and the relevant skill under skills/. Prepare a cryo-EM map/model review,
+figure workflow, state comparison, provider plan, or artifact package.
+State which conclusions the available evidence supports. Keep private data,
+secrets, raw or heavy artifacts, provider logs, model weights, and license
+files out of git and public outputs. Run the smallest relevant checks first,
+then `make release-check` for release-readiness tasks. Report exact artifacts,
+claim levels, check results, and remaining issues.
 ```
 
 ## What The Agent Should Read
@@ -39,10 +39,10 @@ Report exact artifacts, claim levels, check results, and remaining issues.
 
 ## What The Agent Should Produce
 
-- A declared input boundary.
+- Input identifiers, permitted data sources, and storage locations.
 - A goal brief when the request is broad enough to need orchestration.
-- A claim ceiling using `docs/claim-levels.md`.
-- Artifacts or templates under the right repo directory.
+- The strongest conclusion supported by the evidence, using `docs/claim-levels.md`.
+- Artifacts or templates in the directories specified by the task.
 - Check commands and results.
 - Data, license, and provider notes.
 - A final outcome block shaped like `templates/final-outcome-block.md`.
@@ -72,8 +72,8 @@ For a public release or release-readiness review, an agent should at least:
 5. Report blockers first, then changed files, check results, claim ceiling, and
    remaining issues.
 
-An answer that only says a provider is running, a command exited, or a demo
-looks good is incomplete.
+Support the outcome with artifact checks and scientific validation results,
+including any missing evidence.
 
 ## Starter Tasks
 

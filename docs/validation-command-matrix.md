@@ -1,12 +1,11 @@
 # Validation Command Matrix
 
-Use this matrix to pick the smallest local check that proves the thing you
-changed. `make release-check` remains the public release gate.
+Choose the smallest check that validates your change. `make release-check` remains the public release gate.
 
 | Goal | Command | Network | Provider mutation | Writes ignored output |
 | --- | --- | --- | --- | --- |
 | Public release readiness | `make release-check` | no | no | Python caches only |
-| Fast repo doctor | `make doctor` | no | no | no |
+| Repository readiness report | `make doctor` | no | no | no |
 | Markdown links and backticked path references | `make docs-link-check` | no | no | no |
 | Secret, private marker, and heavy artifact scan | `make public-snapshot-check` | no | no | no |
 | Skill-pack metadata | `make skill-check` | no | no | no |
@@ -19,10 +18,10 @@ changed. `make release-check` remains the public release gate.
 | License/tool posture freshness | `make tooling-freshness-check` | no | no | no |
 | Tiny public-coordinate demo | `make demo-local` | yes, public RCSB/mmCIF | no | `.runtime/` |
 | Same tiny demo target, explicit name | `make demo-t2r14-local` | yes, public RCSB/mmCIF | no | `.runtime/` |
-| Public accession metadata smoke | `make public-metadata-check` | yes | no | no by default |
+| Metadata fixture and accession links | `make public-metadata-check` | no | no | no |
 | No-download toolcheck fixture | `make toolcheck` | no | no | `.runtime/` |
 | No-false-success closeout fixture | `make provider-closeout-check` | no | no | no |
-| Full local test suite | `make test` | may query public metadata | no | `.runtime/`, caches |
+| Full local test suite | `make test` | no | no | `.runtime/`, caches |
 
 ## Release Rule
 

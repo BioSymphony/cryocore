@@ -13,7 +13,7 @@ data sources, validation services, workflow engines, or repo skills.
 - `references/AGENTS.md`
 - `references/README.md`
 - `references/tooling-and-licensing.md`
-- `references/toolwatch-2026-08-30.md`
+- `references/toolwatch-2026-09-22.md`
 - `references/software-registry.yaml`
 - `references/validation-gates.md`
 

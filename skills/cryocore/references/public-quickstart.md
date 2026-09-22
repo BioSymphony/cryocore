@@ -1,17 +1,15 @@
 # Public Quickstart
 
-This checkout gives you a fast local view of CryoCore before any provider
-account, raw cryo-EM data, or license-gated package is involved. The first run
-shows how an agent turns public structure data into an inspectable review page
-with figures, methods, provenance, claim boundaries, and machine-readable
-artifacts.
+Run the CPU-only demo to turn public structure coordinates and metadata into
+an HTML review report. The report includes figures, methods, input provenance,
+and evidence limits. No provider account or GPU is needed.
 
-For agent-first usage, start with `docs/agent-quickstart.md`. For practical
-workflows, use `docs/workflows.md` and `docs/use-cases.md`.
+For agent tasks, start with the [agent quickstart](agent-quickstart.md). For
+processing plans, see [workflows](workflows.md) and [use cases](use-cases.md).
 
-## Five-Minute First Run
+## Run The Local Demo
 
-From the repository root:
+From the repository root, with Python 3.10 or later:
 
 ```bash
 python3 -m venv .runtime/venv
@@ -20,21 +18,18 @@ python3 -m pip install -r requirements-dev.txt
 make demo-local
 ```
 
-Inspect:
+The demo fetches public RCSB metadata and mmCIF coordinates. It writes these
+outputs under `.runtime/t2r14-open-dossier/artifacts/`:
 
-- `.runtime/t2r14-open-dossier/artifacts/report.html`
-- `.runtime/t2r14-open-dossier/artifacts/claim_ledger.md`
-- `.runtime/t2r14-open-dossier/artifacts/dossier_manifest.json`
-- `.runtime/t2r14-open-dossier/artifacts/runpod-execution.tar.gz`
+| File | Contents |
+| --- | --- |
+| `report.html` | Review page with figures and methods |
+| `claim_ledger.md` | Supported conclusions and evidence limits |
+| `dossier_manifest.json` | Input and output records |
+| `runpod-execution.tar.gz` | Portable artifact bundle for run review |
 
-`runpod-execution` is the portable artifact-root convention used by provider
-review. The first local demo writes it under `.runtime/` so users can inspect
-the same shape without launching a provider.
-
-This demo fetches public RCSB metadata and public mmCIF coordinates only, then
-turns them into a small inspectable structure review. Raw movies, particle
-stacks, maps, half-maps, model weights, private data, license files, and gated
-tools stay outside the demo.
+The bundle uses the same directory layout as provider output. Creating it
+locally does not launch a provider or process experimental maps.
 
 ## Command Matrix
 
@@ -44,7 +39,7 @@ tools stay outside the demo.
 | `make readonly-check` | local structural validators | no | no | Python caches |
 | `make release-check` | full public release gate | no | no | Python caches |
 | `make demo-local` | tiny public-coordinate T2R14 demo | yes | no | `.runtime/` |
-| `make public-metadata-check` | public accession metadata smoke | yes | no | no by default |
+| `make public-metadata-check` | metadata fixture and accession links | no | no | no |
 | `python3 scripts/cryocore/t2r14_open_dossier.py --out .runtime/t2r14-open-dossier --json` | tiny public-coordinate demo | yes | no | `.runtime/` |
 | `make toolcheck` | no-download toolcheck fixture | no | no | `.runtime/` |
 | `make runpod-scope-check` | public bridge manifest scope | no | no | no |
@@ -59,22 +54,22 @@ Run the full local gate from the repository root:
 make release-check
 ```
 
-The gate is read-only except for normal Python cache files and ignored runtime
-outputs. It validates manifests, schemas, issue templates, provider contracts,
-public-snapshot hygiene, and the secret-scan path.
+The gate validates manifests, schemas, issue templates, provider contracts,
+skill bundles, and public content, then runs the tests. Secret scanning runs
+when Gitleaks is installed; use `make release-check REQUIRE_GITLEAKS=1` to
+require it. The checks may create Python caches but do not launch providers.
 
 ## Metadata-Only Demo
 
-The public metadata path may query accession metadata and write only small
-ledgers:
+Check the metadata fixture and prepare accession references locally:
 
 ```bash
 make public-metadata-check
 ```
 
-The metadata path writes ledgers only. Raw movies, particle stacks, maps,
-half-maps, masks, private structures, model weights, and license-gated content
-stay outside git.
+This command checks a JSON fixture and builds EMPIAR, EMDB, and PDB metadata
+URLs without fetching them. It discards the generated ledger and creates no
+output files. The underlying script fetches metadata only with `--fetch`.
 
 ## Provider Prep
 
@@ -93,17 +88,15 @@ make provider-closeout-check
 ```
 
 `make launch-preflight-real` is intentionally stricter and can fail while the
-public repo is still healthy. Real launch readiness requires a digest-pinned
-image or audited bootstrap route, a 40-character public commit SHA, operator
+public repo is still healthy. Real launch readiness requires a digest-pinned image or audited bootstrap route, a 40-character
+public commit SHA, operator
 authorization, runtime credentials outside git, artifact fetch/hash, cost
 reporting, and cleanup proof.
 
-The public repo should remain useful even when those provider steps are never
-run.
-
 ## After A Demo
 
-Clean local caches and ignored runtime output with:
+Remove Python caches and the entire `.runtime/` directory, including demo
+reports and the virtual environment, with:
 
 ```bash
 make clean
