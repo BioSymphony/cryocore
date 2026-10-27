@@ -33,3 +33,20 @@ jobs:
         run: go install github.com/zricethezav/gitleaks/v8@v8.24.3
       - name: Run public release gate
         run: PATH="$HOME/go/bin:$PATH" REQUIRE_GITLEAKS=1 make release-check
+
+  optional-adapters:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Install adapter test dependencies
+        run: python -m pip install -r requirements-dev.txt numpy==1.26.4 mrcfile==1.5.4
+      - name: Test native adapters and MRC byte preservation
+        run: >-
+          python -m pytest
+          tests/test_em_tool_miffi_worker_v1.py
+          tests/test_em_tool_czi_worker_v1.py
+          tests/test_normalize_mrc_header_v1.py

@@ -1,19 +1,26 @@
 # Tooling And Licensing
 
-Last reviewed: 2026-05-27
+Last reviewed: 2026-10-27
 
-Latest focused tool audit: 2026-09-22
+Latest focused tool audit: 2026-10-27
 
 This document defines the public tool posture for BioSymphony CryoCore. The
 machine-readable record is `references/software-registry.yaml`.
 
-The [September review](toolwatch-2026-09-22.md) checks selected releases and AI
-candidates. Per-entry `source_checked` dates identify those checks; the broad
-license review date above remains unchanged.
+The [October review](toolwatch-2026-10-27.md) adds tool candidates and checks
+selected source terms. Each registry record retains its own source-check date.
+The broader May 27 review remains the basis for unchanged records.
+
+| Source Checked October 27 | Tool Selection |
+| --- | --- |
+| [RECOVAR pinned license](https://github.com/ma-gilles/recovar/blob/b1ceda7c5e5d77eadbb229908d5e61139ee2fe34/LICENSE) | MIT applies to this revision; preserve older packages' own terms |
+| [CryoSPARC](https://guide.cryosparc.com/licensing) | Choose the applicable nonprofit academic or commercial route |
+| [Phenix](https://www.phenix-online.org/license) | For-profit work uses the Industrial Consortium route |
+| [ChimeraX](https://github.com/RBVI/ChimeraX) | Review the runtime license for the intended use |
+| [crYOLO](https://sphire.mpg.de/wiki/doku.php?id=cryolo_license) | Review the complimentary science license for software and weights |
+| [CryoREAD local terms](https://kiharalab.org/emsuites/cryoread.php) and [server](https://em.kiharalab.org/algorithm/CryoREAD) | Review local and hosted permissions separately |
 
 ![Tool lane routing](assets/tool-lane-routing.svg)
-
-This is engineering policy, not legal advice.
 
 ## Open-Default Candidates
 
@@ -24,14 +31,16 @@ source compliance.
 - RELION, audited against version 5.0.1.
 - Warp/M/WarpTools, release 2.0.0dev41. Review the selected build's CUDA, .NET,
   and RELION requirements before execution; the release adds Linux ARM64 support.
-- MotionCor3 from the CZI BSD-3-Clause source repository.
+- MotionCor3 and GCtfFind from the CZI BSD-3-Clause repositories. The adapters
+  pin native versions 1.2.4 and 1.2.5; see the [usage guide](micrograph-qc-and-output-checks.md).
+- RECOVAR at the MIT-licensed revision recorded in the registry.
 - Topaz, with GPL/source-compliance handling.
 - CryoSPARC Tools for metadata export only when the underlying CryoSPARC access is already cleared.
 - ModelAngelo code. Keep large weights in runtime caches or reviewed image layers with hashes.
 - CryoAtom2 code. Keep ESM, RNA-FM, and CryoAtom weights in runtime caches or reviewed image layers with hashes.
 - cryoDRGN 4.3.1, with GPL-3.0 source-compliance, dependency review, trusted-pickle artifact boundaries, and localhost-only dashboard posture.
 - DynaMight, with RELION-compatible input capture and independent validation.
-- AreTomo3 2.2.2, GCtfFind 1.0.0, DenoisET, and copick for bounded cryo-ET preprocessing, CTF estimation, denoising, and annotation projects.
+- AreTomo3 2.2.2, DenoisET, and copick for bounded cryo-ET preprocessing, CTF estimation, denoising, and annotation projects.
 - Servalcat 0.4.142 for open-source refinement and validation modes. Refmac or CCP4-backed modes inherit their separate gates.
 - Coot open-source builds, gemmi, mrcfile, starfile, pyem, NumPy/SciPy/Pandas.
 - Mol*, Blender, and open-source PyMOL builds for public-safe visualization where terms permit.
@@ -59,7 +68,8 @@ build before image inclusion or execution.
 - EMAN2.
 - Scipion/Xmipp and plugin stacks.
 - ASPIRE-Python for synthetic fixtures, covariance baselines, and known-answer benchmark checks.
-- Miffi 1.0.1 for micrograph quality filtering, pending model/checkpoint, training-data, and serialized-output posture.
+- Miffi: GPLv3 source and separately licensed CC BY 4.0 checkpoints. Use the
+  pinned adapter source and checkpoint hashes; review serialized models before loading.
 - EMAN2 e2gmm as a heterogeneity second-opinion lane, pending EMAN2 subtool/runtime review.
 - MAVEn as a downstream cryoDRGN ensemble-analysis protocol. Upstream documents compatibility with cryoDRGN 0.3.2 and dependencies on RELION, Chimera, and ChimeraX. Review lane compatibility and inherited gates before use.
 - MonoRes, MonoDir, and FSC-Q through Scipion/Xmipp for local-resolution and local map/model-fit validation.
@@ -98,7 +108,6 @@ review.
 - MotionCor2 UCSF binary.
 - crYOLO.
 - Gctf unless redistributable current terms are confirmed.
-- RECOVAR upstream `main`, which identifies a Princeton academic/noncommercial license. PyPI version 0.4.5 used GPLv3. Record the exact version and use context.
 - ResMap, because public source advertises a noncommercial/no-derivatives Creative Commons license posture.
 - FlyTomo, because upstream limits use to academic and noncommercial research and prohibits binary redistribution or modification without permission.
 - CryoREAD, DiffModeler, ComplexModeler, DAQ, and other Kihara tools unless the exact tool and use context are separately cleared.
@@ -126,7 +135,8 @@ below was re-reviewed on the later date.
 - CCP-EM: The suite has a governing license and component-specific terms. The suite license does not cover additional redistributed packages. Status: `gated` until each image component is reviewed.
 - CTFFIND and cisTEM: The Janelia-license posture differs from generic open-source packaging. Record the CTFFIND major version and the cisTEM binary or source terms. Status: `watch`.
 - Kihara suite tools: Terms differ across tools. Emap2sec advertises GPLv3, limits free use to academic and noncommercial users, and directs commercial users to alternate licensing. Status: `gated` unless the specific tool is cleared.
-- RECOVAR upstream `main`: Princeton academic/noncommercial terms apply. Do not apply the older PyPI GPL posture to this source. Status: `gated`.
+- Historical RECOVAR packages retain their own terms. The pinned source in
+  the October review uses MIT.
 - crYOLO: complimentary science license covers software and pretrained weights, limits use to noncommercial academic/research purposes, prohibits commercial/operational use, and restricts copying/distribution. Status: `gated`.
 - VMD/NAMD/MDFF: VMD and NAMD use noncommercial licenses. Commercial use requires a commercial license. MDFF lanes inherit the VMD and NAMD packaging gates. Status: `gated`.
 - NVIDIA CUDA/base images: Record the applicable NVIDIA container EULA and image tag before using an image as a runtime base. CUDA images are proprietary runtime artifacts, not open-source dependencies. Status: `watch`.

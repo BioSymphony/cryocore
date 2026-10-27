@@ -77,6 +77,16 @@ def test_bundled_public_policy_matches_canonical_files() -> None:
             "skills/cryocore-public-safety/references/PUBLIC_RELEASE.md",
         ],
     }
+    mirrors.update({
+        "scripts/cryocore/public_snapshot_check.py": ["skills/cryocore-public-safety/scripts/cryocore/public_snapshot_check.py"],
+        "scripts/cryocore/public_release_report.py": ["skills/cryocore-public-safety/scripts/cryocore/public_release_report.py"],
+        "docs/tool-use-and-chaining.md": ["skills/cryocore/references/tool-use-and-chaining.md"],
+        "docs/micrograph-qc-and-output-checks.md": ["skills/cryocore/references/micrograph-qc-and-output-checks.md"],
+        "docs/toolwatch-2026-10-27.md": [
+            "skills/cryocore/references/toolwatch-2026-10-27.md",
+            "skills/cryocore-toolwatch/references/toolwatch-2026-10-27.md",
+        ],
+    })
     drift = []
     for canonical, copies in mirrors.items():
         expected = (ROOT / canonical).read_text()

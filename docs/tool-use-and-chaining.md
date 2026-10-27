@@ -10,7 +10,7 @@ run in the environment you provide.
 Search the [software registry](../references/software-registry.yaml) by role.
 Read the source and version, install requirements, license gate, status, smoke
 command, and expected outputs for each candidate. Check the review date before
-relying on a record. The [source review](toolwatch-2026-09-22.md) explains the
+relying on a record. The [source review](toolwatch-2026-10-27.md) explains the
 latest additions.
 
 Use the matching [skill](../skills/) for task instructions. A `--help` or
@@ -27,6 +27,9 @@ the selected version's documentation and the task's inputs.
 | ChimeraX scenes | [ChimeraX helper](../scripts/cryocore/render/chimerax_render.py) | Prepares a command script; `--execute` runs it through an available, authorized ChimeraX installation |
 | FSC curves | [FSC plotter](../scripts/cryocore/render/fsc_plot.py) | Plots supplied curve files with matplotlib; `--demo` produces an illustrative curve |
 | Output checks | [Schema checker](../scripts/cryocore/schema_check.py), [figure checker](../scripts/cryocore/figure_manifest_check.py) | Check declared fields, files, and figure records before handoff |
+
+The [micrograph QC guide](micrograph-qc-and-output-checks.md) covers the Miffi
+and CZI adapters, MRC header repair, and scientific environment setup.
 
 The [scripts index](../scripts/README.md) lists the remaining helpers. Use each
 helper's `--help` for its arguments. Dependencies belong in the selected
