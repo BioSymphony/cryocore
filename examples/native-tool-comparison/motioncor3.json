@@ -1,0 +1,58 @@
+{
+  "tool": "motioncor3",
+  "binary": {
+    "path": ".runtime/tools/MotionCor3",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_commit": "dd8b6831ae66ef016fb7ef3b9b6172f8b56c79aa",
+  "expected_version": "MotionCor3 version 1.2.4",
+  "parameters": {
+    "input_flag": "-InTiff",
+    "gain": {
+      "path": ".runtime/data/gain.mrc",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gain_rotation": 0,
+    "gain_flip": 0,
+    "gain_inverse": 0,
+    "patch": [
+      1,
+      1
+    ],
+    "group": [
+      1,
+      1
+    ],
+    "throw": 0,
+    "trunc": 0,
+    "ftbin": 1,
+    "pixel_size_angstrom": 0.885,
+    "voltage_kv": 200,
+    "frame_dose_e_per_a2": 0,
+    "initial_dose_e_per_a2": 0,
+    "iterations": 10,
+    "tolerance": 0.5,
+    "bfactor": 150
+  },
+  "items": [
+    {
+      "id": "movie_001",
+      "input": {
+        "path": ".runtime/data/movie.tiff",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "reference": {
+        "identity": {
+          "path": ".runtime/data/relion_motion.star",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "metadata": {
+          "pixel_size_angstrom": 0.885
+        },
+        "differences": [
+          "Replace with the actual local-motion, filtering, and coordinate-convention differences."
+        ]
+      }
+    }
+  ]
+}

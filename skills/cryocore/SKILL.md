@@ -23,6 +23,7 @@ artifacts.
 - `references/AGENTS.md`
 - `references/README.md`
 - `references/tool-use-and-chaining.md`
+- `references/micrograph-qc-and-output-checks.md`
 - `references/tooling-and-licensing.md`
 
 Read the relevant registry records and specialized skill for the task. Use

@@ -1,84 +1,44 @@
-# Public Release Readiness
+# Public Releases
 
-Last reviewed: 2026-08-30
+Release CryoCore updates through a branch and pull request in the public
+repository. Keep its public history when adding reviewed tools, examples,
+and documentation.
 
-Publish this repository only from a clean public history. The repository must
-contain no private history, credentials, heavy artifacts, license files,
-provider logs, or unsupported biological claims.
+## Prepare An Update
 
-## Release Positioning
+1. Select the reusable source files, tests, and examples for the change.
+2. Update the tool registry and usage guides. Preserve each source-review date.
+3. Refresh bundled skill references from the public documents.
+4. Run the release checks with Gitleaks installed:
 
-BioSymphony CryoCore is a public-safe harness for cryo-EM agent workflows. It
-helps a user or long-running agent convert a public accession or
-operator-provided dataset into:
+   ```bash
+   make release-check REQUIRE_GITLEAKS=1
+   ```
 
-- input and data-policy contracts
-- lane and image manifests
-- provider launch and stage contracts
-- artifact indexes, hashes, and closeout checks
-- map/model review and figure dossier scaffolds
-- claim ledgers for scientist review
+5. Inspect the complete diff, including examples, images, comments, and workflow
+   artifacts. Commit the reviewed files and open a pull request.
+6. Merge after the required CI checks pass.
 
-Out of scope: raw-data storage, wet-lab protocol management, clinical use,
-therapeutic claims, and license bypass.
+The release check covers documentation links, contracts, tool records, tests,
+public-content checks, and secret scanning. The optional adapter CI job also
+runs MRC tests with their scientific dependencies.
 
-## Release Gates
+## Create A Versioned Release
 
-Run from the repository root before publishing:
+1. Tag the reviewed public commit with a `v*` tag.
+2. Check the tagged checkout:
 
-```bash
-make release-check
-```
+   ```bash
+   python3 scripts/cryocore/public_release_report.py \
+     --repo-root . --publish-ready --json
+   ```
 
-GitHub profile setup is in `docs/github-repo-profile.md`.
+3. Push the tag and verify the release workflow. It creates a source archive,
+   checksums, and a public summary containing check results and the commit ID.
 
-While staying local, use:
+Use `--public-summary` when saving a report for distribution. Full diagnostic
+reports remain local. Keep runtime data, credentials, downloaded models, and
+operator records outside release packages.
 
-```bash
-python3 scripts/cryocore/public_release_report.py --repo-root . --json
-```
-
-For the final public switch after an initial commit, remote, and tag exist, use:
-
-```bash
-python3 scripts/cryocore/public_release_report.py \
-  --repo-root . \
-  --publish-ready \
-  --expected-remote https://github.com/BioSymphony/cryocore.git \
-  --json
-```
-
-The `--publish-ready` check is expected to fail before the public remote and
-release tag are created.
-
-Recommended independent checks:
-
-```bash
-find . -type f \( -name '*.mrc' -o -name '*.mrcs' -o -name '*.map' -o -name '*.star' -o -name '*.cs' -o -name '*.pdb' -o -name '*.cif' -o -name '*.mmcif' -o -name '*.fasta' -o -name '*.fastq' -o -name '*.pt' -o -name '*.safetensors' -o -name '*.zip' -o -name '*.tar' -o -name '*.tar.gz' -o -name '*.tgz' \) -not -path './.git/*' -print
-find . -type f -size +25M -not -path './.git/*' -print
-python3 scripts/cryocore/public_snapshot_check.py --repo-root . --profile public --json
-```
-
-Expected release state:
-
-- `make release-check` passes.
-- No `.runtime`, `artifacts`, `outputs`, raw data, maps, model weights, provider logs, or cache directories are tracked.
-- No private workstation paths, private image namespaces, private clone markers, credentials, signed URLs, or license files appear.
-- RunPod manifests use public placeholders or digest-pinned public images. Provider execution still requires operator approval.
-- Claim levels stay on the schema ladder: `candidate`, `processed`, `validated`, `publishable`, `insufficient_evidence`, or `blocked`, with supporting artifacts attached at each level. A `publishable` claim still requires expert scientific review before public biological conclusions.
-- Git history is created only after the release safety checks pass.
-
-## First Agent Handoff
-
-1. Read `AGENTS.md`, `README.md`, `PUBLIC_RELEASE.md`, and `docs/data-policy.md`.
-2. Run `make release-check` before making public-readiness claims.
-3. Treat all provider launch commands as review-only until an operator explicitly authorizes paid execution.
-4. Do not move a provider run to success unless fetched artifacts, hashes, cost report, cleanup proof, and claim ledger all pass closeout.
-5. Keep examples public-accession-only or synthetic unless a separate issue authorizes private data handling outside git.
-
-## Known Status
-
-This is a pre-alpha public harness. Its current scope is a skill pack, contract
-set, and orchestration layer for agents. Cryo-EM processing depends on current
-tool terms, GPU and runtime compatibility, external heavy storage, and expert
-scientific review.
+See the [release checklist](docs/public-switch-checklist.md) and
+[contributing guide](CONTRIBUTING.md) for individual checks.

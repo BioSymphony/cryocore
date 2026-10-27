@@ -1,0 +1,11 @@
+numpy==1.26.4
+mrcfile==1.5.4
+timm==0.9.16
+pandas==2.1.4
+starfile==0.5.8
+matplotlib==3.8.4
+scipy==1.11.4
+PyYAML==6.0.2
+tqdm==4.67.1
+setuptools==75.8.0
+setuptools_scm==8.2.0

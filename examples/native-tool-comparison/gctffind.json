@@ -1,0 +1,59 @@
+{
+  "tool": "gctffind",
+  "binary": {
+    "path": ".runtime/tools/GCtfFind",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_commit": "b291ddfc9a44c3bb9a9f597358c3066808eb970a",
+  "expected_version": "GCtfFind version 1.2.5",
+  "parameters": {
+    "pixel_size_angstrom": 0.885,
+    "voltage_kv": 200,
+    "cs_mm": 2.7,
+    "amplitude_contrast": 0.1,
+    "tile_size": 512,
+    "defocus_center_range_angstrom": [
+      15000,
+      10000
+    ],
+    "ast_ratio_center_range": [
+      0.05,
+      0.1
+    ],
+    "ast_angle_center_range_deg": [
+      0,
+      180
+    ],
+    "extra_phase_center_range_deg": [
+      0,
+      0
+    ]
+  },
+  "items": [
+    {
+      "id": "micrograph_001",
+      "input": {
+        "path": ".runtime/data/micrograph.mrc",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "reference": {
+        "identity": {
+          "path": ".runtime/data/ctffind.txt",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "metadata": {
+          "pixel_size_angstrom": 0.885,
+          "voltage_kv": 200,
+          "cs_mm": 2.7,
+          "amplitude_contrast": 0.1,
+          "tile_size": 512
+        },
+        "differences": [
+          "Replace with the actual search, filtering, and algorithm differences."
+        ],
+        "min_defocus_angstrom": 9900,
+        "max_defocus_angstrom": 12100
+      }
+    }
+  ]
+}

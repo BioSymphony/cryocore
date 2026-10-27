@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -200,30 +201,14 @@ CONTENT_SCAN_EXCLUDE = {
 
 
 def prohibited_release_markers() -> list[str]:
-    # Markers that should never appear in the public release. Several entries
-    # are operator-specific (e.g. the operator's private repo name). Strings are
-    # split with string concatenation so this scanner's own source does not trip
-    # itself. Adopters of CryoCore should replace operator-specific markers with
-    # their own private identifiers. Links to the operator's own public repos
-    # (e.g. the Proteus skill pack at github.com/jvogan/proteus) are allowed.
+    # Keep deployment-policy markers generic. Site-specific identifiers belong
+    # in the operator's external scan configuration.
     runpod_key = "RUNPOD" + "_API_KEY"
-    private_repo_name = "biosymphony-" + "CryoCore"
-    keychain_marker = "Keychain-" + "backed"
-    provider_doctor = "runpod-global-" + "doctor"
-    operator_env_path = "path/to/" + "operator"
-    snapshot_path = "/path/to/" + "cryocore-snapshot"
-    closeout_path = "path/to/" + "trusted-closeout.py"
     remote_launch_true = '"remote_launch_allowed": ' + "true"
     raw_download_env = '"CRYOCORE_ALLOW_RAW_DOWNLOADS": ' + '"1"'
     paid_run_flag = "--yes-create-" + "paid-runpod"
     private_clone_text = "private GitHub " + "clone"
     return [
-        private_repo_name,
-        keychain_marker,
-        provider_doctor,
-        operator_env_path,
-        snapshot_path,
-        closeout_path,
         remote_launch_true,
         raw_download_env,
         paid_run_flag,
@@ -410,24 +395,46 @@ def run_report(root: Path, max_file_bytes: int, expected_remote: str = "") -> di
     }
 
 
+def public_summary(report: dict[str, Any]) -> dict[str, Any]:
+    """Export fixed fields only; diagnostic strings can contain local details."""
+    head = report.get("git", {}).get("current_head", "")
+    if not isinstance(head, str) or not re.fullmatch(r"[0-9a-f]{12,40}", head):
+        head = None
+    snapshot = report.get("public_snapshot", {})
+    return {
+        "schema_version": 1,
+        "check_type": "cryocore_public_release_summary",
+        "ok": report.get("ok") is True,
+        "commit": head,
+        "content_check_passed": snapshot.get("ok") is True,
+        "tagged_release_ready": report.get("public_switch", {}).get("ready") is True,
+        "blocker_count": len(report.get("blockers", [])),
+        "content_error_count": len(snapshot.get("errors", [])),
+        "content_warning_count": len(snapshot.get("warnings", [])),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", type=Path, default=Path("."))
     parser.add_argument("--max-file-bytes", type=int, default=2_000_000)
     parser.add_argument("--expected-remote", default="")
     parser.add_argument("--publish-ready", action="store_true", help="Fail if git remote/commit/tag public-switch state is incomplete")
+    parser.add_argument("--public-summary", action="store_true", help="Export only public check results and commit identity")
     parser.add_argument("--out", type=Path)
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
     summary = run_report(args.repo_root.resolve(), args.max_file_bytes, args.expected_remote)
+    rendered = public_summary(summary) if args.public_summary else summary
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n")
-        summary["report_path"] = str(args.out.resolve())
+        args.out.write_text(json.dumps(rendered, indent=2, sort_keys=True) + "\n")
+        if not args.public_summary:
+            summary["report_path"] = str(args.out.resolve())
 
-    if args.json:
-        print(json.dumps(summary, indent=2, sort_keys=True))
+    if args.json or args.public_summary:
+        print(json.dumps(rendered, indent=2, sort_keys=True))
     else:
         print(f"ok: {summary['ok']}")
         for blocker in summary["blockers"]:
