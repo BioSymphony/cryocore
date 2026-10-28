@@ -1,7 +1,7 @@
 # BioSymphony CryoCore software registry.
 # Each entry must be checked from primary sources before status moves to ready.
 # Human-readable posture: docs/tooling-and-licensing.md
-# Last focused source check: 2026-09-22; per-entry source_checked marks reviewed records.
+# Last focused source check: 2026-10-27; per-entry source_checked marks reviewed records.
 # Earlier audits: 2026-08-30 for focused release, security, and cryo-ET updates;
 # 2026-07-05 for Computational-CryoEM / cryoDRGN toolwatch additions;
 # 2026-06-21 for targeted June toolwatch updates;
@@ -56,10 +56,11 @@ software:
     runpod_fit: strong
     gpu_class: "RTX 4090/L40S/A100"
     smoke_command: "MotionCor3 --help"
-    runtime_artifacts: "motioncorr_versions.json, corrected_micrograph_manifest.json"
+    runtime_artifacts: "validation.json, version.log, native per-movie logs, corrected MRC sums, alignment files"
     citation_notes: "Record MotionCor3 version and detector/movie metadata."
     status: planned
-    notes: "Open-source MotionCor3 lane from CZI. Keep UCSF MotionCor2 binary as a separate runtime-gated tool."
+    notes: "The adapter pins source dd8b6831ae66ef016fb7ef3b9b6172f8b56c79aa, reporting 1.2.4. Retain native sums and global trajectories; compare preprocessing and coordinate conventions with reference runs. See docs/micrograph-qc-and-output-checks.md. Keep UCSF MotionCor2 separate."
+    source_checked: "2026-10-27"
   topaz:
     role: particle_picking
     image_family: cryo-core
@@ -83,17 +84,18 @@ software:
     install_method: pip_or_source_after_model_review
     upstream_repo: "https://github.com/ando-lab/miffi"
     pypi_package: "miffi==1.0.1"
-    upstream_release_tag: "1.0.1"
+    upstream_release_url: "https://pypi.org/project/miffi/1.0.1/"
     upstream_release_date: "2024-03-04"
     license_class: open_source_gplv3_model_terms_review
     license_gate: source_compliance_model_and_training_data_review
     runpod_fit: possible
     gpu_class: "CPU/GPU with PyTorch"
-    smoke_command: "miffi --help"
-    runtime_artifacts: "miffi_qc_manifest.json, micrograph_filter_scores.csv, power_spectrum_pngs/"
+    smoke_command: "python -m miffi.inference --help"
+    runtime_artifacts: "miffi_qc_manifest.json, micrograph_filter_scores.csv, predictions.json, native predictions and logs"
     citation_notes: "Record Miffi commit, model/checkpoint source, micrograph IDs, score threshold, and filtering decision policy."
     status: watch
-    notes: "Micrograph filtering using Fourier-space information. PyPI publishes 1.0.1, while full models and state dictionaries are separate artifacts. Keep model, training-data, serialized-output, and source-compliance review in place."
+    notes: "The adapter pins source 697c72545fcf1e72d8dcaf6250dfd42139a864e7 and the two Zenodo 8342009 full checkpoints. Exports advisory per-crop scores and logits. The native spectrum channel uses absolute Fourier amplitude. Models carry CC BY 4.0; code is GPLv3. See docs/micrograph-qc-and-output-checks.md."
+    source_checked: "2026-10-27"
   ctffind:
     role: ctf_estimation
     image_family: cryo-core
@@ -118,10 +120,11 @@ software:
     runpod_fit: strong
     gpu_class: "NVIDIA GPU"
     smoke_command: "GCtfFind --help"
-    runtime_artifacts: "gctffind_toolcheck.json, ctf_estimation_manifest.json"
+    runtime_artifacts: "validation.json, version.log, native per-image logs, CTF parameters and spectrum MRCs"
     citation_notes: "Record GCtfFind version, CUDA and GPU details, input magnification, search parameters, and CTF outputs."
     status: planned
-    notes: "GPU CTF estimation for cryo-EM micrographs and cryo-ET tilt series. Add a small public fixture and record CUDA compatibility before making it a default lane."
+    notes: "The adapter pins source b291ddfc9a44c3bb9a9f597358c3066808eb970a, reporting 1.2.5; the README reports 1.2.6. Compare defocus components with matching microscope metadata. See docs/micrograph-qc-and-output-checks.md."
+    source_checked: "2026-10-27"
   cistem:
     role: cryoem_processing_pipeline
     image_family: cryo-core
@@ -205,18 +208,20 @@ software:
   recovar:
     role: heterogeneity_analysis
     image_family: cryo-core
-    install_method: pip_or_source_with_use_context_gate
+    install_method: pinned_source_in_isolated_environment
     upstream_repo: "https://github.com/ma-gilles/recovar"
-    pypi_package: "recovar==0.4.5"
-    license_class: current_main_pu_rl_v2_academic_noncommercial
-    license_gate: academic_noncommercial_or_commercial_license
+    upstream_commit: "b1ceda7c5e5d77eadbb229908d5e61139ee2fe34"
+    license_url: "https://github.com/ma-gilles/recovar/blob/b1ceda7c5e5d77eadbb229908d5e61139ee2fe34/LICENSE"
+    license_class: open_source_mit
+    license_gate: none_for_pinned_source_review_dependencies
+    source_checked: "2026-10-27"
     runpod_fit: possible
     gpu_class: "L40S/A100/H100"
     smoke_command: "recovar --help"
     runtime_artifacts: "recovar_report.json"
     citation_notes: "Record repo commit and paper citation."
-    status: gated
-    notes: "Current upstream main is academic/noncommercial; older PyPI 0.4.5 was GPLv3. Pin exact source/package and use context."
+    status: planned
+    notes: "Pinned LICENSE and pyproject declare MIT; Python >=3.11. Source review only, not a verified CryoCore runtime. Earlier source and PyPI packages had different recorded terms; preserve each artifact's license and identity. Review dependencies and validate heterogeneity against independent evidence before interpreting states."
   modelangelo:
     role: atomic_model_building
     image_family: model-build
@@ -1682,3 +1687,58 @@ software:
     agent_license: "https://raw.githubusercontent.com/alncat/opus-et-agent/256b213b80c3243fb8e25d090d9a601be7ddb787/LICENSE"
     upstream_commit_url: "https://github.com/alncat/opusTomo/commit/0f84aeb606fc7d49783ef90292def9a920fef70b"
     agent_commit_url: "https://github.com/alncat/opus-et-agent/commit/256b213b80c3243fb8e25d090d9a601be7ddb787"
+
+  tm_post:
+    role: template_bias_measurement
+    image_family: cryo-core
+    install_method: pinned_source_in_isolated_environment
+    upstream_repo: "https://github.com/kekexinz/2DTM_postprocess_tool"
+    upstream_commit: "87eea5503a7b3fc74e8b13d864563cb1baacb28c"
+    upstream_version: "0.1"
+    license_url: "https://github.com/kekexinz/2DTM_postprocess_tool/blob/87eea5503a7b3fc74e8b13d864563cb1baacb28c/LICENSE"
+    license_class: open_source_bsd_3_clause
+    license_gate: none_for_helper_review_cistem_separately
+    runpod_fit: possible
+    gpu_class: "CPU for measurement; search runtime separate"
+    smoke_command: "measure-template-bias --help"
+    runtime_artifacts: "template_bias_score.json, omission_mask.mrc, commands.jsonl, input_manifest.json"
+    citation_notes: "Cite eLife 109790 and record full/omit template and reconstruction identities."
+    status: planned
+    source_checked: "2026-10-27"
+    notes: "Source review only. Paper-matched mask needs --top_n 100 --threshold_divisor 5; CLI default divisor is 10. Validate grids, origins, axes, voxel sizes and normalization. The --templates path writes diff_from_templates.mrc beside its input, so use task-owned copies. JSON receipts are proposed adapter outputs, not verified native output."
+
+  cryoace:
+    role: experimental_map_guided_model_comparison
+    image_family: model-build
+    install_method: gated_pinned_source_and_checkpoint
+    upstream_repo: "https://github.com/Cellverse/CryoACE"
+    upstream_commit: "689f6b377e33680eb1a6f070bb40fe02a9ae3c2d"
+    license_url: "https://github.com/Cellverse/CryoACE/blob/689f6b377e33680eb1a6f070bb40fe02a9ae3c2d/LICENSE"
+    license_class: polyform_noncommercial_code_cc_by_nc_4_assets
+    license_gate: exact_use_context_checkpoint_and_upstream_terms
+    runpod_fit: possible
+    gpu_class: "CUDA; capacity unverified"
+    smoke_command: "boltz predict --help"
+    runtime_artifacts: "candidate_models/, checkpoint_manifest.json, map_model_validation.json, native_logs/"
+    citation_notes: "Cite CryoACE ICML 2026; record experimental map, sequence, aligned starting model and MSA provenance."
+    status: gated
+    source_checked: "2026-10-27"
+    notes: "Source review only; checkpoint bytes/hash and runtime unverified. README example uses an external MSA server; decide sequence-upload scope before execution. Validate original-map support, geometry, register and completeness. CryoCore owns evidence evaluation; Structure Factory retains prediction-runtime ownership. Receipt names are proposed integration outputs."
+
+  relay:
+    role: workflow_orchestration
+    image_family: orchestration
+    install_method: pinned_source_with_recursive_submodules
+    upstream_repo: "https://github.com/warpem/relay"
+    upstream_commit: "8bb040a0d4b956cdd0905ea9de5642f2b540e9f0"
+    license_url: "https://github.com/warpem/relay/blob/8bb040a0d4b956cdd0905ea9de5642f2b540e9f0/LICENSE"
+    license_class: open_source_mit
+    license_gate: review_processing_tools_and_submodules
+    runpod_fit: possible
+    gpu_class: "CPU orchestrator; workers depend on selected tools"
+    smoke_command: "dotnet --info"
+    runtime_artifacts: "job_definitions/, execution_receipts/, native_logs/, source_manifest.json"
+    citation_notes: "Record Relay revision, submodule pins, scheduler configuration and scientific tool versions."
+    status: watch
+    source_checked: "2026-10-27"
+    notes: "No published GitHub release verified. Requires .NET 10 and Python >=3.10 for Bakery. Smoke command checks .NET only. Review input/command/output exports, cancellation and restart in isolated Linux before adoption; CPU/memory reservations are accounting rather than hard limits. Proposed receipt names are not verified exports."

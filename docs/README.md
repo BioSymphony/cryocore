@@ -6,6 +6,8 @@
 
 | I need to... | Start here |
 | --- | --- |
+| Score micrographs or check native motion/CTF outputs | [Micrograph QC And Output Checks](micrograph-qc-and-output-checks.md) |
+| Review tool additions | [October Toolwatch](toolwatch-2026-10-27.md) |
 | Take a fifteen-minute walk through the repo | [Tour](tour.md) |
 | Run the demo or release gate | [Public Quickstart](public-quickstart.md) |
 | Point an agent at CryoCore | [Agent Quickstart](agent-quickstart.md) |

@@ -24,17 +24,18 @@ jobs:
       - uses: actions/setup-go@v7
         with:
           go-version: "1.25"
+          cache: false
       - name: Install gitleaks
         run: go install github.com/zricethezav/gitleaks/v8@v8.24.3
       - name: Run public release gate
         run: PATH="$HOME/go/bin:$PATH" REQUIRE_GITLEAKS=1 make release-check
       - name: Build release evidence bundle
         run: |
-          mkdir -p release-artifacts
-          python3 scripts/cryocore/public_release_report.py --repo-root . --out release-artifacts/public-release-report.json --json
-          git archive --format=tar.gz --output release-artifacts/cryocore-${GITHUB_REF_NAME}.tar.gz HEAD
-          (cd release-artifacts && shasum -a 256 * > SHA256SUMS)
+          mkdir -p "$RUNNER_TEMP/cryocore-release"
+          python3 scripts/cryocore/public_release_report.py --repo-root . --publish-ready --public-summary --out "$RUNNER_TEMP/cryocore-release/public-release-report.json" --json
+          git archive --format=tar.gz --output "$RUNNER_TEMP/cryocore-release/cryocore-${GITHUB_REF_NAME}.tar.gz" HEAD
+          (cd "$RUNNER_TEMP/cryocore-release" && shasum -a 256 * > SHA256SUMS)
       - uses: actions/upload-artifact@v7
         with:
           name: cryocore-public-release-evidence
-          path: release-artifacts/
+          path: ${{ runner.temp }}/cryocore-release/

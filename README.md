@@ -44,7 +44,7 @@ invocation.
 | Rendering and viewers | PyMOL, ChimeraX, Mol*, Blender |
 
 Each record carries its own readiness and licensing status. The
-[September source review](docs/toolwatch-2026-09-22.md) tracks recent AI methods
+[October source review](docs/toolwatch-2026-10-27.md) tracks recent AI methods
 and releases; the [adoption policy](docs/toolwatch-to-lane-policy.md) defines
 what a candidate needs before execution.
 
@@ -62,6 +62,11 @@ in the next call.
 | RCSB metadata and coordinates -> coordinate analysis -> SVG figures | Runnable CPU demo: `make demo-local` |
 | Movie correction and CTF estimation -> picking -> reconstruction | [Processing contracts](modules/lane-modules/raw-to-map.v1.json); configure and install the selected scientific tools |
 | Map and model -> PyMOL or ChimeraX -> figure checks | [Renderer helpers](scripts/cryocore/render/); requires the selected renderer and applicable terms |
+
+Use the [micrograph QC guide](docs/micrograph-qc-and-output-checks.md) to score
+micrographs with Miffi, compare MotionCor3 and GCtfFind outputs, and repair MRC
+headers with byte-for-byte pixel checks. The adapters retain commands, input
+identities, and native outputs for the next tool call.
 
 The [tool-use guide](docs/tool-use-and-chaining.md) shows concrete calls and
 how to connect them. Preserve input identifiers, file formats, units, and

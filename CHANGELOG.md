@@ -1,5 +1,13 @@
 # Changelog
 
+## October 27, 2026
+
+- Add Miffi quality scores, MotionCor3/GCtfFind comparisons, and MRC header repair.
+- Add input manifests, pinned runtime setup, and provider environment lessons.
+- Add 2DTM postprocessing, CryoACE, and Relay records; update RECOVAR source terms.
+- Refresh skill references and test optional MRC adapters in CI.
+- Export release summaries with fixed public fields.
+
 ## 0.1.0-prealpha
 
 Initial public-staging release:

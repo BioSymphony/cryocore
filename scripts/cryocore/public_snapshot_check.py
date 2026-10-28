@@ -97,6 +97,8 @@ PUBLIC_PRIVATE_MARKERS = [
 ]
 
 PUBLIC_PRIVATE_PATTERNS = [
+    ("mounted macOS storage path", re.compile(r"/Volumes/[A-Za-z0-9._-]+(?:/|$)")),
+    ("mounted user media path", re.compile(r"/media/[A-Za-z0-9._-]+(?:/|$)")),
     ("macOS home path", re.compile(r"/Users/[A-Za-z0-9._-]+(?:/|$)")),
     ("Linux home path", re.compile(r"/home/[A-Za-z0-9._-]+(?:/|$)")),
     (
